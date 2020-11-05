@@ -1,0 +1,19 @@
+package com.example.h3t_project.activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+import com.example.h3t_project.R;
+
+public class ActivityMyCart extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_cart);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Giỏ hàng của tôi");
+    }
+}
