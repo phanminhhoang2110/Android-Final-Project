@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameRegister"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.RegisterFragment">
+
+    <EditText
+        android:id="@+id/textDOB"
+        android:layout_width="308dp"
+        android:layout_height="47dp"
+        android:ems="10"
+        android:hint="Ngày sinh"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textPasswordRegister"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/textPasswordRegister"
+        app:layout_constraintVertical_bias="0.101" />
+
+    <EditText
+        android:id="@+id/textPhone"
+        android:layout_width="302dp"
+        android:layout_height="53dp"
+        android:ems="10"
+        android:hint="Số điện thoại"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textFullname"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textFullname"
+        app:layout_constraintTop_toBottomOf="@+id/textFullname"
+        app:layout_constraintVertical_bias="0.036" />
+
+    <EditText
+        android:id="@+id/textFullname"
+        android:layout_width="303dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="2dp"
+        android:ems="10"
+        android:hint="Họ tên"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <EditText
+        android:id="@+id/textPasswordRegister"
+        android:layout_width="307dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textEmail"
+        app:layout_constraintStart_toStartOf="@+id/textEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textEmail"
+        app:layout_constraintVertical_bias="0.077" />
+
+    <EditText
+        android:id="@+id/textEmail"
+        android:layout_width="306dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textPhone"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textPhone"
+        app:layout_constraintTop_toBottomOf="@+id/textPhone"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="280dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#F52929"
+        android:text="Đăng ký"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/textDOB"
+        app:layout_constraintVertical_bias="0.32999998" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="256dp"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintEnd_toEndOf="@+id/textDOB"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="@+id/textDOB"
+        app:layout_constraintTop_toBottomOf="@+id/textDOB"
+        app:layout_constraintVertical_bias="0.44">
+
+        <RadioButton
+            android:id="@+id/rdMale"
+            android:layout_width="104dp"
+            android:layout_height="match_parent"
+            android:text="Nam" />
+
+        <RadioButton
+            android:id="@+id/rdFemale"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:text="Nữ" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="232dp"
+        android:layout_height="47dp"
+        android:text="Khi bạn đăng ký là bạn đã chấp nhận"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        app:layout_constraintVertical_bias="0.291" />
+
+    <TextView
+        android:id="@+id/textDieuKhoan"
+        android:layout_width="135dp"
+        android:layout_height="48dp"
+        android:text="điều khoản sử dụng"
+        android:textColor="#2196F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        app:layout_constraintVertical_bias="0.293" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
