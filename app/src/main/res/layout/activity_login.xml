@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="205dp"
+                android:layout_height="156dp"
                 app:srcCompat="@drawable/header" />
 
             <com.google.android.material.tabs.TabLayout

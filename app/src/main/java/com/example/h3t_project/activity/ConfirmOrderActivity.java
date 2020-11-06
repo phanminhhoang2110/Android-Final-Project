@@ -1,23 +1,20 @@
 package com.example.h3t_project.activity;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.WindowManager;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Bundle;
+import android.view.WindowManager;
+
 import com.example.h3t_project.R;
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class ConfirmOrderActivity extends AppCompatActivity {
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password);
-
-        toolbar = findViewById(R.id.actionbar);
+        setContentView(R.layout.activity_confirm_order);
+        toolbar = findViewById(R.id.actionbar3);
 
         setSupportActionBar(toolbar);
 
@@ -25,13 +22,5 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

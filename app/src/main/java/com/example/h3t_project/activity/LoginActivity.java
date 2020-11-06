@@ -23,8 +23,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //cuộn xuống đáy
-        scrollView = (ScrollView) findViewById(R.id.scrollView);
-        scrollView.fullScroll(ScrollView.FOCUS_UP);
+//        scrollView = (ScrollView) findViewById(R.id.scrollView);
+//        scrollView.fullScroll(ScrollView.FOCUS_UP);
         //input up
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
