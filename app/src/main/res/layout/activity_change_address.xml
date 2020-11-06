@@ -7,17 +7,17 @@
     tools:context=".activity.ChangeAddressActivity">
 
     <Button
-        android:id="@+id/btnRegister2"
+        android:id="@+id/btnConfirmAddress"
         android:layout_width="296dp"
         android:layout_height="63dp"
         android:backgroundTint="#F52929"
         android:text="Giao hàng đến địa chỉ này"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
+        app:layout_constraintEnd_toEndOf="@+id/txtAddress"
         app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+        app:layout_constraintStart_toStartOf="@+id/txtAddress"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddress"
         app:layout_constraintVertical_bias="0.331" />
 
     <TextView
@@ -40,10 +40,10 @@
         android:text="Số điện thoại"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
+        app:layout_constraintEnd_toEndOf="@+id/txtFullName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+        app:layout_constraintStart_toStartOf="@+id/txtFullName"
+        app:layout_constraintTop_toBottomOf="@+id/txtFullName"
         app:layout_constraintVertical_bias="0.056" />
 
     <TextView
@@ -53,14 +53,14 @@
         android:text="Địa chỉ nhận hàng"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName4"
+        app:layout_constraintEnd_toEndOf="@+id/txtPhone"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4"
+        app:layout_constraintStart_toStartOf="@+id/txtPhone"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhone"
         app:layout_constraintVertical_bias="0.084" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/txtFullName"
         android:layout_width="348dp"
         android:layout_height="48dp"
         android:layout_marginBottom="464dp"
@@ -76,7 +76,7 @@
         app:layout_constraintVertical_bias="0.465" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/txtPhone"
         android:layout_width="348dp"
         android:layout_height="48dp"
         android:backgroundTint="#756363"
@@ -91,7 +91,7 @@
         app:layout_constraintVertical_bias="0.056" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/txtAddress"
         android:layout_width="348dp"
         android:layout_height="48dp"
         android:backgroundTint="#756363"

@@ -7,7 +7,7 @@
     tools:context=".activity.ThanksActivity">
 
     <Button
-        android:id="@+id/btnRegister3"
+        android:id="@+id/btnHome"
         android:layout_width="233dp"
         android:layout_height="51dp"
         android:backgroundTint="#F52929"

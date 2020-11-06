@@ -14,10 +14,10 @@
         android:text="Đặt hàng"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView22"
+        app:layout_constraintEnd_toEndOf="@+id/txtTotalAmount"
         app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toStartOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/txtTotalAmount"
         app:layout_constraintVertical_bias="0.526" />
 
     <View
@@ -177,6 +177,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewConfirmProduct"
                 android:layout_width="match_parent"
                 android:layout_height="85dp" />
 
@@ -212,7 +213,7 @@
         app:layout_constraintVertical_bias="0.63" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/txtCoupon"
         android:layout_width="163dp"
         android:layout_height="37dp"
         android:backgroundTint="#756363"
@@ -231,7 +232,7 @@
         app:layout_constraintVertical_bias="0.045" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/txtChangeAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thay đổi"
@@ -245,21 +246,21 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/txtFeeShipping"
         android:layout_width="155dp"
         android:layout_height="35dp"
         android:text="30.000"
         android:textAlignment="textEnd"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView17"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+        app:layout_constraintEnd_toEndOf="@+id/txtCoupon"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView17"
         app:layout_constraintTop_toTopOf="@+id/textView17"
         app:layout_constraintVertical_bias="0.115" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/txtTotalAmount"
         android:layout_width="158dp"
         android:layout_height="31dp"
         android:text="30.000"
