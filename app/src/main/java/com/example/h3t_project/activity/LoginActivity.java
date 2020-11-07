@@ -2,6 +2,7 @@ package com.example.h3t_project.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 //tạo adapter cho viewpager
 //add fragment vào viewpager, add viewpager vào tablayout
 public class LoginActivity extends AppCompatActivity {
+    ImageView imageView;
     ScrollView scrollView;
     ViewPager2 viewPager;
     @Override
