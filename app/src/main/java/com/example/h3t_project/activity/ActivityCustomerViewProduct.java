@@ -9,13 +9,18 @@ import android.view.MenuItem;
 import com.example.h3t_project.R;
 
 public class ActivityCustomerViewProduct extends AppCompatActivity {
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_view_product);
-//
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar = findViewById(R.id.actionbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
