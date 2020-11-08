@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:context="com.example.h3t_project.activity.ActivityCustomerViewProduct">
+  <item
+    android:id="@+id/action_personal"
+    app:showAsAction="always"
+    android:icon="@drawable/ic_user"
+    android:title="personal" />
+  <item
+    android:id="@+id/action_cart"
+    app:showAsAction="always"
+    android:actionLayout="@layout/cart_icon_with_number"
+    android:title="cart" />
+</menu>
