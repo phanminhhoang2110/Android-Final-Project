@@ -10,11 +10,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity android:name=".activity.HomePageActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
     </activity>
     <activity android:name=".activity.ActivityDetailOrder">
     </activity>
@@ -23,9 +19,8 @@
     <activity android:name=".activity.ChangeAddressActivity"></activity>
     <activity android:name=".activity.ConfirmOrderActivity" />
     <activity android:name=".activity.SentMailActivity" />
-    <activity android:name=".activity.LoginActivity"></activity><activity
-      android:name=".activity.ForgotPasswordActivity"
-      android:parentActivityName=".activity.LoginActivity" ></activity>
+    <activity android:name=".activity.LoginActivity"></activity>
+    <activity android:name=".activity.ForgotPasswordActivity" android:parentActivityName=".activity.LoginActivity" ></activity>
     <activity android:name=".activity.ViewProductActivity" ></activity>
     <activity android:name=".activity.SettingActivity"></activity>
     <activity android:name=".activity.PersonalActivity" ></activity>
@@ -34,7 +29,13 @@
     <activity android:name=".activity.SellerProductActivity"></activity>
     <activity android:name=".activity.EditPersonalActivity"></activity>
     <activity android:name=".activity.ActivityMyCart" ></activity>
-    <activity android:name=".activity.ActivityCustomerViewProduct"></activity>
+    <activity android:name=".activity.ActivityCustomerViewProduct">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
     <meta-data
       android:name="preloaded_fonts"
       android:resource="@array/preloaded_fonts" />
