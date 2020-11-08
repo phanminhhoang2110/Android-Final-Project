@@ -20,17 +20,59 @@
         <activity android:name=".activity.LoginActivity">
 
         </activity>
-
         <activity
             android:name=".activity.ForgotPasswordActivity"
             android:parentActivityName=".activity.LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.ViewProductActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity android:name=".activity.SettingActivity">
+
+        </activity>
+        <activity android:name=".activity.PersonalActivity"></activity>
+
+        <activity android:name=".activity.AddProductActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:name=".activity.DetailSellerProductActivity">
+    </activity>
+    <activity android:name=".activity.SellerProductActivity">
+
+    </activity>
+    <activity android:name=".activity.EditPersonalActivity">
+
+      <!-- <intent-filter> -->
+      <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+      <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+      <!-- </intent-filter> -->
+    </activity>
+    <activity android:name=".MainActivity">
+
+      <!-- <intent-filter> -->
+      <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+      <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+      <!-- </intent-filter> -->
+    </activity>
+    <activity android:name=".activity.ActivityMyCart">
+    </activity>
+    <activity android:name=".activity.ActivityCustomerViewProduct">
+
+    </activity>
+
+    <meta-data
+      android:name="preloaded_fonts"
+      android:resource="@array/preloaded_fonts" />
+  </application>
 
 </manifest>
