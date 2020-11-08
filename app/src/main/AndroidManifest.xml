@@ -9,6 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".activity.ActivityDetailOrder">
+
+        </activity>
+        <activity android:name=".activity.ActivityListOrder">
+
         <activity android:name=".activity.ThanksActivity">
 
         </activity>
@@ -24,12 +30,8 @@
             android:name=".activity.ForgotPasswordActivity"
             android:parentActivityName=".activity.LoginActivity" />
         <activity android:name=".activity.ViewProductActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
         <activity android:name=".activity.SettingActivity">
 
         </activity>
@@ -38,41 +40,31 @@
         <activity android:name=".activity.AddProductActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
-    <activity android:name=".activity.DetailSellerProductActivity">
-    </activity>
-    <activity android:name=".activity.SellerProductActivity">
 
-    </activity>
-    <activity android:name=".activity.EditPersonalActivity">
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.DetailSellerProductActivity">
+        </activity>
+        <activity android:name=".activity.SellerProductActivity">
 
-      <!-- <intent-filter> -->
-      <!-- <action android:name="android.intent.action.MAIN" /> -->
+        </activity>
+        <activity android:name=".activity.EditPersonalActivity">
 
+        </activity>
+        <activity android:name=".MainActivity">
 
-      <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-      <!-- </intent-filter> -->
-    </activity>
-    <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".activity.ActivityMyCart">
+        </activity>
+        <activity android:name=".activity.ActivityCustomerViewProduct">
 
-      <!-- <intent-filter> -->
-      <!-- <action android:name="android.intent.action.MAIN" /> -->
+        </activity>
 
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
-      <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-      <!-- </intent-filter> -->
-    </activity>
-    <activity android:name=".activity.ActivityMyCart">
-    </activity>
-    <activity android:name=".activity.ActivityCustomerViewProduct">
-
-    </activity>
-
-    <meta-data
-      android:name="preloaded_fonts"
-      android:resource="@array/preloaded_fonts" />
-  </application>
+    </application>
 
 </manifest>
