@@ -36,13 +36,7 @@
     </activity>
     <activity android:name=".activity.PersonalActivity"></activity>
 
-    <activity android:name=".activity.AddProductActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
+    <activity android:name=".activity.AddProductActivity"></activity>
     <activity android:name=".activity.DetailSellerProductActivity"></activity>
     <activity android:name=".activity.SellerProductActivity">
 
@@ -52,7 +46,11 @@
     </activity>
     <activity android:name=".activity.ActivityMyCart"></activity>
     <activity android:name=".activity.ActivityCustomerViewProduct">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
     </activity>
 
     <meta-data
