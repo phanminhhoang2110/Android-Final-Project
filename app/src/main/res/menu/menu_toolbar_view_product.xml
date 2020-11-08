@@ -4,7 +4,7 @@
   <item
     android:title="Cart"
     android:id="@+id/cart"
-    android:icon="@drawable/ic_shopping_cart"
+    android:actionLayout="@layout/cart_icon_with_number"
     app:showAsAction="always"
     />
 </menu>
