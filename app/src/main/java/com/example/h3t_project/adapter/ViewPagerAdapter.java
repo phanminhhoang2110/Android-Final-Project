@@ -1,32 +1,41 @@
 package com.example.h3t_project.adapter;
 
+import android.widget.ListView;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.h3t_project.fragment.LoginFragment;
-import com.example.h3t_project.fragment.RegisterFragment;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ViewPagerAdapter extends FragmentStateAdapter {
-
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
+public class ViewPageAdapter extends FragmentPagerAdapter {
+    private final List<Fragment> fragmentList = new ArrayList<>();
+    private final List<String> titleFrm = new ArrayList<>();
+    public ViewPageAdapter(@NonNull FragmentManager fm) {
+        super(fm);
     }
 
     @NonNull
     @Override
-    public Fragment createFragment(int position) {
-        switch (position){
-            case 0:
-                return new LoginFragment();
-            default:
-                return new RegisterFragment();
-        }
+    public Fragment getItem(int position) {
+        return fragmentList.get(position);
     }
 
     @Override
-    public int getItemCount() {
-        return 2;
+    public int getCount() {
+        return  fragmentList.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titleFrm.get(position);
+    }
+
+    public void add(Fragment frm,String t){
+        fragmentList.add(frm);
+        titleFrm.add(t);
     }
 }
