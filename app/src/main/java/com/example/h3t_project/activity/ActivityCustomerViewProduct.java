@@ -1,6 +1,7 @@
 package com.example.h3t_project.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,12 +10,17 @@ import android.view.MenuItem;
 import com.example.h3t_project.R;
 
 public class ActivityCustomerViewProduct extends AppCompatActivity {
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_view_product);
 
+        toolbar = findViewById(R.id.actionbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
