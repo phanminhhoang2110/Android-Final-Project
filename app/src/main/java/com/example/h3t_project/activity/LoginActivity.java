@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.h3t_project.R;
-import com.example.h3t_project.adapter.ViewPagerAdapter;
+import com.example.h3t_project.adapter.LoginViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         viewPager = findViewById(R.id.viewPager);
-        viewPager.setAdapter(new ViewPagerAdapter(this));
+        viewPager.setAdapter(new LoginViewPagerAdapter(this));
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
