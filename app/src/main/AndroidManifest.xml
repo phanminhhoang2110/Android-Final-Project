@@ -9,23 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activity.ActivityDetailOrder">
 
         </activity>
         <activity android:name=".activity.ActivityListOrder">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".activity.ThanksActivity">
+
         </activity>
+        <activity android:name=".activity.ChangeAddressActivity">
 
+        </activity>
+        <activity android:name=".activity.ConfirmOrderActivity"></activity>
+        <activity android:name=".activity.SentMailActivity" />
+        <activity android:name=".activity.LoginActivity">
+
+        </activity>
+        <activity
+            android:name=".activity.ForgotPasswordActivity"
+            android:parentActivityName=".activity.LoginActivity" />
         <activity android:name=".activity.ViewProductActivity">
         </activity>
+
         <activity android:name=".activity.SettingActivity">
 
         </activity>
         <activity android:name=".activity.PersonalActivity"></activity>
+
         <activity android:name=".activity.AddProductActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
