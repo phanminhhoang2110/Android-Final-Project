@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#CC189EFF</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#CC189EFF</color>
     <color name="colorTiki">#189EFE</color>
     <color name="colorPrimary">#189EFE</color>
     <color name="colorPrimaryDark">#189EFE</color>
