@@ -8,9 +8,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.h3t_project.fragment.LoginFragment;
 import com.example.h3t_project.fragment.RegisterFragment;
 
-public class ViewPagerAdapter extends FragmentStateAdapter {
+public class LoginViewPagerAdapter extends FragmentStateAdapter {
 
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public LoginViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
