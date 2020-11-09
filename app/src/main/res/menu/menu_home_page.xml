@@ -5,12 +5,12 @@
   tools:context="com.example.h3t_project.activity.ActivityCustomerViewProduct">
   <item
     android:id="@+id/action_personal"
-    app:showAsAction="always"
     android:icon="@drawable/ic_user"
-    android:title="personal" />
+    android:title="personal"
+    app:showAsAction="always" />
   <item
     android:id="@+id/action_cart"
-    app:showAsAction="always"
-    android:actionLayout="@layout/cart_icon_with_number"
-    android:title="cart" />
+    app:actionLayout="@layout/cart_icon_with_number"
+    android:title="cart"
+    app:showAsAction="always" />
 </menu>

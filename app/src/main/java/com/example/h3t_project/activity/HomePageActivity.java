@@ -23,25 +23,25 @@ public class HomePageActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_home_page);
     Toolbar toolbar = findViewById(R.id.toolbar);
+    getSupportActionBar().setDisplayShowTitleEnabled(false);
     setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    setupCategory();
+//    setupCategory();
   }
-
-  private void setupCategory() {
-    RecyclerView categoryRecyclerView = findViewById(R.id.categoryRecyclerView);
-    String[] nameCategory = {"bag", "book", "boot", "car", "comestic", "food_hamburder", "house_pan", "laptop", "mobile_phone"};
-    ArrayList<CategoryItem> categoryItems = new ArrayList<>();
-    for (int i = 0; i < nameCategory.length; i++) {
-      categoryItems.add(new CategoryItem(i, nameCategory[i], 0));
-    }
-    CategoryMenuAdapter categoryMenuAdapter = new CategoryMenuAdapter(categoryItems);
-    categoryRecyclerView.setAdapter(categoryMenuAdapter);
-    GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
-    categoryRecyclerView.setLayoutManager(gridLayoutManager);
-//    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//    categoryRecyclerView.setLayoutManager(layoutManager);
-  }
+//
+//  private void setupCategory() {
+//    RecyclerView categoryRecyclerView = findViewById(R.id.categoryRecyclerView);
+//    String[] nameCategory = {"bag", "book", "boot", "car", "comestic", "food_hamburder", "house_pan", "laptop", "mobile_phone"};
+//    ArrayList<CategoryItem> categoryItems = new ArrayList<>();
+//    for (int i = 0; i < nameCategory.length; i++) {
+//      categoryItems.add(new CategoryItem(i, nameCategory[i], 0));
+//    }
+//    CategoryMenuAdapter categoryMenuAdapter = new CategoryMenuAdapter(categoryItems);
+//    categoryRecyclerView.setAdapter(categoryMenuAdapter);
+//    GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
+//    categoryRecyclerView.setLayoutManager(gridLayoutManager);
+////    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+////    categoryRecyclerView.setLayoutManager(layoutManager);
+//  }
 
   public static int getResId(String resName, Class<?> c) {
     try {
