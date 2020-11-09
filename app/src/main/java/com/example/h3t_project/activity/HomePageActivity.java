@@ -24,6 +24,7 @@ public class HomePageActivity extends AppCompatActivity {
     setContentView(R.layout.activity_home_page);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayShowTitleEnabled(false);
     //setupCategory();
   }
 
@@ -48,7 +49,7 @@ public class HomePageActivity extends AppCompatActivity {
 //      e.printStackTrace();
 //      return -1;
 //    }
-//  }
+//  }`
 
 
   @Override

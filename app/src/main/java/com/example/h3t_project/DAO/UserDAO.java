@@ -1,14 +1,15 @@
-package com.example.h3t_project.DAO;
-
-import com.example.h3t_project.DatabaseM.DatabaseManager;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
-public class UserDAO extends DatabaseManager {
-  PreparedStatement ps = null;
-  ResultSet rs = null;
-
+//package com.example.h3t_project.DAO;
+//
+//import com.example.h3t_project.DatabaseM.DatabaseManager;
+//import com.example.h3t_project.model.User;
+//
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//
+//public class UserDAO extends DatabaseManager {
+//  PreparedStatement ps = null;
+//  ResultSet rs = null;
+//
 //  public User checkLogin(String username, String password) {
 //    try {
 //      String query = "SELECT [id]" +
@@ -22,9 +23,9 @@ public class UserDAO extends DatabaseManager {
 //      rs = ps.executeQuery();
 //      while (rs.next()) {
 //        User user = new User();
-//        user.setId(rs.getInt(1));
-//        user.setUsername(rs.getString(2));
-//        user.setPassword(rs.getString(3));
+//        user.setId(rs.getInt(""));
+//        user.setUsername(rs.getString(""));
+//        user.setPassword(rs.getString(""));
 //        return user;
 //      }
 //    } catch (Exception e) {
@@ -32,5 +33,5 @@ public class UserDAO extends DatabaseManager {
 //    }
 //    return null;
 //  }
-
-}
+//
+//}
