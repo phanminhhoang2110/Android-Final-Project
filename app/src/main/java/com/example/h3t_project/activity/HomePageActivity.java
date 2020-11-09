@@ -23,11 +23,10 @@ public class HomePageActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_home_page);
     Toolbar toolbar = findViewById(R.id.toolbar);
-    getSupportActionBar().setDisplayShowTitleEnabled(false);
     setSupportActionBar(toolbar);
-//    setupCategory();
+    //setupCategory();
   }
-//
+
 //  private void setupCategory() {
 //    RecyclerView categoryRecyclerView = findViewById(R.id.categoryRecyclerView);
 //    String[] nameCategory = {"bag", "book", "boot", "car", "comestic", "food_hamburder", "house_pan", "laptop", "mobile_phone"};
@@ -39,19 +38,17 @@ public class HomePageActivity extends AppCompatActivity {
 //    categoryRecyclerView.setAdapter(categoryMenuAdapter);
 //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
 //    categoryRecyclerView.setLayoutManager(gridLayoutManager);
-////    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-////    categoryRecyclerView.setLayoutManager(layoutManager);
 //  }
 
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
-  }
+//  public static int getResId(String resName, Class<?> c) {
+//    try {
+//      Field idField = c.getDeclaredField(resName);
+//      return idField.getInt(idField);
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//      return -1;
+//    }
+//  }
 
 
   @Override
