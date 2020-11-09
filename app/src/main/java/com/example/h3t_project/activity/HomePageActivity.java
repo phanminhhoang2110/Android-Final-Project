@@ -24,6 +24,7 @@ public class HomePageActivity extends AppCompatActivity {
     setContentView(R.layout.activity_home_page);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setupCategory();
   }
 
