@@ -40,8 +40,10 @@ public class CouponItemAdapter extends RecyclerView.Adapter<CouponItemAdapter.Vi
       public void onClick(View v) {
         CouponDAO couponDAO = new CouponDAO();
         int rowAffect = couponDAO.deleteCoupon(couponItems.get(position).getCodeCoupon());
-//        CouponActivity couponActivity = new CouponActivity();
-//        couponActivity.showCoupon();
+        if(rowAffect != 0) {
+          couponItems.remove(position);
+          notifyItemRemoved(position);
+        }
       }
     });
   }
