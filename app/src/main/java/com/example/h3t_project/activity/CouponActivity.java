@@ -55,6 +55,9 @@ public class CouponActivity extends AppCompatActivity {
         if (result == true) {
           showSuccessDialog();
         }
+        if (result == false){
+          showErrorDialog(VietnameseWord.COUPON_DUPLICATE);
+        }
       }
     });
   }
@@ -65,7 +68,7 @@ public class CouponActivity extends AppCompatActivity {
     String codeCoupon = codeCouponEdt.getText().toString();
     String valueCouponRaw = valueCouponEdt.getText().toString();
     if (codeCoupon.length() == 0 || valueCouponRaw.length() == 0) {
-      showErrorDialog();
+      showErrorDialog(VietnameseWord.ERROR_COUPON_EMPTY);
       return null;
     }
     int valueCoupon = Integer.parseInt(valueCouponRaw);
@@ -75,10 +78,10 @@ public class CouponActivity extends AppCompatActivity {
     return couponItem;
   }
 
-  private void showErrorDialog() {
+  private void showErrorDialog(String error) {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(VietnameseWord.ERROR);
-    builder.setMessage(VietnameseWord.ERROR_COUPON_EMPTY);
+    builder.setMessage(error);
     builder.setIcon(android.R.drawable.ic_dialog_info);
     builder.setPositiveButton(VietnameseWord.OK, new DialogInterface.OnClickListener() {
       @Override
@@ -91,7 +94,7 @@ public class CouponActivity extends AppCompatActivity {
     dialog.show();
   }
 
-  public void showSuccessDialog() {
+  private void showSuccessDialog() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(VietnameseWord.ADD_SUCCESS);
     builder.setMessage(VietnameseWord.ADD_COUPON_SUCCESS);
