@@ -43,7 +43,7 @@ public class CustomerViewProductDAO extends DatabaseManager {
             while (resultSet.next()){
                 Product product = new Product();
                 product.setId(resultSet.getInt("id"));
-                product.setName(resultSet.getNString("name"));
+                product.setName(resultSet.getString("name"));
                 product.setOrigin_price(resultSet.getInt("origin_price"));
                 product.setSell_price(resultSet.getInt("sell_price"));
                 product.setLink_image(resultSet.getString("link"));

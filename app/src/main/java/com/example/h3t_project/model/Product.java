@@ -21,12 +21,13 @@ public class Product {
     int quantity;
     String coupon_code;
     int coupon_value;
+    int image_id;
     String link_image;
 
     public Product() {
     }
 
-    public Product(int id, String name, int origin_price, int sell_price, int category_id, String category_name, String model, String description, String guarantee, String brand, int weight, int origin, String color, int height, int size_id, String size, String material, int quantity, String coupon_code, int coupon_value, String link_image) {
+    public Product(int id, String name, int origin_price, int sell_price, int category_id, String category_name, String model, String description, String guarantee, String brand, int weight, int origin, String color, int height, int size_id, String size, String material, int quantity, String coupon_code, int coupon_value, int image_id, String link_image) {
         this.id = id;
         this.name = name;
         this.origin_price = origin_price;
@@ -47,6 +48,7 @@ public class Product {
         this.quantity = quantity;
         this.coupon_code = coupon_code;
         this.coupon_value = coupon_value;
+        this.image_id = image_id;
         this.link_image = link_image;
     }
 
@@ -224,5 +226,13 @@ public class Product {
 
     public void setLink_image(String link_image) {
         this.link_image = link_image;
+    }
+
+    public int getImage_id() {
+        return image_id;
+    }
+
+    public void setImage_id(int image_id) {
+        this.image_id = image_id;
     }
 }

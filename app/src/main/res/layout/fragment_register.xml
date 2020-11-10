@@ -126,7 +126,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/item_price_customer_view_product"
         android:layout_width="230dp"
         android:layout_height="24dp"
         android:text="Khi bạn đăng ký là bạn đã chấp nhận"
@@ -146,7 +146,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/item_price_customer_view_product"
         app:layout_constraintTop_toBottomOf="@+id/btnRegister"
         app:layout_constraintVertical_bias="0.033" />
 

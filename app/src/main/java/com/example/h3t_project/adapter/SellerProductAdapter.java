@@ -33,11 +33,11 @@ public class SellerProductAdapter extends RecyclerView.Adapter<SellerProductAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtNameProduct.setText(products.get(position).getProductName());
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        holder.txtPriceProduct.setText("Giá : "+ decimalFormat.format(products.get(position).getPrice())+ " vnd");
-        holder.txtQuantity.setText("Số lượng : "+ products.get(position).getQuantity());
-        holder.imageProduct.setImageResource(products.get(position).getProductImg());
+//        holder.txtNameProduct.setText(products.get(position).getProductName());
+//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+//        holder.txtPriceProduct.setText("Giá : "+ decimalFormat.format(products.get(position).getPrice())+ " vnd");
+//        holder.txtQuantity.setText("Số lượng : "+ products.get(position).getQuantity());
+//        holder.imageProduct.setImageResource(products.get(position).getProductImg());
     }
 
     @Override
@@ -50,10 +50,10 @@ public class SellerProductAdapter extends RecyclerView.Adapter<SellerProductAdap
         TextView txtNameProduct, txtPriceProduct, txtQuantity;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtNameProduct =itemView.findViewById(R.id.txtNameProduct);
-            txtPriceProduct =itemView.findViewById(R.id.txtPriceProduct);
-            txtQuantity = itemView.findViewById(R.id.txtQuantity);
-            imageProduct =itemView.findViewById(R.id.imageProduct);
+//            txtNameProduct =itemView.findViewById(R.id.txtNameProduct);
+//            txtPriceProduct =itemView.findViewById(R.id.txtPriceProduct);
+//            txtQuantity = itemView.findViewById(R.id.txtQuantity);
+//            imageProduct =itemView.findViewById(R.id.imageProduct);
         }
     }
 }
