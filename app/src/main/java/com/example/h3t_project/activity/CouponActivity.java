@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.h3t_project.DAO.CouponDAO;
 import com.example.h3t_project.R;
+import com.example.h3t_project.constants.VietnameseWord;
 import com.example.h3t_project.model.CouponItem;
 
 public class CouponActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class CouponActivity extends AppCompatActivity {
     setContentView(R.layout.activity_coupon);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    setTitle("Thêm mã giảm giá");
+    setTitle(VietnameseWord.couponActivity);
     addCounpon = findViewById(R.id.addCouponbtn);
     addCounpon.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -64,10 +65,10 @@ public class CouponActivity extends AppCompatActivity {
 
   private void showErrorDialog() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Lỗi");
-    builder.setMessage("Không được để trường code hoặc trường giá trị trống");
+    builder.setTitle(VietnameseWord.error);
+    builder.setMessage(VietnameseWord.errorCouponEmpty);
     builder.setIcon(android.R.drawable.ic_dialog_info);
-    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    builder.setPositiveButton(VietnameseWord.ok, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         dialog.cancel();
@@ -79,10 +80,10 @@ public class CouponActivity extends AppCompatActivity {
   }
   private void showSuccessDialog() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Thêm thành công");
-    builder.setMessage("Đã thêm coupon thành công");
+    builder.setTitle(VietnameseWord.addSuccess);
+    builder.setMessage(VietnameseWord.addCouponSuccess);
     builder.setIcon(android.R.drawable.star_big_on);
-    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    builder.setPositiveButton(VietnameseWord.ok, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         dialog.cancel();
