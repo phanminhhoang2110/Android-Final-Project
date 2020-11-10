@@ -43,7 +43,7 @@ public class PersonalActivity extends AppCompatActivity {
     for (int i = 1; i <= 3; i++) {
       itemMenus.add(new MenuItemPersonal(getResId("menu_personal_" + i, R.string.class), getResId("ic_menu_personal_" + i, R.drawable.class)));
     }
-    MenuPersonalRecyclerAdapter adapter = new MenuPersonalRecyclerAdapter(itemMenus);
+    MenuPersonalRecyclerAdapter adapter = new MenuPersonalRecyclerAdapter(itemMenus,this);
     recyclerView.setAdapter(adapter);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     recyclerView.setLayoutManager(layoutManager);
