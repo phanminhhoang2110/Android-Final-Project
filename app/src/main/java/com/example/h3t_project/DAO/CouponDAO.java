@@ -5,9 +5,12 @@ import com.example.h3t_project.model.CouponItem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CouponDAO extends DatabaseManager {
   PreparedStatement preparedStatement;
+  ResultSet resultSet = null;
   public boolean addCoupon(CouponItem couponItem) {
     try {
       String query = "INSERT INTO [dbo].[tbl_coupons] VALUES ( ?, ? )";
@@ -21,5 +24,26 @@ public class CouponDAO extends DatabaseManager {
       e.printStackTrace();
     }
     return false;
+  }
+
+  public List<CouponItem> getCoupons(){
+    List<CouponItem> couponItems = null;
+    try {
+      String query = "SELECT [code],[value] FROM [dbo].[tbl_coupons]";
+      connection = connect();
+      preparedStatement = connection.prepareStatement(query);
+      resultSet = preparedStatement.executeQuery();
+      couponItems = new ArrayList<>();
+      while (resultSet.next()){
+        CouponItem couponItem = new CouponItem();
+        couponItem.setCodeCoupon(resultSet.getString("code"));
+        int valueCoupon = Integer.parseInt(resultSet.getString("value"));
+        couponItem.setValueCoupon(valueCoupon);
+        couponItems.add(couponItem);
+      }
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+    return couponItems;
   }
 }
