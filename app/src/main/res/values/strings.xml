@@ -1,18 +1,18 @@
 <resources>
-  <string name="app_name">H3T STORE</string>
-  <string name="email_h_ng_d_n_t_o_m_t_kh_u_c_g_i_n_h_y_ki_m_tra_email_v_l_m_theo_h_ng_d_n">Email hướng dẫn tạo mật khẩu đã được gửi đến đị. Hãy kiểm tra email và làm theo hướng dẫn.</string>
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="menu_personal_1">Đơn hàng của tôi</string>
-  <string name="menu_personal_2">Sổ địa chỉ</string>
-  <string name="menu_personal_3">Sản phẩm đã mua</string>
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
-  <string name="lblName">Tran Thanh Tung</string>
-  <string name="txtUsername">tranthanhtung1106</string>
-  <string name="txtGender">Nam</string>
-  <string name="txtDateOfBirth">11/06/1999</string>
-  <string name="txtEmail">thanhtunglakiu99@gmail.com</string>
-  <string name="txtPassword">*********************</string>
-  <string name="title_activity_product_list">ProductList</string>
-  <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">H3T STORE</string>
+    <string name="email_h_ng_d_n_t_o_m_t_kh_u_c_g_i_n_h_y_ki_m_tra_email_v_l_m_theo_h_ng_d_n">Email hướng dẫn tạo mật khẩu đã được gửi đến đị. Hãy kiểm tra email và làm theo hướng dẫn.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="menu_personal_1">Đơn hàng của tôi</string>
+    <string name="menu_personal_2">Sổ địa chỉ</string>
+    <string name="menu_personal_3">Sản phẩm đã mua</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lblName">Tran Thanh Tung</string>
+    <string name="txtUsername">tranthanhtung1106</string>
+    <string name="txtGender">Nam</string>
+    <string name="txtDateOfBirth">11/06/1999</string>
+    <string name="txtEmail">thanhtunglakiu99@gmail.com</string>
+    <string name="txtPassword">*********************</string>
+    <string name="title_activity_product_list">ProductList</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>
