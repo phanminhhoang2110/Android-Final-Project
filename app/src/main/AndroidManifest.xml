@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.example.h3t_project">
+    package="com.example.h3t_project">
 
-  <application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
-    <activity android:name=".activity.CouponActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.CustomerDetailOrderActivity"></activity>
+        <activity android:name=".activity.CustomerListOrderActivity"></activity>
+        <activity android:name=".activity.CouponActivity" />
+        <activity android:name=".activity.HomePageActivity" />
+        <activity android:name=".activity.ActivityDetailOrder" />
+        <activity android:name=".activity.ActivityListOrder" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
-    <activity android:name=".activity.HomePageActivity">
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.ThanksActivity" />
+        <activity android:name=".activity.ChangeAddressActivity" />
+        <activity android:name=".activity.ConfirmOrderActivity" />
+        <activity android:name=".activity.SentMailActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity
+            android:name=".activity.ForgotPasswordActivity"
+            android:parentActivityName=".activity.LoginActivity" />
+        <activity android:name=".activity.ViewProductActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.PersonalActivity" />
+        <activity android:name=".activity.AddProductActivity" />
+        <activity android:name=".activity.DetailSellerProductActivity" />
+        <activity android:name=".activity.SellerProductActivity" />
+        <activity android:name=".activity.EditPersonalActivity" />
+        <activity android:name=".activity.ActivityMyCart" />
+        <activity android:name=".activity.ActivityCustomerViewProduct" />
 
-    </activity>
-    <activity android:name=".activity.ActivityDetailOrder"></activity>
-    <activity android:name=".activity.ActivityListOrder" />
-    <activity android:name=".activity.ThanksActivity" />
-    <activity android:name=".activity.ChangeAddressActivity" />
-    <activity android:name=".activity.ConfirmOrderActivity" />
-    <activity android:name=".activity.SentMailActivity" />
-    <activity android:name=".activity.LoginActivity" />
-    <activity
-      android:name=".activity.ForgotPasswordActivity"
-      android:parentActivityName=".activity.LoginActivity" />
-    <activity android:name=".activity.ViewProductActivity" />
-    <activity android:name=".activity.SettingActivity"></activity>
-    <activity android:name=".activity.PersonalActivity"></activity>
-    <activity android:name=".activity.AddProductActivity" />
-    <activity android:name=".activity.DetailSellerProductActivity" />
-    <activity android:name=".activity.SellerProductActivity" />
-    <activity android:name=".activity.EditPersonalActivity" />
-    <activity android:name=".activity.ActivityMyCart" />
-    <activity android:name=".activity.ActivityCustomerViewProduct"></activity>
-
-    <meta-data
-      android:name="preloaded_fonts"
-      android:resource="@array/preloaded_fonts" />
-  </application>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
 
 </manifest>
