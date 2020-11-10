@@ -15,7 +15,7 @@ public class CustomerDetailOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_detail_order);
 
-        toolbar = findViewById(R.id.actionbar);
+        toolbar = findViewById(R.id.cusactionbar);
 
         setSupportActionBar(toolbar);
 

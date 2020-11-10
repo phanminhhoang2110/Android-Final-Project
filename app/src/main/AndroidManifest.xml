@@ -10,7 +10,13 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity android:name=".activity.DestinationActivity"></activity>
-    <activity android:name=".activity.CustomerDetailOrderActivity" />
+    <activity android:name=".activity.CustomerDetailOrderActivity" >
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
     <activity android:name=".activity.CustomerListOrderActivity"></activity>
     <activity android:name=".activity.CouponActivity">
     </activity>
@@ -30,11 +36,7 @@
       android:name=".activity.SettingActivity"
       android:parentActivityName=".activity.PersonalActivity" />
     <activity android:name=".activity.PersonalActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
     </activity>
     <activity android:name=".activity.AddProductActivity" />
     <activity android:name=".activity.DetailSellerProductActivity" />
