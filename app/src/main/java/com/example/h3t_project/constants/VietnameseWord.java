@@ -8,4 +8,5 @@ public class VietnameseWord {
   public static String ADD_COUPON_SUCCESS = "Đã thêm coupon thành công !";
   public static String COUPON_ACTIVITY = "Thêm mã giảm giá";
   public static String COUPON_DUPLICATE = "Mã giảm giá bị trùng !";
+  public static String PERSONAL_ACTIVITY = "Cá Nhân";
 }
