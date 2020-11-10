@@ -9,18 +9,14 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activity.CouponActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
-    <activity android:name=".activity.HomePageActivity">
+    <activity android:name=".activity.CustomerDetailOrderActivity"></activity>
+    <activity android:name=".activity.CustomerListOrderActivity"></activity>
+    <activity android:name=".activity.CouponActivity"></activity>
+    <activity android:name=".activity.HomePageActivity" />
+    <activity android:name=".activity.ActivityDetailOrder" />
+    <activity android:name=".activity.ActivityListOrder">
 
     </activity>
-    <activity android:name=".activity.ActivityDetailOrder"></activity>
-    <activity android:name=".activity.ActivityListOrder" />
     <activity android:name=".activity.ThanksActivity" />
     <activity android:name=".activity.ChangeAddressActivity" />
     <activity android:name=".activity.ConfirmOrderActivity" />
@@ -30,14 +26,22 @@
       android:name=".activity.ForgotPasswordActivity"
       android:parentActivityName=".activity.LoginActivity" />
     <activity android:name=".activity.ViewProductActivity" />
-    <activity android:name=".activity.SettingActivity"></activity>
-    <activity android:name=".activity.PersonalActivity"></activity>
+    <activity
+      android:name=".activity.SettingActivity"
+      android:parentActivityName="com.example.h3t_project.activity.PersonalActivity" />
+    <activity android:name=".activity.PersonalActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
     <activity android:name=".activity.AddProductActivity" />
     <activity android:name=".activity.DetailSellerProductActivity" />
     <activity android:name=".activity.SellerProductActivity" />
     <activity android:name=".activity.EditPersonalActivity" />
     <activity android:name=".activity.ActivityMyCart" />
-    <activity android:name=".activity.ActivityCustomerViewProduct"></activity>
+    <activity android:name=".activity.ActivityCustomerViewProduct" />
 
     <meta-data
       android:name="preloaded_fonts"

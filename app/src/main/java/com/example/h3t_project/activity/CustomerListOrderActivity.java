@@ -1,6 +1,5 @@
 package com.example.h3t_project.activity;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -8,16 +7,19 @@ import android.os.Bundle;
 
 import com.example.h3t_project.R;
 
-public class EditPersonalActivity extends AppCompatActivity {
+public class CustomerListOrderActivity extends AppCompatActivity {
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_personal);
+        setContentView(R.layout.activity_customer_list_order);
 
-        Toolbar toolbar = findViewById(R.id.toolbarSellerEditPersonalInfo);
+        toolbar = findViewById(R.id.cusactionbar);
+
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

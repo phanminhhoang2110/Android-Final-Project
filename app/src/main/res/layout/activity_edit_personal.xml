@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activity.EditPersonalActivity">
 
+    <include
+        android:id="@+id/toolbarSellerEditPersonalInfo"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <FrameLayout
         android:id="@+id/topEditFrame"
         android:layout_width="409dp"
@@ -14,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarSellerEditPersonalInfo"
         app:layout_constraintVertical_bias="0.001">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,18 +49,6 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.827" />
-
-            <Button
-                android:id="@+id/buttonBack"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/left"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.041"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.091" />
 
             <ImageView
                 android:id="@+id/imageView6"
