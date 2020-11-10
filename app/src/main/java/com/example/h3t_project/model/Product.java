@@ -1,83 +1,61 @@
 package com.example.h3t_project.model;
 
-public class SellerProduct {
+public class Product {
     int id;
-    String productName;
-    int productImg;
+    String name;
+    int origin_price;
+    int sell_price;
+    int category_id;
+    String category_name;
+    String model;
+    String description;
+    String guarantee;
     String brand;
-    String origin;
-    String unit;
-    int quantity;
-    int height;
-    int width;
-    int lenght;
     int weight;
-    int originPrice;
-    int price;
-    int coupon;
-    String des;
-    String type;
+    int origin;
+    String color;
+    int height;
+    int size_id;
+    String size;
+    String material;
+    int quantity;
+    String coupon_code;
+    int coupon_value;
+    String link_image;
 
-    public SellerProduct() {
+    public Product() {
     }
 
-    public SellerProduct(int id, String productName, int productImg, String brand, String origin, String unit, int quantity, int height, int width, int lenght, int weight, int price, int originPrice, int coupon, String des, String type) {
+    public Product(int id, String name, int origin_price, int sell_price, int category_id, String category_name, String model, String description, String guarantee, String brand, int weight, int origin, String color, int height, int size_id, String size, String material, int quantity, String coupon_code, int coupon_value, String link_image) {
         this.id = id;
-        this.productName = productName;
-        this.productImg = productImg;
+        this.name = name;
+        this.origin_price = origin_price;
+        this.sell_price = sell_price;
+        this.category_id = category_id;
+        this.category_name = category_name;
+        this.model = model;
+        this.description = description;
+        this.guarantee = guarantee;
         this.brand = brand;
-        this.origin = origin;
-        this.unit = unit;
-        this.quantity = quantity;
-        this.height = height;
-        this.width = width;
-        this.lenght = lenght;
         this.weight = weight;
-        this.price = price;
-        this.originPrice = originPrice;
-        this.coupon = coupon;
-        this.des = des;
-        this.type = type;
-    }
-
-    public SellerProduct(int id, String productName, int productImg, int price, int quantity) {
-        this.id = id;
-        this.productName = productName;
-        this.productImg = productImg;
-        this.price = price;
+        this.origin = origin;
+        this.color = color;
+        this.height = height;
+        this.size_id = size_id;
+        this.size = size;
+        this.material = material;
         this.quantity = quantity;
+        this.coupon_code = coupon_code;
+        this.coupon_value = coupon_value;
+        this.link_image = link_image;
     }
 
-    public int getOriginPrice() {
-        return originPrice;
-    }
-
-    public void setOriginPrice(int originPrice) {
-        this.originPrice = originPrice;
-    }
-
-    public int getCoupon() {
-        return coupon;
-    }
-
-    public void setCoupon(int coupon) {
-        this.coupon = coupon;
-    }
-
-    public String getDes() {
-        return des;
-    }
-
-    public void setDes(String des) {
-        this.des = des;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public Product(int id, String name, int origin_price, int sell_price, String link_image) {
+        this.id = id;
+        this.name = name;
+        this.origin_price = origin_price;
+        this.sell_price = sell_price;
+        this.link_image = link_image;
     }
 
     public int getId() {
@@ -88,20 +66,68 @@ public class SellerProduct {
         this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getProductImg() {
-        return productImg;
+    public int getOrigin_price() {
+        return origin_price;
     }
 
-    public void setProductImg(int productImg) {
-        this.productImg = productImg;
+    public void setOrigin_price(int origin_price) {
+        this.origin_price = origin_price;
+    }
+
+    public int getSell_price() {
+        return sell_price;
+    }
+
+    public void setSell_price(int sell_price) {
+        this.sell_price = sell_price;
+    }
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+    }
+
+    public String getCategory_name() {
+        return category_name;
+    }
+
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getGuarantee() {
+        return guarantee;
+    }
+
+    public void setGuarantee(String guarantee) {
+        this.guarantee = guarantee;
     }
 
     public String getBrand() {
@@ -112,28 +138,28 @@ public class SellerProduct {
         this.brand = brand;
     }
 
-    public String getOrigin() {
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getOrigin() {
         return origin;
     }
 
-    public void setOrigin(String origin) {
+    public void setOrigin(int origin) {
         this.origin = origin;
     }
 
-    public String getUnit() {
-        return unit;
+    public String getColor() {
+        return color;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public int getHeight() {
@@ -144,35 +170,59 @@ public class SellerProduct {
         this.height = height;
     }
 
-    public int getWidth() {
-        return width;
+    public int getSize_id() {
+        return size_id;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setSize_id(int size_id) {
+        this.size_id = size_id;
     }
 
-    public int getLenght() {
-        return lenght;
+    public String getSize() {
+        return size;
     }
 
-    public void setLenght(int lenght) {
-        this.lenght = lenght;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public int getWeight() {
-        return weight;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
-    public int getPrice() {
-        return price;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getCoupon_code() {
+        return coupon_code;
+    }
+
+    public void setCoupon_code(String coupon_code) {
+        this.coupon_code = coupon_code;
+    }
+
+    public int getCoupon_value() {
+        return coupon_value;
+    }
+
+    public void setCoupon_value(int coupon_value) {
+        this.coupon_value = coupon_value;
+    }
+
+    public String getLink_image() {
+        return link_image;
+    }
+
+    public void setLink_image(String link_image) {
+        this.link_image = link_image;
     }
 }

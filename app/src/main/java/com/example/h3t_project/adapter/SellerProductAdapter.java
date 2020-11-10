@@ -10,17 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.R;
-import com.example.h3t_project.model.SellerProduct;
+import com.example.h3t_project.model.Product;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class SellerProductAdapter extends RecyclerView.Adapter<SellerProductAdapter.ViewHolder> {
 
-    ArrayList<SellerProduct> sellerProducts;
+    ArrayList<Product> products;
 
-    public SellerProductAdapter(ArrayList<SellerProduct> sellerProducts){
-        this.sellerProducts = sellerProducts;
+    public SellerProductAdapter(ArrayList<Product> products){
+        this.products = products;
     }
 
     @NonNull
@@ -33,16 +33,16 @@ public class SellerProductAdapter extends RecyclerView.Adapter<SellerProductAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtNameProduct.setText(sellerProducts.get(position).getProductName());
+        holder.txtNameProduct.setText(products.get(position).getProductName());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        holder.txtPriceProduct.setText("Giá : "+ decimalFormat.format(sellerProducts.get(position).getPrice())+ " vnd");
-        holder.txtQuantity.setText("Số lượng : "+ sellerProducts.get(position).getQuantity());
-        holder.imageProduct.setImageResource(sellerProducts.get(position).getProductImg());
+        holder.txtPriceProduct.setText("Giá : "+ decimalFormat.format(products.get(position).getPrice())+ " vnd");
+        holder.txtQuantity.setText("Số lượng : "+ products.get(position).getQuantity());
+        holder.imageProduct.setImageResource(products.get(position).getProductImg());
     }
 
     @Override
     public int getItemCount() {
-        return sellerProducts.size();
+        return products.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
