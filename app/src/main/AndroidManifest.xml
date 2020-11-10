@@ -4,25 +4,19 @@
 
   <application
     android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
+    android:icon="@drawable/h3t"
     android:label="@string/app_name"
-    android:roundIcon="@mipmap/ic_launcher_round"
+    android:roundIcon="@drawable/h3t"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activity.CustomerDetailOrderActivity"></activity>
+    <activity android:name=".activity.DestinationActivity"></activity>
+    <activity android:name=".activity.CustomerDetailOrderActivity" />
     <activity android:name=".activity.CustomerListOrderActivity"></activity>
-    <activity android:name=".activity.CouponActivity"></activity>
-    <activity android:name=".activity.HomePageActivity" >
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
+    <activity android:name=".activity.CouponActivity">
     </activity>
+    <activity android:name=".activity.HomePageActivity" />
     <activity android:name=".activity.ActivityDetailOrder" />
-    <activity android:name=".activity.ActivityListOrder">
-
-    </activity>
+    <activity android:name=".activity.ActivityListOrder"></activity>
     <activity android:name=".activity.ThanksActivity" />
     <activity android:name=".activity.ChangeAddressActivity" />
     <activity android:name=".activity.ConfirmOrderActivity" />
@@ -34,9 +28,13 @@
     <activity android:name=".activity.ViewProductActivity" />
     <activity
       android:name=".activity.SettingActivity"
-      android:parentActivityName="com.example.h3t_project.activity.PersonalActivity" />
+      android:parentActivityName=".activity.PersonalActivity" />
     <activity android:name=".activity.PersonalActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
     </activity>
     <activity android:name=".activity.AddProductActivity" />
     <activity android:name=".activity.DetailSellerProductActivity" />
