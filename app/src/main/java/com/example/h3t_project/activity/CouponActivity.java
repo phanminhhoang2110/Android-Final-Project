@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +30,7 @@ public class CouponActivity extends AppCompatActivity {
   Button addCounpon;
   RecyclerView listCouponRecyclerView;
   CouponDAO couponDAO = new CouponDAO();
+  ImageView trashButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class CouponActivity extends AppCompatActivity {
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     setTitle(VietnameseWord.couponActivity);
+    showCoupon();
     addCounpon = findViewById(R.id.addCouponbtn);
     addCounpon.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -50,7 +54,14 @@ public class CouponActivity extends AppCompatActivity {
         }
       }
     });
-    showCoupon();
+    trashButton = findViewById(R.id.trashCouponImageView);
+    trashButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+//          String code = v.findViewById(R.id.codeCouponTextView).toString();
+//          Log.i("Hoang", code);
+      }
+    });
   }
 
   private CouponItem getCouponFromFragment() {
@@ -93,6 +104,7 @@ public class CouponActivity extends AppCompatActivity {
     builder.setPositiveButton(VietnameseWord.ok, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
+        showCoupon();
         dialog.cancel();
       }
     });
