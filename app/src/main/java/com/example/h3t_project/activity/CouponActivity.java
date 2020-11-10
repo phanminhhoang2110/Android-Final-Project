@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +31,6 @@ public class CouponActivity extends AppCompatActivity {
   Button addCounpon;
   RecyclerView listCouponRecyclerView;
   CouponDAO couponDAO = new CouponDAO();
-  ImageView trashButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +52,6 @@ public class CouponActivity extends AppCompatActivity {
         if (result == true) {
           showSuccessDialog();
         }
-      }
-    });
-    trashButton = findViewById(R.id.trashCouponImageView);
-    trashButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-//          String code = v.findViewById(R.id.codeCouponTextView).toString();
-//          Log.i("Hoang", code);
       }
     });
   }
