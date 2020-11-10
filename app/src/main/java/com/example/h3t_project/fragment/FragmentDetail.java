@@ -1,4 +1,4 @@
-package com.example.h3t_project.adapter;
+package com.example.h3t_project.fragment;
 
 import android.os.Bundle;
 

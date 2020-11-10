@@ -5,7 +5,7 @@
     android:id="@+id/layoutShort"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".adapter.FragmentShort">
+    tools:context=".fragment.FragmentShort">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
