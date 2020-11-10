@@ -35,21 +35,21 @@ public class HomePageActivity extends AppCompatActivity {
     viewPager = findViewById(R.id.slideBanner);
     adapter = new HomePageSlideAdapter(this);
     viewPager.setAdapter(adapter);
-    setupCategory();
+//    setupCategory();
   }
 
-  private void setupCategory() {
-    RecyclerView categoryRecyclerView = findViewById(R.id.categoryRecyclerView);
-    String[] nameCategory = {"bag", "book", "boot", "car", "comestic", "food_hamburder", "house_pan", "laptop", "mobile_phone"};
-    ArrayList<CategoryItem> categoryItems = new ArrayList<>();
-    for (int i = 0; i < nameCategory.length; i++) {
-      categoryItems.add(new CategoryItem(i, nameCategory[i], getResId("ic_iconfinder_" + nameCategory[i],R.drawable.class)));
-    }
-    CategoryMenuAdapter categoryMenuAdapter = new CategoryMenuAdapter(categoryItems);
-    categoryRecyclerView.setAdapter(categoryMenuAdapter);
-    GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
-    categoryRecyclerView.setLayoutManager(gridLayoutManager);
-  }
+//  private void setupCategory() {
+//    RecyclerView categoryRecyclerView = findViewById(R.id.categoryRecyclerView);
+//    String[] nameCategory = {"bag", "book", "boot", "car", "comestic", "food_hamburder", "house_pan", "laptop", "mobile_phone"};
+//    ArrayList<CategoryItem> categoryItems = new ArrayList<>();
+//    for (int i = 0; i < nameCategory.length; i++) {
+//      categoryItems.add(new CategoryItem(i, nameCategory[i], getResId("ic_iconfinder_" + nameCategory[i],R.drawable.class)));
+//    }
+//    CategoryMenuAdapter categoryMenuAdapter = new CategoryMenuAdapter(categoryItems);
+//    categoryRecyclerView.setAdapter(categoryMenuAdapter);
+//    GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
+//    categoryRecyclerView.setLayoutManager(gridLayoutManager);
+//  }
 
   public static int getResId(String resName, Class<?> c) {
     try {
