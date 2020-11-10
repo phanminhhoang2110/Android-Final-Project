@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/frameLayout6"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="@color/colorTiki"
+  tools:context=".fragment.SearchFragment">
+
+  <EditText
+    android:id="@+id/searchHomePage"
+    android:layout_width="300dp"
+    android:layout_height="35dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="#FFFFFF"
+    android:textColor="#000000"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0">
+
+  </EditText>
+
+  <ImageView
+    android:id="@+id/imageView7"
+    android:layout_width="25dp"
+    android:layout_height="25dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="5dp"
+    android:src="@drawable/ic_search"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toEndOf="@+id/searchHomePage"
+    app:layout_constraintTop_toTopOf="@+id/searchHomePage"
+    app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

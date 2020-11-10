@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/frameLayout2"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <TextView
+    android:id="@+id/textView6"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="40dp"
+    android:fontFamily="@font/lato"
+    android:text="Mã Coupon"
+    android:textColor="#000000"
+    android:textSize="15sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0" />
+
+  <TextView
+    android:id="@+id/textView7"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:layout_marginBottom="40dp"
+    android:fontFamily="@font/lato"
+    android:text="Giá Trị"
+    android:textColor="#000000"
+    android:textSize="15sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="@+id/textView6"
+    app:layout_constraintTop_toBottomOf="@+id/textView6"
+    app:layout_constraintVertical_bias="0.013" />
+
+  <EditText
+    android:id="@+id/editTextTextPersonName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:background="@drawable/radius_input"
+    android:ems="10"
+    android:fontFamily="@font/lato"
+    android:hint="Nhập tên coupon"
+    android:inputType="textPersonName"
+    android:paddingLeft="10dp"
+    android:textColor="#000000"
+    android:textSize="18dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.571"
+    app:layout_constraintStart_toEndOf="@+id/textView6"
+    app:layout_constraintTop_toTopOf="@+id/textView6"
+    app:layout_constraintVertical_bias="0.0" />
+
+  <EditText
+    android:id="@+id/editTextTextPersonName2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/radius_input"
+    android:ems="10"
+    android:fontFamily="@font/lato"
+    android:hint="Nhập code coupon"
+    android:inputType="textPersonName"
+    android:paddingLeft="10dp"
+    android:textColor="#000000"
+    android:textSize="18dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+    app:layout_constraintVertical_bias="0.307" />
+
+  <Button
+    android:id="@+id/addCouponbtn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/red_radius_button"
+    android:text="Thêm mã giảm giá"
+    android:textColor="#FFFFFF"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.498"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+    app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
