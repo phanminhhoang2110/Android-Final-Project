@@ -33,6 +33,12 @@ public class MenuPersonalRecyclerAdapter extends RecyclerView.Adapter<MenuPerson
   public void onBindViewHolder(@NonNull MenuPersonalRecyclerAdapter.ViewHolder holder, int position) {
     holder.textView.setText(itemMenus.get(position).getItemName());
     holder.imageView.setImageResource(itemMenus.get(position).getIconMenu());
+    holder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+
+      }
+    });
   }
 
   @Override
