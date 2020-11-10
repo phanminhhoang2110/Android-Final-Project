@@ -1,10 +1,12 @@
 package com.example.h3t_project.constants;
 
 public class VietnameseWord {
-  public static String error = "Lỗi";
-  public static String errorCouponEmpty = "Không được để trường code hoặc trường giá trị trống";
-  public static String ok = "Đồng ý";
-  public static String addSuccess = "Thêm thành công";
-  public static String addCouponSuccess = "Đã thêm coupon thành công";
-  public static String couponActivity = "Thêm mã giảm giá";
+  public static String ERROR = "Lỗi";
+  public static String ERROR_COUPON_EMPTY = "Không được để trường code hoặc trường giá trị trống !";
+  public static String OK = "Đồng ý";
+  public static String ADD_SUCCESS = "Thêm thành công";
+  public static String ADD_COUPON_SUCCESS = "Đã thêm coupon thành công !";
+  public static String COUPON_ACTIVITY = "Thêm mã giảm giá";
+  public static String COUPON_DUPLICATE = "Mã giảm giá bị trùng !";
+  public static String PERSONAL_ACTIVITY = "Cá Nhân";
 }

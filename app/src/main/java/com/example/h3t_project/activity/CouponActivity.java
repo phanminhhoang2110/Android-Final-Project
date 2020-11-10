@@ -31,6 +31,8 @@ public class CouponActivity extends AppCompatActivity {
   Button addCounpon;
   RecyclerView listCouponRecyclerView;
   CouponDAO couponDAO = new CouponDAO();
+  EditText codeCouponEdt;
+  EditText valueCouponEdt;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,8 @@ public class CouponActivity extends AppCompatActivity {
     setContentView(R.layout.activity_coupon);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    setTitle(VietnameseWord.couponActivity);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    setTitle(VietnameseWord.COUPON_ACTIVITY);
     showCoupon();
     addCounpon = findViewById(R.id.addCouponbtn);
     addCounpon.setOnClickListener(new View.OnClickListener() {
@@ -52,17 +55,20 @@ public class CouponActivity extends AppCompatActivity {
         if (result == true) {
           showSuccessDialog();
         }
+        if (result == false){
+          showErrorDialog(VietnameseWord.COUPON_DUPLICATE);
+        }
       }
     });
   }
 
   private CouponItem getCouponFromFragment() {
-    EditText codeCouponEdt = findViewById(R.id.codeCoupon);
-    EditText valueCouponEdt = findViewById(R.id.valueCoupon);
+    codeCouponEdt = findViewById(R.id.codeCoupon);
+    valueCouponEdt = findViewById(R.id.valueCoupon);
     String codeCoupon = codeCouponEdt.getText().toString();
     String valueCouponRaw = valueCouponEdt.getText().toString();
     if (codeCoupon.length() == 0 || valueCouponRaw.length() == 0) {
-      showErrorDialog();
+      showErrorDialog(VietnameseWord.ERROR_COUPON_EMPTY);
       return null;
     }
     int valueCoupon = Integer.parseInt(valueCouponRaw);
@@ -72,12 +78,12 @@ public class CouponActivity extends AppCompatActivity {
     return couponItem;
   }
 
-  private void showErrorDialog() {
+  private void showErrorDialog(String error) {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(VietnameseWord.error);
-    builder.setMessage(VietnameseWord.errorCouponEmpty);
+    builder.setTitle(VietnameseWord.ERROR);
+    builder.setMessage(error);
     builder.setIcon(android.R.drawable.ic_dialog_info);
-    builder.setPositiveButton(VietnameseWord.ok, new DialogInterface.OnClickListener() {
+    builder.setPositiveButton(VietnameseWord.OK, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         dialog.cancel();
@@ -90,12 +96,15 @@ public class CouponActivity extends AppCompatActivity {
 
   private void showSuccessDialog() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(VietnameseWord.addSuccess);
-    builder.setMessage(VietnameseWord.addCouponSuccess);
+    builder.setTitle(VietnameseWord.ADD_SUCCESS);
+    builder.setMessage(VietnameseWord.ADD_COUPON_SUCCESS);
     builder.setIcon(android.R.drawable.star_big_on);
-    builder.setPositiveButton(VietnameseWord.ok, new DialogInterface.OnClickListener() {
+    builder.setPositiveButton(VietnameseWord.OK, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
+        codeCouponEdt.setText("");
+        valueCouponEdt.setText("");
+        codeCouponEdt.requestFocus();
         showCoupon();
         dialog.cancel();
       }
@@ -105,7 +114,7 @@ public class CouponActivity extends AppCompatActivity {
     dialog.show();
   }
 
-  private void showCoupon() {
+  public void showCoupon() {
     listCouponRecyclerView = findViewById(R.id.listCouponRecyclerView);
     ArrayList<CouponItem> couponItems = (ArrayList<CouponItem>) couponDAO.getCoupons();
     CouponItemAdapter couponItemAdapter = new CouponItemAdapter(couponItems);

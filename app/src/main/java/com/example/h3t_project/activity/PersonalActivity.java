@@ -1,14 +1,18 @@
 package com.example.h3t_project.activity;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.MenuPersonalRecyclerAdapter;
+import com.example.h3t_project.constants.VietnameseWord;
 import com.example.h3t_project.model.MenuItemPersonal;
 
 import java.lang.reflect.Field;
@@ -21,7 +25,7 @@ public class PersonalActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_personal);
     Toolbar toolbar = findViewById(R.id.toolbar);
-    toolbar.setTitle("Cá Nhân");
+    toolbar.setTitle(VietnameseWord.PERSONAL_ACTIVITY);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setupMenuPersonal();
@@ -53,6 +57,19 @@ public class PersonalActivity extends AppCompatActivity {
     } catch (Exception e) {
       e.printStackTrace();
       return -1;
+    }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.setting:
+        Intent intent = new Intent(PersonalActivity.this, SettingActivity.class);
+        startActivity(intent);
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+
     }
   }
 }
