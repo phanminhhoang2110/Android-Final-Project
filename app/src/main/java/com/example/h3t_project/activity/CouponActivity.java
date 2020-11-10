@@ -91,7 +91,7 @@ public class CouponActivity extends AppCompatActivity {
     dialog.show();
   }
 
-  private void showSuccessDialog() {
+  public void showSuccessDialog() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(VietnameseWord.ADD_SUCCESS);
     builder.setMessage(VietnameseWord.ADD_COUPON_SUCCESS);
