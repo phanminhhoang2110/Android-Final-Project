@@ -16,10 +16,7 @@ public class CustomerListOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_list_order);
 
         toolbar = findViewById(R.id.cusactionbar);
-
         setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

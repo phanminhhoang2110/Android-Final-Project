@@ -10,4 +10,5 @@ public class VietnameseWord {
   public static String COUPON_DUPLICATE = "Mã giảm giá bị trùng !";
   public static String PERSONAL_ACTIVITY = "Cá Nhân";
   public static String SETTING_ACTIVITY = "Cài đặt";
+  public static String DESTINATION_ACTIVITY = "Địa chỉ giao hàng";
 }
