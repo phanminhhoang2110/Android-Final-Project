@@ -2,9 +2,9 @@ package com.example.h3t_project.model;
 
 public class CouponItem {
   private String codeCoupon;
-  private String valueCoupon;
+  private int valueCoupon;
 
-  public CouponItem(String codeCoupon, String valueCoupon) {
+  public CouponItem(String codeCoupon, int valueCoupon) {
     this.codeCoupon = codeCoupon;
     this.valueCoupon = valueCoupon;
   }
@@ -20,11 +20,11 @@ public class CouponItem {
     this.codeCoupon = codeCoupon;
   }
 
-  public String getValueCoupon() {
+  public int getValueCoupon() {
     return valueCoupon;
   }
 
-  public void setValueCoupon(String valueCoupon) {
+  public void setValueCoupon(int valueCoupon) {
     this.valueCoupon = valueCoupon;
   }
 }
