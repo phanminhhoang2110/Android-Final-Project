@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/fragmentCus"
-        android:name="com.example.h3t_project.fragment.FragmentDetailOrderTop"
+        android:name="com.example.h3t_project.fragment.CustomerDetailOrderTopFragment"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/fragmentCus2"
-        android:name="com.example.h3t_project.fragment.FragmentDetailOrderMid"
+        android:name="com.example.h3t_project.fragment.CustomerDetailOrderMidFragment"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/fragmentCus3"
-        android:name="com.example.h3t_project.fragment.FragmentDetailOrderProductInformation"
+        android:name="com.example.h3t_project.fragment.CustomerDetailOrderInformationFragment"
         android:layout_width="0dp"
         android:layout_height="174dp"
         android:layout_marginTop="8dp"
@@ -66,7 +66,7 @@
 
     <fragment
         android:id="@+id/fragmentCus4"
-        android:name="com.example.h3t_project.fragment.FragmentDetailOrderBot"
+        android:name="com.example.h3t_project.fragment.CustomerDetailOrderBotFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

@@ -1,14 +1,15 @@
 package com.example.h3t_project.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
 import com.example.h3t_project.R;
-import com.example.h3t_project.adapter.FragmentDetail;
-import com.example.h3t_project.adapter.FragmentImage;
-import com.example.h3t_project.adapter.FragmentShort;
+import com.example.h3t_project.fragment.FragmentDetail;
+import com.example.h3t_project.fragment.FragmentImage;
+import com.example.h3t_project.fragment.FragmentShort;
 import com.example.h3t_project.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -20,6 +21,11 @@ public class AddProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+
+        Toolbar toolbar = findViewById(R.id.toolbarSellerAddProduct);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = findViewById(R.id.viewPageAddProduct);
 
