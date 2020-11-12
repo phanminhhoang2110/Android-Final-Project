@@ -9,18 +9,21 @@
     android:roundIcon="@drawable/h3t"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activity.DestinationActivity"></activity>
-    <activity android:name=".activity.CustomerDetailOrderActivity" >
+    <activity
+      android:name=".activity.DestinationActivity"
+      android:parentActivityName=".activity.PersonalActivity"></activity>
+    <activity android:name=".activity.CustomerDetailOrderActivity">
+
+    </activity>
+    <activity android:name=".activity.CustomerListOrderActivity"></activity>
+    <activity android:name=".activity.CouponActivity"></activity>
+    <activity android:name=".activity.HomePageActivity" >
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".activity.CustomerListOrderActivity"></activity>
-    <activity android:name=".activity.CouponActivity">
-    </activity>
-    <activity android:name=".activity.HomePageActivity" />
     <activity android:name=".activity.ActivityDetailOrder" />
     <activity android:name=".activity.ActivityListOrder"></activity>
     <activity android:name=".activity.ThanksActivity" />
