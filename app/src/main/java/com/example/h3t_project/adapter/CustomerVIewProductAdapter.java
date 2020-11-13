@@ -16,6 +16,7 @@ import com.example.h3t_project.model.Product;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +37,9 @@ public class CustomerVIewProductAdapter extends RecyclerView.Adapter<CustomerVIe
 
     @Override
     public void onBindViewHolder(@NonNull CustomerVIewProductAdapter.ViewHolder holder, int position) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
 
-
-        holder.item_price_customer_view_product.setText(String.valueOf(products.get(position).getSell_price()) + " đ");
+        holder.item_price_customer_view_product.setText((decimalFormat.format(products.get(position).getSell_price())) + " đ");
         holder.item_name_customer_view_product.setText(products.get(position).getName());
         holder.item_image_customer_view_product.setImageResource(products.get(position).getImage_id());
     }

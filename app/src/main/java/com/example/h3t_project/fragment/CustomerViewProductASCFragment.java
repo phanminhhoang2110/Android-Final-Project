@@ -18,6 +18,7 @@ import com.example.h3t_project.adapter.CustomerVIewProductAdapter;
 import com.example.h3t_project.model.Product;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,13 +73,29 @@ public class CustomerViewProductASCFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        String category = null;
+        Bundle bundle = getArguments();
+        if (bundle == null){
+            category = "";
+        } else if (bundle != null) {
+            category = this.getArguments().getString("category");
+        }
         recyclerView = view.findViewById(R.id.customer_view_product_asc_recyclerview);
         CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
-        List<Product> products = customerViewProductDAO.getAllProductViewByCustomer("sách", "", 0, 1);
-        for (int i = 0; i < products.size(); i++) {
-            products.get(i).setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
+        List<Product> products = customerViewProductDAO.getAllProductViewByCustomer(category, "", 0, 1);
+        List<Product> list = new ArrayList<>();
+        for (int i = 0; i < products.size(); i+=3) {
+            Product p = new Product();
+            p.setId(products.get(i).getId());
+            p.setOrigin_price(products.get(i).getOrigin_price());
+            p.setSell_price(products.get(i).getSell_price());
+            p.setName(products.get(i).getName());
+            p.setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
+            list.add(p);
+
         }
-        CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(products);
+
+        CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list);
         recyclerView.setAdapter(adapter);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);

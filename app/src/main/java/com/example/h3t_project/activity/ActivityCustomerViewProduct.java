@@ -1,17 +1,22 @@
 package com.example.h3t_project.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.fragment.CustomerViewProductASCFragment;
@@ -28,16 +33,19 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
     CustomerViewProductASCFragment ascFragment;
     CustomerViewProductDSCFragment descFragment;
     CustomerViewProductFragment customerViewProductFragment;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_view_product);
 
+        // hiện tại đang fix cứng category
+        String category = "Phone";
+
         toolbar = findViewById(R.id.actionbar);
-
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setTitle(category);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -46,8 +54,12 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
         btnDesc = findViewById(R.id.desc_price_customer_view_product);
         manager = getSupportFragmentManager();
 
+        bundle = new Bundle();
+
+        bundle.putString("category", category);
         transaction = manager.beginTransaction();
         customerViewProductFragment = new CustomerViewProductFragment();
+        customerViewProductFragment.setArguments(bundle);
         transaction.replace(R.id.framelayout_customer_view_product, customerViewProductFragment);
         transaction.commit();
 
@@ -56,6 +68,7 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
             public void onClick(View v) {
                 transaction = manager.beginTransaction();
                 ascFragment = new CustomerViewProductASCFragment();
+                ascFragment.setArguments(bundle);
                 transaction.replace(R.id.framelayout_customer_view_product, ascFragment);
                 transaction.commit();
             }
@@ -66,20 +79,18 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
             public void onClick(View v) {
                 transaction = manager.beginTransaction();
                 descFragment = new CustomerViewProductDSCFragment();
+                descFragment.setArguments(bundle);
                 transaction.replace(R.id.framelayout_customer_view_product, descFragment);
-                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
-
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_customer_view_product, menu);
 
-        MenuItem searchViewItem = menu.findItem(R.id.action_search);
+
         return true;
     }
 
