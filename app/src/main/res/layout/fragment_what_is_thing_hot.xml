@@ -42,10 +42,10 @@
     app:layout_constraintVertical_bias="0.0">
 
     <ImageView
-      android:layout_width="69dp"
-      android:layout_height="170dp"
-      app:srcCompat="@drawable/bannerdoc"
-      tools:srcCompat="@drawable/bannerdoc" />
+      android:layout_width="100dp"
+      android:layout_height="187dp"
+      app:srcCompat="@drawable/anhdoctiki"
+      tools:srcCompat="@drawable/anhdoctiki" />
   </androidx.cardview.widget.CardView>
 
   <androidx.cardview.widget.CardView
@@ -63,8 +63,8 @@
 
     <ImageView
       android:id="@+id/imageView7"
-      android:layout_width="90dp"
-      android:layout_height="79dp"
+      android:layout_width="100dp"
+      android:layout_height="88dp"
       android:src="@drawable/bannervuong1"
       app:layout_constraintStart_toEndOf="@+id/bannerdoc"
       app:layout_constraintTop_toTopOf="@+id/bannerdoc" />
@@ -85,8 +85,8 @@
 
     <ImageView
       android:id="@+id/imageView9"
-      android:layout_width="90dp"
-      android:layout_height="79dp"
+      android:layout_width="100dp"
+      android:layout_height="88dp"
       android:src="@drawable/bannervuong6"
       app:srcCompat="@drawable/bannervuong6"
       tools:srcCompat="@drawable/bannervuong6" />
@@ -107,8 +107,8 @@
 
     <ImageView
       android:id="@+id/imageView8"
-      android:layout_width="90dp"
-      android:layout_height="79dp"
+      android:layout_width="100dp"
+      android:layout_height="88dp"
       android:src="@drawable/bannervuong2"
       app:srcCompat="@drawable/bannervuong2"
       tools:srcCompat="@drawable/bannervuong2" />
@@ -128,29 +128,8 @@
 
     <ImageView
       android:id="@+id/imageView10"
-      android:layout_width="90dp"
-      android:layout_height="79dp"
-      android:src="@drawable/bannervuong2"
-      app:srcCompat="@drawable/bannervuong2"
-      tools:srcCompat="@drawable/bannervuong2" />
-  </androidx.cardview.widget.CardView>
-
-  <androidx.cardview.widget.CardView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="15dp"
-    app:cardCornerRadius="8dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toEndOf="@id/bannervuong2"
-    app:layout_constraintTop_toTopOf="@id/bannervuong2"
-    app:layout_constraintVertical_bias="0.0">
-
-    <ImageView
-      android:id="@+id/imageView11"
-      android:layout_width="90dp"
-      android:layout_height="79dp"
+      android:layout_width="100dp"
+      android:layout_height="88dp"
       android:src="@drawable/bannervuong3"
       app:srcCompat="@drawable/bannervuong3"
       tools:srcCompat="@drawable/bannervuong3" />
