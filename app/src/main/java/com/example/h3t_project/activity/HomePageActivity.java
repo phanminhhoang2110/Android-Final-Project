@@ -10,6 +10,11 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.CategoryMenuAdapter;
@@ -25,6 +30,7 @@ public class HomePageActivity extends AppCompatActivity {
 
   ViewPager viewPager;
   HomePageSlideAdapter adapter;
+  ImageView searchBtn;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -36,6 +42,7 @@ public class HomePageActivity extends AppCompatActivity {
     adapter = new HomePageSlideAdapter(this);
     viewPager.setAdapter(adapter);
     setupCategory();
+    searchBtn = findViewById(R.id.searchBtnHomePage);
   }
 
   private void setupCategory() {
@@ -60,6 +67,11 @@ public class HomePageActivity extends AppCompatActivity {
       e.printStackTrace();
       return -1;
     }
+  }
+
+  public void searchButtonHomePageClick(View view){
+    view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.image_click_animation));
+
   }
 
 
