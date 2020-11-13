@@ -17,7 +17,7 @@ public class CustomerViewProductDAO extends DatabaseManager {
     public List<Product> getAllProductViewByCustomer(String category_name, String product_name, int price_DESC, int price_ASC) {
         List<Product> products = null;
         try {
-            String query = "SELECT DISTINCT  [dbo].[tbl_products].[id]\n" +
+            String query = "SELECT  [dbo].[tbl_products].[id]\n" +
                     "      ,[dbo].[tbl_products].[name]\n" +
                     "      ,[dbo].[tbl_products].[origin_price]\n" +
                     "      ,[dbo].[tbl_products].[sell_price]\n" +
