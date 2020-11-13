@@ -8,17 +8,10 @@
     tools:context=".fragment.CustomerViewProductFragment" >
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="127dp"
-        tools:layout_editor_absoluteY="219dp">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/customer_view_product_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="35dp"
-            tools:layout_editor_absoluteY="57dp" />
-    </ScrollView>
+            android:layout_height="match_parent"
+
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>
