@@ -1,19 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.h3t_project.activity.ActivityCustomerViewProduct">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:context="com.example.h3t_project.activity.ActivityCustomerViewProduct">
 
-    <item android:id="@+id/action_cart"
-        android:actionLayout="@layout/cart_icon_with_number"
-        android:title="cart"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/action_search"
-        android:actionLayout="@layout/search_cutomer_view_product"
-        android:icon="@android:drawable/ic_menu_search"
-        android:orderInCategory="200"
-        android:title="search"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom" />
+  <item
+    android:id="@+id/action_cart"
+    android:title="cart"
+    app:actionLayout="@layout/cart_icon_with_number"
+    app:showAsAction="always" />
+  <item
+    android:id="@+id/action_search"
+    android:actionLayout="@layout/search_cutomer_view_product"
+    android:icon="@android:drawable/ic_menu_search"
+    android:orderInCategory="200"
+    android:title="search"
+    app:actionViewClass="androidx.appcompat.widget.SearchView"
+    app:showAsAction="ifRoom" />
 
 </menu>

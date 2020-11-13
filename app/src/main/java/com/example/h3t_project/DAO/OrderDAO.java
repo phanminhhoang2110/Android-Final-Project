@@ -27,8 +27,8 @@ public class OrderDAO extends DatabaseManager {
       "  inner join dbo.tbl_orders" +
       "  ON order_id = tbl_orders.id" +
       "  Where customer_id = ?";
-    connection = connect();
     try {
+      connection = connect();
       preparedStatement = connection.prepareStatement(query);
       preparedStatement.setInt(1,customerId);
       resultSet = preparedStatement.executeQuery();
