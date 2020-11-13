@@ -44,7 +44,7 @@ public class CategoryMenuAdapter extends RecyclerView.Adapter<CategoryMenuAdapte
       holder.itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-          //v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_click_animation));
+          v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_click_animation));
           Intent intent = new Intent(context, ActivityCustomerViewProduct.class);
           intent.putExtra("categoryId", categoryItems.get(position).getId());
           intent.putExtra("categoryName", categoryItems.get(position).getName());

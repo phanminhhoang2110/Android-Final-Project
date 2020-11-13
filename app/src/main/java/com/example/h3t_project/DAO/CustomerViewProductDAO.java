@@ -21,12 +21,10 @@ public class CustomerViewProductDAO extends DatabaseManager {
         "                    ,[dbo].[tbl_products].[name]\n" +
         "                    ,[dbo].[tbl_products].[origin_price]\n" +
         "                    ,[dbo].[tbl_products].[sell_price]\n" +
-        "                    ,[dbo].[tbl_categories].[name] as [category_name]\n" +
         "                    ,[dbo].[tbl_images].[link]\n" +
         "                    FROM [dbo].[tbl_products]\n" +
         "                    inner join [dbo].[tbl_product_image] on [dbo].[tbl_product_image].[product_id] = [dbo].[tbl_products].[id]\n" +
-        "                    inner join [dbo].[tbl_images] on [dbo].[tbl_images].[id] = [dbo].[tbl_product_image].[image_id]\n" +
-        "                    inner join [dbo].[tbl_categories] on [dbo].[tbl_categories].[id] = [dbo].[tbl_products].[catergory_id]\n";
+        "                    inner join [dbo].[tbl_images] on [dbo].[tbl_images].[id] = [dbo].[tbl_product_image].[image_id]\n";
       if (categoryId != -1) {
         query += "WHERE catergory_id = ?";
       }
