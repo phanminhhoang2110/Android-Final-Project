@@ -64,6 +64,8 @@ public class HomePageActivity extends AppCompatActivity {
     view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.image_click_animation));
     EditText searchHomePage = findViewById(R.id.searchHomePage);
     String searchKey = searchHomePage.getText().toString();
+    Intent intent = new Intent(this,ActivityCustomerViewProduct.class);
+    startActivity(intent);
   }
 
   @Override
