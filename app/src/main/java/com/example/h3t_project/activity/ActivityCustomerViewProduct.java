@@ -41,7 +41,7 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
         setContentView(R.layout.activity_customer_view_product);
 
         // hiện tại đang fix cứng category
-        String category = "Phone";
+        String category = "Sách";
 
         toolbar = findViewById(R.id.actionbar);
         setSupportActionBar(toolbar);
