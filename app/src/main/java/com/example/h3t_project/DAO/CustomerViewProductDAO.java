@@ -26,14 +26,14 @@ public class CustomerViewProductDAO extends DatabaseManager {
         "                    inner join [dbo].[tbl_product_image] on [dbo].[tbl_product_image].[product_id] = [dbo].[tbl_products].[id]\n" +
         "                    inner join [dbo].[tbl_images] on [dbo].[tbl_images].[id] = [dbo].[tbl_product_image].[image_id]\n";
       if (categoryId != -1) {
-        query += "WHERE catergory_id = ?";
+        query += " WHERE catergory_id = ? ";
       }
       if (price_ASC == 1) {
         price_DESC = 0;
-        query += "ORDER BY [dbo].[tbl_products].[origin_price] ASC";
+        query += " ORDER BY [dbo].[tbl_products].[origin_price] ASC";
       } else if (price_DESC == 1) {
         price_ASC = 0;
-        query += "ORDER BY [dbo].[tbl_products].[origin_price] DESC";
+        query += " ORDER BY [dbo].[tbl_products].[origin_price] DESC";
       }
       connection = connect();
       preparedStatement = connection.prepareStatement(query);

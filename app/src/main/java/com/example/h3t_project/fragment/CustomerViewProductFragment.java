@@ -89,7 +89,6 @@ public class CustomerViewProductFragment extends Fragment {
       p.setName(products.get(i).getName());
       p.setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
       list.add(p);
-
     }
 
     GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
@@ -97,7 +96,6 @@ public class CustomerViewProductFragment extends Fragment {
     recyclerView.setNestedScrollingEnabled(true);
     CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list);
     recyclerView.setAdapter(adapter);
-
   }
 
   @Override
