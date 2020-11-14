@@ -9,18 +9,18 @@
     tools:context=".fragment.RegisterFragment">
 
     <EditText
-        android:id="@+id/textDOB"
+        android:id="@+id/textPasswordRegister"
         android:layout_width="308dp"
         android:layout_height="47dp"
         android:backgroundTint="#756363"
         android:ems="10"
-        android:hint="Ngày sinh"
-        android:inputType="date"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textPasswordRegister"
+        app:layout_constraintEnd_toEndOf="@+id/textUsernameRegister"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textPasswordRegister"
-        app:layout_constraintTop_toBottomOf="@+id/textPasswordRegister"
+        app:layout_constraintStart_toStartOf="@+id/textUsernameRegister"
+        app:layout_constraintTop_toBottomOf="@+id/textUsernameRegister"
         app:layout_constraintVertical_bias="0.037" />
 
     <EditText
@@ -30,7 +30,8 @@
         android:backgroundTint="#756363"
         android:ems="10"
         android:hint="Số điện thoại"
-        android:inputType="textPersonName"
+        android:inputType="text|phone"
+        android:maxLength="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textFullname"
         app:layout_constraintHorizontal_bias="1.0"
@@ -42,7 +43,6 @@
         android:id="@+id/textFullname"
         android:layout_width="303dp"
         android:layout_height="46dp"
-        android:layout_marginTop="2dp"
         android:backgroundTint="#756363"
         android:ems="10"
         android:hint="Họ tên"
@@ -50,17 +50,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintTop_toBottomOf="@+id/textWrongInform"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/textPasswordRegister"
+        android:id="@+id/textUsernameRegister"
         android:layout_width="307dp"
         android:layout_height="54dp"
         android:backgroundTint="#756363"
         android:ems="10"
-        android:hint="Mật khẩu"
-        android:inputType="textPassword"
+        android:hint="Username"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textEmail"
         app:layout_constraintHorizontal_bias="0.0"
@@ -75,7 +75,7 @@
         android:backgroundTint="#756363"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textPhone"
         app:layout_constraintHorizontal_bias="0.0"
@@ -103,10 +103,10 @@
         android:layout_height="48dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textDOB"
+        app:layout_constraintEnd_toEndOf="@+id/textPasswordRegister"
         app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="@+id/textDOB"
-        app:layout_constraintTop_toBottomOf="@+id/textDOB"
+        app:layout_constraintStart_toStartOf="@+id/textPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/textPasswordRegister"
         app:layout_constraintVertical_bias="0.0">
 
         <RadioButton
@@ -149,5 +149,17 @@
         app:layout_constraintStart_toEndOf="@+id/item_price_customer_view_product"
         app:layout_constraintTop_toBottomOf="@+id/btnRegister"
         app:layout_constraintVertical_bias="0.033" />
+
+    <TextView
+        android:id="@+id/textWrongInform"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FA0303"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,17 +9,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.MenuPersonalRecyclerAdapter;
 import com.example.h3t_project.constants.VietnameseWord;
 import com.example.h3t_project.model.MenuItemPersonal;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class PersonalActivity extends AppCompatActivity {
-
+  Button btnLogout;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -29,6 +32,7 @@ public class PersonalActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setupMenuPersonal();
+    btnLogout = findViewById(R.id.logout);
   }
 
   @Override
@@ -60,6 +64,8 @@ public class PersonalActivity extends AppCompatActivity {
     }
   }
 
+
+
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     switch (item.getItemId()) {
@@ -71,5 +77,17 @@ public class PersonalActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+  }
+
+  public void logout(View view){
+    SessionManagement sessionManagement = new SessionManagement(PersonalActivity.this);
+    sessionManagement.removeSession();
+    userMoveToHomePage();
+  }
+
+  private void userMoveToHomePage() {
+    Intent intent = new Intent(PersonalActivity.this, HomePageActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    startActivity(intent);
   }
 }

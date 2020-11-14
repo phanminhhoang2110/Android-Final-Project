@@ -7,7 +7,7 @@
     tools:context=".activity.ConfirmOrderActivity">
 
     <Button
-        android:id="@+id/btnLogin2"
+        android:id="@+id/btnOrder"
         android:layout_width="280dp"
         android:layout_height="56dp"
         android:backgroundTint="#F52929"

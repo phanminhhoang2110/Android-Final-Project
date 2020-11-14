@@ -12,4 +12,6 @@ public class VietnameseWord {
   public static String SETTING_ACTIVITY = "Cài đặt";
   public static String DESTINATION_ACTIVITY = "Địa chỉ giao hàng";
   public static String CUSTOMER_LIST_ORDER_ACTIVITY = "Đơn hàng của tôi";
+  public static String EDIT_PERSONAL_ACTIVITY = "Chỉnh sửa thông tin cá nhân";
+  public static String EDIT_DESTINATION_ACTIVITY = "Chỉnh sửa địa chỉ giao hàng";
 }
