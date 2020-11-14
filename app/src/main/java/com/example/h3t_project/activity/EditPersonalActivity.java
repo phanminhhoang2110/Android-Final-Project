@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 
 import com.example.h3t_project.R;
+import com.example.h3t_project.constants.VietnameseWord;
 
 public class EditPersonalActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class EditPersonalActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbarSellerEditPersonalInfo);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle(VietnameseWord.EDIT_PERSONAL_ACTIVITY);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
