@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".fragment.CustomerViewProductFragment" >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/customer_view_product_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="57dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/customer_view_product_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>
