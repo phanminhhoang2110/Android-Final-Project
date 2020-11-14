@@ -1,14 +1,19 @@
 package com.example.h3t_project.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.h3t_project.R;
+import com.example.h3t_project.activity.EditPersonalActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +67,16 @@ public class PersonalInfomationFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_personal_infomation, container, false);
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+      view.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          Intent intent = new Intent(getActivity(), EditPersonalActivity.class);
+          startActivity(intent);
+        }
+      });
   }
 }
