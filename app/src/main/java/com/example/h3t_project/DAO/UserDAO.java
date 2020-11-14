@@ -100,11 +100,12 @@ public class UserDAO extends DatabaseManager {
 
   }
 
-  public int update(String name, String phone, String email, String username, String password) {
+  public int update(int userId, String name, String phone, String email, String username, String password) {
     int result = 0;
     try {
       //update tbl_users table
-      String sql = "UPDATE tbl_users set fullname = ?, phone=?, email=?,username =?, password = ? ";
+      String sql = "UPDATE tbl_users set fullname = ?, phone=?, email=?,username =?, password = ?" +
+              " where id = ?";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(sql);
       ps.setString(1, name);
@@ -112,6 +113,7 @@ public class UserDAO extends DatabaseManager {
       ps.setString(3, email);
       ps.setString(4, username);
       ps.setString(5, password);
+      ps.setInt(6, userId);
       ps.executeUpdate();
     } catch (Exception ex) {
       result = 1;

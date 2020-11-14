@@ -4,10 +4,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.h3t_project.DAO.UserDAO;
 import com.example.h3t_project.R;
@@ -17,7 +19,7 @@ import com.example.h3t_project.sessionhelper.SessionManagement;
 
 public class EditPersonalActivity extends AppCompatActivity {
     EditText editUsername, editPassword, editFullname, editEmail, editPhone;
-
+    TextView textInform;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class EditPersonalActivity extends AppCompatActivity {
         editFullname = findViewById(R.id.editFullname);
         editEmail = findViewById(R.id.editEmail);
         editPhone = findViewById(R.id.editPhone);
+        textInform = findViewById(R.id.textInformEdit);
 
         SessionManagement sessionManagement = new SessionManagement(EditPersonalActivity.this);
         int userId = sessionManagement.getSessionUserId();
@@ -53,7 +56,19 @@ public class EditPersonalActivity extends AppCompatActivity {
     }
 
     public void changeInfo(View view){
-        
+        SessionManagement sessionManagement = new SessionManagement(EditPersonalActivity.this);
+        int userId = sessionManagement.getSessionUserId();
+        UserDAO userDAO = new UserDAO();
+        int editUser = userDAO.update(userId, editUsername.getText().toString(), editPhone.getText().toString(),
+                editEmail.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
+        if(editUser != 1){
+            textInform.setText("Đổi thông tin thành công");
+            textInform.setTextColor(Color.parseColor("#CC189EFF"));
+        }
+        else {
+            textInform.setText("Đổi thông tin thất bại");
+            textInform.setTextColor(Color.parseColor("#F52929"));
+        }
     }
 
 }

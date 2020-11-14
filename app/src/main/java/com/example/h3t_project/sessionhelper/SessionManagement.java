@@ -25,8 +25,9 @@ public class SessionManagement {
         //save session of user whenever is logged in
         int id= user.getId();
         int roleId = user.getRoleId().getRoleId();
-        editor.putInt(SESSION_USER, id).commit();
-        editor.putInt(SESSION_ROLE, roleId).commit();
+        editor.putInt(SESSION_USER, id);
+        editor.putInt(SESSION_ROLE, roleId);
+        editor.apply();
     }
 
     public int getSessionUserId(){
