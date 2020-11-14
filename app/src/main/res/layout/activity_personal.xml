@@ -42,20 +42,22 @@
         android:layout_height="match_parent" />
     </LinearLayout>
   </ScrollView>
+
   <Button
-    android:id="@+id/logout"
-    android:layout_width="315dp"
-    android:layout_height="48dp"
-    android:layout_marginBottom="20dp"
-    android:background="@drawable/blue_radius_button"
-    android:fontFamily="@font/lato"
-    android:text="Đăng xuất"
-    android:textColor="#FFFFFF"
-    android:textSize="16sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="1.0" />
+      android:id="@+id/logout"
+      android:layout_width="315dp"
+      android:layout_height="48dp"
+      android:layout_marginBottom="20dp"
+      android:background="@drawable/blue_radius_button"
+      android:fontFamily="@font/lato"
+      android:onClick="logout"
+      android:text="Đăng xuất"
+      android:textColor="#FFFFFF"
+      android:textSize="16sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
