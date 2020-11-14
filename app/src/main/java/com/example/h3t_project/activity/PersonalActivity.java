@@ -33,6 +33,11 @@ public class PersonalActivity extends AppCompatActivity {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setupMenuPersonal();
     btnLogout = findViewById(R.id.logout);
+    SessionManagement sessionManagement = new SessionManagement(PersonalActivity.this);
+    int userId = sessionManagement.getSessionUserId();
+    if(userId == -1){
+      btnLogout.setVisibility(View.INVISIBLE);
+    }
   }
 
   @Override

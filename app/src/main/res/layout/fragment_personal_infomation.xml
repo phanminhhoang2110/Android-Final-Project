@@ -25,20 +25,28 @@
     app:layout_constraintVertical_bias="0.0" />
 
   <TextView
-    android:id="@+id/fullname"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="26dp"
-    android:layout_marginBottom="16dp"
-    android:fontFamily="@font/lato"
-    android:text="Ngọc Trinh"
-    android:textColor="#000000"
-    android:textSize="18dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toEndOf="@+id/item_image_customer_view_product"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.00999999" />
+      android:id="@+id/txtCongrate"
+      android:layout_width="156dp"
+      android:layout_height="17dp"
+      android:text="Chào mừng bạn tới H3T"
+      android:textColor="#272626"
+      app:layout_constraintBottom_toBottomOf="@+id/item_image_customer_view_product"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.034"
+      app:layout_constraintStart_toEndOf="@+id/item_image_customer_view_product"
+      app:layout_constraintTop_toTopOf="@+id/item_image_customer_view_product"
+      app:layout_constraintVertical_bias="0.319" />
+
+  <TextView
+      android:id="@+id/txtLoginRegister"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:textColor="#558FC1"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="@+id/txtCongrate"
+      app:layout_constraintHorizontal_bias="0.153"
+      app:layout_constraintStart_toEndOf="@+id/item_image_customer_view_product"
+      app:layout_constraintTop_toBottomOf="@+id/txtCongrate"
+      app:layout_constraintVertical_bias="0.466" />
 </androidx.constraintlayout.widget.ConstraintLayout>

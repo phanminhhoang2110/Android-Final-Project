@@ -75,4 +75,48 @@ public class UserDAO extends DatabaseManager {
     }
     return result;
   }
+
+  public User getUserById(int id){
+    User user = new User();
+    try {
+      String sql = "select fullname, phone, email, dob, username, password  from tbl_users "
+              + " where id = ? ";
+      connection = connect();
+      PreparedStatement ps = connection.prepareStatement(sql);
+      ps.setInt(1, id);
+      ResultSet rs = ps.executeQuery();
+      if (rs.next()) {
+        user.setFullname(rs.getString("fullname"));
+        user.setPhone(rs.getString("phone"));
+        user.setEmail(rs.getString("email"));
+        user.setDate(rs.getDate("dob"));
+        user.setUsername(rs.getString("username"));
+        user.setPassword(rs.getString("password"));
+      }
+    } catch (Exception ex) {
+      Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return user;
+
+  }
+
+  public int update(String name, String phone, String email, String username, String password) {
+    int result = 0;
+    try {
+      //update tbl_users table
+      String sql = "UPDATE tbl_users set fullname = ?, phone=?, email=?,username =?, password = ? ";
+      connection = connect();
+      PreparedStatement ps = connection.prepareStatement(sql);
+      ps.setString(1, name);
+      ps.setString(2, phone);
+      ps.setString(3, email);
+      ps.setString(4, username);
+      ps.setString(5, password);
+      ps.executeUpdate();
+    } catch (Exception ex) {
+      result = 1;
+      Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return result;
+  }
 }

@@ -11,9 +11,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.TextView;
 
+import com.example.h3t_project.DAO.UserDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.activity.EditPersonalActivity;
+import com.example.h3t_project.activity.HomePageActivity;
+import com.example.h3t_project.activity.LoginActivity;
+import com.example.h3t_project.activity.PersonalActivity;
+import com.example.h3t_project.model.User;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,7 +29,7 @@ import com.example.h3t_project.activity.EditPersonalActivity;
  * create an instance of this fragment.
  */
 public class PersonalInfomationFragment extends Fragment {
-
+  TextView txtLogin;
   // TODO: Rename parameter arguments, choose names that match
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
   private static final String ARG_PARAM1 = "param1";
@@ -66,7 +74,25 @@ public class PersonalInfomationFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_personal_infomation, container, false);
+    View view =  inflater.inflate(R.layout.fragment_personal_infomation, container, false);
+    txtLogin = view.findViewById(R.id.txtLoginRegister);
+    SessionManagement sessionManagement = new SessionManagement(getActivity());
+    int userId = sessionManagement.getSessionUserId();
+    if(userId != -1){
+      UserDAO userDAO = new UserDAO();
+      User user = userDAO.getUserById(userId);
+      String fullname = user.getFullname();
+      txtLogin.setText(fullname);
+    } else {
+      txtLogin.setText("Đăng nhập/Đăng ký");
+      txtLogin.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          userMoveToLoginPage();
+        }
+      });
+    }
+    return view;
   }
 
   @Override
@@ -78,5 +104,10 @@ public class PersonalInfomationFragment extends Fragment {
           startActivity(intent);
         }
       });
+  }
+  private void userMoveToLoginPage() {
+    Intent intent = new Intent(getActivity(), LoginActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    startActivity(intent);
   }
 }

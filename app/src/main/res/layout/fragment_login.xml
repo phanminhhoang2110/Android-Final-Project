@@ -15,7 +15,7 @@
         android:layout_marginTop="2dp"
         android:backgroundTint="#756363"
         android:ems="10"
-        android:hint="Email / Số điện thoại"
+        android:hint="Username"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
