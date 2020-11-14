@@ -10,7 +10,7 @@
   tools:context=".fragment.PersonalInfomationFragment">
 
   <ImageView
-    android:id="@+id/imageView"
+    android:id="@+id/item_image_customer_view_product"
     android:layout_width="64dp"
     android:layout_height="64dp"
     android:layout_marginStart="16dp"
@@ -38,7 +38,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toEndOf="@+id/imageView"
+    app:layout_constraintStart_toEndOf="@+id/item_image_customer_view_product"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.00999999" />
 </androidx.constraintlayout.widget.ConstraintLayout>

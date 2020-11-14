@@ -1,8 +1,10 @@
 package com.example.h3t_project.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,15 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.h3t_project.R;
 import com.example.h3t_project.model.CategoryItem;
 
+import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryMenuAdapter extends RecyclerView.Adapter<CategoryMenuAdapter.ViewHolder> {
   ArrayList<CategoryItem> categoryItems = new ArrayList<>();
+  Context context;
 
-  public CategoryMenuAdapter(ArrayList<CategoryItem> categoryItems) {
+  public CategoryMenuAdapter(ArrayList<CategoryItem> categoryItems,Context context) {
     this.categoryItems = categoryItems;
+    this.context = context;
   }
 
   @NonNull
@@ -33,7 +38,23 @@ public class CategoryMenuAdapter extends RecyclerView.Adapter<CategoryMenuAdapte
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
       holder.textView.setText(categoryItems.get(position).getName());
-      holder.imageView.setImageResource(categoryItems.get(position).getImage());
+      holder.imageView.setImageResource(getResId(categoryItems.get(position).getImage(),R.drawable.class));
+      holder.itemView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_click_animation));
+        }
+      });
+  }
+
+  public static int getResId(String resName, Class<?> c) {
+    try {
+      Field idField = c.getDeclaredField(resName);
+      return idField.getInt(idField);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return -1;
+    }
   }
 
   @Override

@@ -2,6 +2,7 @@ package com.example.h3t_project.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,10 +17,10 @@ public class DetailSellerProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_seller_product);
 
-        ActionBar actionBar = getSupportActionBar();
+        Toolbar toolbar = findViewById(R.id.toolbarSellerViewDetailProduct);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
     }
 

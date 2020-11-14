@@ -1,30 +1,38 @@
 package com.example.h3t_project.activity;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.MenuPersonalRecyclerAdapter;
+import com.example.h3t_project.constants.VietnameseWord;
 import com.example.h3t_project.model.MenuItemPersonal;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class PersonalActivity extends AppCompatActivity {
-
+  Button btnLogout;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_personal);
     Toolbar toolbar = findViewById(R.id.toolbar);
-    toolbar.setTitle("Cá Nhân");
+    toolbar.setTitle(VietnameseWord.PERSONAL_ACTIVITY);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setupMenuPersonal();
+    btnLogout = findViewById(R.id.logout);
   }
 
   @Override
@@ -39,7 +47,7 @@ public class PersonalActivity extends AppCompatActivity {
     for (int i = 1; i <= 3; i++) {
       itemMenus.add(new MenuItemPersonal(getResId("menu_personal_" + i, R.string.class), getResId("ic_menu_personal_" + i, R.drawable.class)));
     }
-    MenuPersonalRecyclerAdapter adapter = new MenuPersonalRecyclerAdapter(itemMenus);
+    MenuPersonalRecyclerAdapter adapter = new MenuPersonalRecyclerAdapter(itemMenus,this);
     recyclerView.setAdapter(adapter);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     recyclerView.setLayoutManager(layoutManager);
@@ -54,5 +62,30 @@ public class PersonalActivity extends AppCompatActivity {
       e.printStackTrace();
       return -1;
     }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.setting:
+        Intent intent = new Intent(PersonalActivity.this, SettingActivity.class);
+        startActivity(intent);
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+
+    }
+  }
+
+  public void logout(View view){
+    SessionManagement sessionManagement = new SessionManagement(PersonalActivity.this);
+    sessionManagement.removeSession();
+    userMoveToHomePage();
+  }
+
+  private void userMoveToHomePage() {
+    Intent intent = new Intent(PersonalActivity.this, HomePageActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    startActivity(intent);
   }
 }

@@ -1,16 +1,24 @@
 package com.example.h3t_project.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.h3t_project.DAO.UserDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.LoginViewPagerAdapter;
+import com.example.h3t_project.model.User;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -20,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
     ImageView imageView;
     ScrollView scrollView;
     ViewPager2 viewPager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +59,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         tabLayoutMediator.attach();
+
+
+
     }
+
 
 }

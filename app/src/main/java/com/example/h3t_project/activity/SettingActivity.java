@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 
 import com.example.h3t_project.R;
+import com.example.h3t_project.constants.VietnameseWord;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -14,8 +15,7 @@ public class SettingActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_setting);
     Toolbar toolbar = findViewById(R.id.toolbar);
-    toolbar.setTitle("Cài đặt");
-    setSupportActionBar(toolbar);
+    toolbar.setTitle(VietnameseWord.SETTING_ACTIVITY);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }

@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/item_image_customer_view_product"
                 android:layout_width="match_parent"
                 android:layout_height="187dp"
                 app:srcCompat="@drawable/header" />

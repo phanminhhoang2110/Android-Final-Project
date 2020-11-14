@@ -6,6 +6,8 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:background="@color/colorTiki"
+  android:focusable="true"
+  android:focusableInTouchMode="true"
   tools:context=".fragment.SearchFragment">
 
   <EditText
@@ -16,22 +18,26 @@
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     android:background="#FFFFFF"
+    android:ellipsize="end"
+    android:hint="@string/what_do_you_buy"
+    android:inputType="text"
+    android:maxLines="1"
     android:textColor="#000000"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.0">
-
-  </EditText>
+    android:paddingLeft="10dp"
+    app:layout_constraintVertical_bias="0.0"></EditText>
 
   <ImageView
-    android:id="@+id/imageView7"
-    android:layout_width="25dp"
-    android:layout_height="25dp"
+    android:id="@+id/searchBtnHomePage"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
     android:layout_marginStart="10dp"
-    android:layout_marginTop="5dp"
+    android:layout_marginTop="2dp"
+    android:onClick="searchButtonHomePageClick"
     android:src="@drawable/ic_search"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
