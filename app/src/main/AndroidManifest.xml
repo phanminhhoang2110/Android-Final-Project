@@ -12,11 +12,7 @@
     <activity android:name=".activity.EditDestinationActivity"
       android:parentActivityName=".activity.DestinationActivity"
       >
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
     </activity>
     <activity
       android:name=".activity.DestinationActivity"
@@ -42,7 +38,11 @@
     <activity
       android:name=".activity.PersonalActivity"
       android:parentActivityName=".activity.HomePageActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
     </activity>
     <activity android:name=".activity.AddProductActivity" />
     <activity android:name=".activity.DetailSellerProductActivity" />
