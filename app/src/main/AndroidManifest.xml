@@ -39,7 +39,8 @@
       android:name=".activity.SettingActivity"
       android:parentActivityName=".activity.PersonalActivity" />
     <activity android:name=".activity.PersonalActivity"
-      android:parentActivityName=".activity.HomePageActivity"/>
+        android:parentActivityName=".activity.HomePageActivity">
+    </activity>
     <activity android:name=".activity.AddProductActivity" />
     <activity android:name=".activity.DetailSellerProductActivity" />
     <activity android:name=".activity.SellerProductActivity" />
@@ -47,7 +48,10 @@
     <activity android:name=".activity.ActivityMyCart" />
     <activity android:name=".activity.ActivityCustomerViewProduct"
       android:parentActivityName=".activity.HomePageActivity"
-      />
+      >
+
+    </activity>
+
 
     <meta-data
       android:name="preloaded_fonts"

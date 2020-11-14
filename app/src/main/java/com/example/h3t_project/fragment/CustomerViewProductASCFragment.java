@@ -90,13 +90,12 @@ public class CustomerViewProductASCFragment extends Fragment {
       p.setName(products.get(i).getName());
       p.setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
       list.add(p);
-
     }
 
-    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list);
-    recyclerView.setAdapter(adapter);
     GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
     recyclerView.setLayoutManager(layoutManager);
+    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list);
+    recyclerView.setAdapter(adapter);
 
   }
 
