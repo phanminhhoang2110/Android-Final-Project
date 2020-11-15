@@ -104,7 +104,7 @@ public class UserDAO extends DatabaseManager {
     int result = 0;
     try {
       //update tbl_users table
-      String sql = "UPDATE tbl_users set fullname = ?, phone=?, email=?,username =?, password = ?" +
+      String sql = "UPDATE tbl_users set fullname = ?, phone=?, email=?,username =?, password = HASHBYTES('SHA1',?)" +
               " where id = ?";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(sql);
@@ -123,13 +123,15 @@ public class UserDAO extends DatabaseManager {
   }
 
   public boolean changePassword(String username){
+    String newPass = "12345";
     int countAffectRow = 0;
     if(isDuplicate(username)) {
       try {
-        String sql = "UPDATE [dbo].[tbl_users] SET [password] = '12345' Where username = ?";
+        String sql = "UPDATE [dbo].[tbl_users] SET [password] = HASHBYTES('SHA1',?) Where username = ?";
         connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1,username);
+        preparedStatement.setString(1,newPass);
+        preparedStatement.setString(2,username);
         countAffectRow = preparedStatement.executeUpdate();
       } catch (Exception e) {
         e.printStackTrace();
