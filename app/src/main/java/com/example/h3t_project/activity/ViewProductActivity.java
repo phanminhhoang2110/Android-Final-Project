@@ -24,6 +24,7 @@ import com.example.h3t_project.model.DetailProductItem;
 import com.example.h3t_project.model.Product;
 
 import java.lang.reflect.Field;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,9 +94,10 @@ public class ViewProductActivity extends AppCompatActivity {
     FragmentTransaction transaction = manager.beginTransaction();
 
     Bundle bundle = new Bundle();
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
     bundle.putString("productName", products.get(0).getName());
-    bundle.putString("sellPrice", products.get(0).getSell_price()+ " đ" );
-    bundle.putString("originPrice", products.get(0).getOrigin_price() + " đ");
+    bundle.putString("sellPrice", decimalFormat.format(products.get(0).getSell_price())+ " đ" );
+    bundle.putString("originPrice", decimalFormat.format(products.get(0).getOrigin_price()) + " đ");
     int discount = (products.get(0).getOrigin_price() - products.get(0).getSell_price())*100/products.get(0).getOrigin_price();
     bundle.putInt("discount", discount);
     ProductPriceFragment fragment = new ProductPriceFragment();
