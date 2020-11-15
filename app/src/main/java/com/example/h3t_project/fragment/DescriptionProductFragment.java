@@ -2,11 +2,14 @@ package com.example.h3t_project.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.h3t_project.R;
 
@@ -55,6 +58,18 @@ public class DescriptionProductFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        String description = "";
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            description = this.getArguments().getString("description");
+        }
+        TextView descriptionTextView = view.findViewById(R.id.descriptionProduct);
+        descriptionTextView.setText(description);
     }
 
     @Override

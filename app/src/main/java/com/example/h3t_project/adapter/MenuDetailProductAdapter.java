@@ -11,13 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.model.DetailProductItem;
+import com.example.h3t_project.model.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MenuDetailProductAdapter extends RecyclerView.Adapter<MenuDetailProductAdapter.ViewHolder> {
-  ArrayList<DetailProductItem> detailProductItems = new ArrayList<>();
+  List<DetailProductItem> detailProductItems = new ArrayList<>();
 
-  public MenuDetailProductAdapter(ArrayList<DetailProductItem> detailProductItems) {
+  public MenuDetailProductAdapter(List<DetailProductItem> detailProductItems) {
     this.detailProductItems = detailProductItems;
   }
 

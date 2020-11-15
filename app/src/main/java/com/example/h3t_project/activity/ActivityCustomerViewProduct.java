@@ -18,10 +18,12 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.fragment.CustomerViewProductASCFragment;
 import com.example.h3t_project.fragment.CustomerViewProductDSCFragment;
 import com.example.h3t_project.fragment.CustomerViewProductFragment;
+import com.example.h3t_project.model.CategoryItem;
 
 public class ActivityCustomerViewProduct extends AppCompatActivity {
   Toolbar toolbar;
@@ -41,14 +43,22 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
     setContentView(R.layout.activity_customer_view_product);
 
     Intent intent = getIntent();
-    int categoryId = intent.getIntExtra("categoryId", 0);
-    String categoryName = intent.getStringExtra("categoryName");
+    int categoryId = 0;
+
+    if (intent.getIntExtra("categoryId", 0) != 0){
+      categoryId = intent.getIntExtra("categoryId", 0);
+    }
+    if (intent.getIntExtra("categoryBack", 0) != 0){
+      categoryId = intent.getIntExtra("categoryBack", 0);
+    }
+
+    CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
+    CategoryItem categoryItem = customerViewProductDAO.getCategorybById(categoryId);
 
     toolbar = findViewById(R.id.actionbar);
     setSupportActionBar(toolbar);
-    if (!categoryName.isEmpty()) {
-      getSupportActionBar().setTitle(categoryName);
-    }
+    getSupportActionBar().setTitle(categoryItem.getName());
+
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

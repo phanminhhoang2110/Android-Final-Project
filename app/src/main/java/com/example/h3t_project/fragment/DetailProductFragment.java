@@ -74,17 +74,4 @@ public class DetailProductFragment extends Fragment {
     return inflater.inflate(R.layout.fragment_detail_product, container, false);
   }
 
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-    RecyclerView recyclerView = view.findViewById(R.id.detailProductRecyclerView);
-    ArrayList<DetailProductItem> detailProductItems = new ArrayList<>();
-    for (int i = 0; i < 10; i++) {
-      detailProductItems.add(new DetailProductItem("Name " + i,"content "+ i));
-    }
-    MenuDetailProductAdapter adapter = new MenuDetailProductAdapter(detailProductItems);
-    recyclerView.setAdapter(adapter);
-    LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-    recyclerView.setLayoutManager(layoutManager);
-  }
 }

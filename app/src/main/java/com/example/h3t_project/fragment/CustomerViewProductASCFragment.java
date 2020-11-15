@@ -88,13 +88,14 @@ public class CustomerViewProductASCFragment extends Fragment {
       p.setOrigin_price(products.get(i).getOrigin_price());
       p.setSell_price(products.get(i).getSell_price());
       p.setName(products.get(i).getName());
+      p.setCategory_id(products.get(i).getCategory_id());
       p.setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
       list.add(p);
     }
 
     GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
     recyclerView.setLayoutManager(layoutManager);
-    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list);
+    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list,getContext());
     recyclerView.setAdapter(adapter);
 
   }

@@ -20,7 +20,13 @@
     <activity android:name=".activity.CustomerDetailOrderActivity"></activity>
     <activity android:name=".activity.CustomerListOrderActivity" />
     <activity android:name=".activity.CouponActivity" />
-    <activity android:name=".activity.HomePageActivity"></activity>
+    <activity android:name=".activity.HomePageActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
     <activity android:name=".activity.ActivityDetailOrder" />
     <activity android:name=".activity.ActivityListOrder" />
     <activity android:name=".activity.ThanksActivity" />
@@ -38,11 +44,7 @@
     <activity
       android:name=".activity.PersonalActivity"
       android:parentActivityName=".activity.HomePageActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
     </activity>
     <activity android:name=".activity.AddProductActivity" />
     <activity android:name=".activity.DetailSellerProductActivity" />
