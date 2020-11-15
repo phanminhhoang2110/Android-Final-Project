@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.h3t_project.DatabaseM.DatabaseManager;
 import com.example.h3t_project.model.Destination;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,8 +47,8 @@ public class DestinationDAO extends DatabaseManager {
   public boolean addNewDestination(int userId,Destination destinationObj){
     PreparedStatement destinationPreparedStatement;
     PreparedStatement destinationUserPreparedStatement;
-    boolean destinationDone = false;
-    boolean destination_userDone = false;
+    int destinationDone = 0;
+    int destination_userDone = 0;
     String destination = "INSERT INTO [dbo].[tbl_destinations] VALUES ( ? , ? , ? , ? )";
     String destination_user = "INSERT INTO [dbo].[tbl_destionation_user] VALUES ( ? , ?)";
     try{
@@ -58,7 +59,7 @@ public class DestinationDAO extends DatabaseManager {
       destinationPreparedStatement.setString(2,destinationObj.getProvince());
       destinationPreparedStatement.setString(3,destinationObj.getDistrict());
       destinationPreparedStatement.setString(4,destinationObj.getWard());
-      destinationDone = destinationPreparedStatement.execute();
+      destinationDone = destinationPreparedStatement.executeUpdate();
       int idLatest = 0;
       try (ResultSet generatedKeys = destinationPreparedStatement.getGeneratedKeys()) {
         if (generatedKeys.next()) {
@@ -68,7 +69,7 @@ public class DestinationDAO extends DatabaseManager {
       destinationUserPreparedStatement = connection.prepareStatement(destination_user);
       destinationUserPreparedStatement.setInt(1,idLatest);
       destinationUserPreparedStatement.setInt(2, userId);
-      destination_userDone = destinationUserPreparedStatement.execute();
+      destination_userDone = destinationUserPreparedStatement.executeUpdate();
       connection.commit();
 
     }catch (Exception e){
@@ -78,10 +79,27 @@ public class DestinationDAO extends DatabaseManager {
         throwables.printStackTrace();
       }
     }
-    if(destination_userDone && destinationDone){
+    if(destination_userDone!=0 && destinationDone!=0){
       return true;
     }
     return false;
+  }
+
+  public boolean deleteDestination(int destinationId, int userId){
+    String deleteDestinationUser = "DELETE FROM [dbo].[tbl_destionation_user] WHERE tbl_destionation_user.destination_id = ?";
+    int deleteCount = 0;
+    try (Connection connection = connect()) {
+      preparedStatement = connection.prepareStatement(deleteDestinationUser);
+      preparedStatement.setInt(1, destinationId);
+      deleteCount = preparedStatement.executeUpdate();
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    if(deleteCount == 0){
+      return false;
+    }
+    return true;
+
   }
 
 }

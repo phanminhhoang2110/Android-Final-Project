@@ -1,6 +1,8 @@
 package com.example.h3t_project.activity;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -30,15 +32,35 @@ public class EditDestinationActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_edit_destination);
+    Intent intent = getIntent();
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    getSupportActionBar().setTitle(VietnameseWord.EDIT_DESTINATION_ACTIVITY);
+    if(intent==null) {
+      getSupportActionBar().setTitle(VietnameseWord.EDIT_DESTINATION_ACTIVITY);
+    }else{
+      getSupportActionBar().setTitle(VietnameseWord.ADD_NEW_DESTINATION_ACTIVITY);
+    }
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     spinner = findViewById(R.id.citySpinner);
     addressEditText = findViewById(R.id.addressEditText);
     wardEditText = findViewById(R.id.wardEditText);
     districtEditText = findViewById(R.id.districtEditText);
     set63City();
+    if(intent != null){
+      setupEditDestination(intent);
+    }
+  }
+
+  private void setupEditDestination(Intent intent) {
+    int id = intent.getIntExtra("id", 0);
+    String address = intent.getStringExtra("address");
+    String ward = intent.getStringExtra("ward");
+    String province = intent.getStringExtra("province");
+    String district = intent.getStringExtra("district");
+    addressEditText.setText(address);
+    wardEditText.setText(ward);
+    districtEditText.setText(district);
+
   }
 
   private void set63City() {
@@ -48,14 +70,23 @@ public class EditDestinationActivity extends AppCompatActivity {
     spinner.setAdapter(adapter);
   }
 
-  private void showAlertDialog(String title, String mess, int icon, String positiveButton) {
+  private void showAlertDialog(String title, String mess, int icon, String positiveButton, int back) {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(title);
     builder.setMessage(mess);
     builder.setIcon(icon);
 
-    builder.setPositiveButton(positiveButton, null);
-
+    if (back == 1) {
+      builder.setPositiveButton(positiveButton, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+          Intent intent = new Intent(getApplicationContext(), PersonalActivity.class);
+          startActivity(intent);
+        }
+      });
+    } else {
+      builder.setPositiveButton(positiveButton, null);
+    }
 
     Dialog dialog = builder.create();
     dialog.setCanceledOnTouchOutside(false);
@@ -66,15 +97,15 @@ public class EditDestinationActivity extends AppCompatActivity {
     String address = addressEditText.getText().toString();
     String ward = wardEditText.getText().toString();
     String district = districtEditText.getText().toString();
-    if(address.length() != 0 && ward.length() != 0 && district.length() != 0){
-      Destination destination = new Destination(address,spinner.getSelectedItem().toString(),district,ward);
+    if (address.length() != 0 && ward.length() != 0 && district.length() != 0) {
+      Destination destination = new Destination(address, spinner.getSelectedItem().toString(), district, ward);
       DestinationDAO destinationDAO = new DestinationDAO();
-      boolean flag = destinationDAO.addNewDestination(1,destination);
-      if(flag){
-        showAlertDialog("Thêm địa chỉ mới thành công !","Đã xong",android.R.drawable.star_on, "Ok");
+      boolean flag = destinationDAO.addNewDestination(1, destination);
+      if (flag) {
+        showAlertDialog("Đã xong", "Thêm địa chỉ mới thành công!", android.R.drawable.star_on, "Ok", 1);
       }
-    }else {
-      showAlertDialog("Có trường bị bỏ trống !","Không được để trống các trường !",android.R.drawable.ic_dialog_info, "Ok");
+    } else {
+      showAlertDialog("Có trường bị bỏ trống !", "Không được để trống các trường!", android.R.drawable.ic_dialog_info, "Ok", 0);
     }
   }
 

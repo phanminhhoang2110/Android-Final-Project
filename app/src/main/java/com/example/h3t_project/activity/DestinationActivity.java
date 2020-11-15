@@ -45,7 +45,7 @@ public class DestinationActivity extends AppCompatActivity {
     if(destinations == null || destinations.size()==0){
       alertError();
     }
-    DestinationAdapter adapter = new DestinationAdapter(destinations);
+    DestinationAdapter adapter = new DestinationAdapter(this,destinations);
     recyclerView.setAdapter(adapter);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     recyclerView.setLayoutManager(layoutManager);
