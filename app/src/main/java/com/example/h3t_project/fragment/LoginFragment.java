@@ -72,8 +72,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-//        SessionManagement sessionManagement = new SessionManagement(getActivity());
-//        sessionManagement.removeSession();
+        SessionManagement sessionManagement = new SessionManagement(getActivity());
+        sessionManagement.removeSession();
         checkSession();
     }
 
