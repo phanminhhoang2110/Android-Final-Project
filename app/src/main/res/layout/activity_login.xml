@@ -18,29 +18,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2196F3"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/item_image_customer_view_product"
-                android:layout_width="match_parent"
-                android:layout_height="187dp"
-                app:srcCompat="@drawable/header" />
+        <ImageView
+          android:id="@+id/item_image_customer_view_product"
+          android:layout_width="match_parent"
+          android:layout_height="155dp"
+          app:srcCompat="@drawable/header" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="47dp">
+        <com.google.android.material.tabs.TabLayout
+          android:id="@+id/tabLayout"
+          android:layout_width="match_parent"
+          android:layout_height="47dp"
+          android:background="#FFFFFF">
 
-            </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.tabs.TabLayout>
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+        <androidx.viewpager2.widget.ViewPager2
+          android:id="@+id/viewPager"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="#FFFFFF" />
+      </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
