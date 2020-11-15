@@ -60,7 +60,7 @@ public class RegisterFragment extends Fragment {
                         userMoveToLoginPage();
                     }
                     else {
-                        txtInform.setText("Vui lòng kiểm tra lại");
+                        txtInform.setText("Vui lòng không để trống bất kì thông tin nào!");
                     }
                 }
                 else {
