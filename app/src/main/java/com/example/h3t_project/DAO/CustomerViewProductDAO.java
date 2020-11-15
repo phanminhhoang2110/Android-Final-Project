@@ -1,6 +1,7 @@
 package com.example.h3t_project.DAO;
 
 import com.example.h3t_project.DatabaseM.DatabaseManager;
+import com.example.h3t_project.model.CategoryItem;
 import com.example.h3t_project.model.Product;
 
 import java.sql.PreparedStatement;
@@ -21,6 +22,7 @@ public class CustomerViewProductDAO extends DatabaseManager {
         "                    ,[dbo].[tbl_products].[name]\n" +
         "                    ,[dbo].[tbl_products].[origin_price]\n" +
         "                    ,[dbo].[tbl_products].[sell_price]\n" +
+        "                    ,[dbo].[tbl_products].[catergory_id]\n" +
         "                    ,[dbo].[tbl_images].[link]\n" +
         "                    FROM [dbo].[tbl_products]\n" +
         "                    inner join [dbo].[tbl_product_image] on [dbo].[tbl_product_image].[product_id] = [dbo].[tbl_products].[id]\n" +
@@ -48,6 +50,7 @@ public class CustomerViewProductDAO extends DatabaseManager {
         product.setName(resultSet.getString("name"));
         product.setOrigin_price(resultSet.getInt("origin_price"));
         product.setSell_price(resultSet.getInt("sell_price"));
+        product.setCategory_id(resultSet.getInt("catergory_id"));
         product.setLink_image(resultSet.getString("link"));
         products.add(product);
       }
@@ -112,6 +115,25 @@ public class CustomerViewProductDAO extends DatabaseManager {
 
       }
       return products;
+  }
+
+  public CategoryItem getCategorybById(int categoryId){
+    CategoryItem categoryItem = null;
+    try {
+      String query = "SELECT * from dbo.tbl_categories WHERE id = ?";
+      connection = connect();
+      preparedStatement = connection.prepareStatement(query);
+      preparedStatement.setInt(1, categoryId);
+      resultSet = preparedStatement.executeQuery();
+      if (resultSet.next()){
+        categoryItem = new CategoryItem();
+        categoryItem.setId(resultSet.getInt("id"));
+        categoryItem.setName(resultSet.getString("name"));
+      }
+    }catch (Exception e){
+
+    }
+    return categoryItem;
   }
 
 }

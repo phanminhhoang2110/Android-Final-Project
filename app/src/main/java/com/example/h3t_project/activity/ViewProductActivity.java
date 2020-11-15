@@ -40,14 +40,11 @@ public class ViewProductActivity extends AppCompatActivity {
     setContentView(R.layout.activity_view_product);
     Toolbar toolbar = findViewById(R.id.toolbarViewProduct);
     setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayShowTitleEnabled(false);
+    getSupportActionBar().setTitle("Chi tiết sản phẩm");
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Intent intent = getIntent();
     int productId = intent.getIntExtra("productId", 0);
-
-
-
 
     setUpImage(productId);
     setupDetailProduct(productId);
@@ -141,9 +138,10 @@ public class ViewProductActivity extends AppCompatActivity {
     switch (item.getItemId()) {
       case android.R.id.home:
         // todo: goto back activity from here
-
+        Intent intendCustomerViewProduct = getIntent();
+        int categoryId = intendCustomerViewProduct.getIntExtra("categoryId", 0);
         Intent intent = new Intent(this, ActivityCustomerViewProduct.class);
-
+        intent.putExtra("categoryBack", categoryId);
         startActivity(intent);
         finish();
         return true;
