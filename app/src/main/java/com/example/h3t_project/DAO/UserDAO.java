@@ -17,7 +17,7 @@ public class UserDAO extends DatabaseManager {
       String query = "SELECT [id]" +
         "      ,[username]\n" +
         "      ,[password], [role_id]\n" +
-        "  FROM [H3TSTORE].[dbo].[tbl_users] where username = ? and password = ?";
+        "  FROM [H3TSTORE].[dbo].[tbl_users] where username = ? and password = HASHBYTES('SHA1',?)";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(query);
       ps.setString(1, username);
@@ -59,7 +59,7 @@ public class UserDAO extends DatabaseManager {
     try {
       //insert users table
       String sql = "INSERT INTO tbl_users(username, password, fullname, phone, email, gender, status_id, role_id)" +
-              " values(?,?,?,?,?,?,1,1)";
+              " values(?,HASHBYTES('SHA1',?),?,?,?,?,1,1)";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(sql);
       ps.setString(1, username);
