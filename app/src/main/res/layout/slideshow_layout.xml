@@ -6,11 +6,10 @@
   >
 
   <ImageView
-    android:id="@+id/imageViewProduct"
-    android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:src="@drawable/slide1"
-    android:scaleType="fitXY"
-    />
+      android:id="@+id/imageViewProduct"
+      android:layout_width="match_parent"
+      android:layout_height="410dp"
+      android:scaleType="fitXY"
+      android:src="@drawable/slide1" />
 
 </LinearLayout>

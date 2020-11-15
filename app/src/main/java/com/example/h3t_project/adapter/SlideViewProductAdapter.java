@@ -11,44 +11,51 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.h3t_project.R;
+import com.example.h3t_project.model.Product;
+
+import java.lang.reflect.Field;
+import java.util.List;
 
 public class SlideViewProductAdapter extends PagerAdapter {
 
-  private Context context;
-  LayoutInflater inflater;
-  public int[] images = {
-    R.drawable.slide1,
-    R.drawable.slide2,
-    R.drawable.slide3
-  };
+    private Context context;
+    public List<Product> products;
+    LayoutInflater inflater;
 
-  public SlideViewProductAdapter(Context context) {
-    this.context = context;
-  }
 
-  @Override
-  public int getCount() {
-    return images.length;
-  }
+    public SlideViewProductAdapter(Context context, List<Product> products) {
+        this.context = context;
+        this.products = products;
+    }
 
-  @Override
-  public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-    return (view == (LinearLayout) object);
-  }
+    @Override
+    public int getCount() {
+        return products.size();
+    }
 
-  @NonNull
-  @Override
-  public Object instantiateItem(@NonNull ViewGroup container, int position) {
-    inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    View view = inflater.inflate(R.layout.slideshow_layout, container, false);
-    ImageView imageView = (ImageView) view.findViewById(R.id.imageViewProduct);
-    imageView.setImageResource(images[position]);
-    container.addView(view);
-    return view;
-  }
+    @Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return (view == (LinearLayout) object);
+    }
 
-  @Override
-  public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-    container.removeView((LinearLayout)object);
-  }
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.slideshow_layout, container, false);
+        int imageA = products.get(0).getImage_id();
+        int imageB = products.get(1).getImage_id();
+        int imageC = products.get(2).getImage_id();
+        int[] images = {imageA, imageB, imageC};
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageViewProduct);
+        imageView.setImageResource(images[position]);
+        container.addView(view);
+        return view;
+    }
+
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((LinearLayout) object);
+    }
 }

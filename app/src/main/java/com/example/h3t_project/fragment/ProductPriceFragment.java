@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.h3t_project.R;
 
@@ -23,9 +24,6 @@ import java.util.ArrayList;
  */
 public class ProductPriceFragment extends Fragment {
 
-  Spinner spinner;
-  ArrayList<String> stringArrayList;
-  ArrayAdapter<String> adapter;
   // TODO: Rename parameter arguments, choose names that match
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
   private static final String ARG_PARAM1 = "param1";
@@ -76,13 +74,34 @@ public class ProductPriceFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    stringArrayList = new ArrayList<>();
-    stringArrayList.add("AAAAAAA");
-    stringArrayList.add("BBBBBBB");
-    stringArrayList.add("CCCCCCC");
-    spinner = view.findViewById(R.id.spinnerForSize);
-    adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,stringArrayList);
-    spinner.setAdapter(adapter);
+    String productName = "";
+    String sellPrice = "";
+    String originPrice = "";
+    int discount = 0;
+    Bundle bundle = getArguments();
+    if (bundle != null){
+      productName = this.getArguments().getString("productName");
+      sellPrice = this.getArguments().getString("sellPrice");
+      originPrice = this.getArguments().getString("originPrice");
+      discount = this.getArguments().getInt("discount");
+    }
+    TextView name = view.findViewById(R.id.nameProduct);
+    TextView sell = view.findViewById(R.id.sellPrice);
+    TextView origin = view.findViewById(R.id.originPrice);
+    TextView dis = view.findViewById(R.id.discountPercent);
+    name.setText(productName);
+    sell.setText(sellPrice);
+    if (originPrice.equalsIgnoreCase(sellPrice)){
+      origin.setText("");
+    }else {
+      origin.setText("Giá thị trường \n"+originPrice);
+    }
+
+    if (discount !=0) {
+      dis.setText("-" + discount + "%");
+    }else {
+      dis.setText("");
+    }
 
   }
 }

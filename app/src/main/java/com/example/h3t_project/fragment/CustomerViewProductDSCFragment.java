@@ -91,7 +91,7 @@ public class CustomerViewProductDSCFragment extends Fragment {
       list.add(p);
 
     }
-    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list);
+    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list,getContext());
     recyclerView.setAdapter(adapter);
     GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
     recyclerView.setLayoutManager(layoutManager);
