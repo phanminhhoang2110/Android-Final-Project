@@ -71,6 +71,17 @@ public class HomePageActivity extends AppCompatActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_home_page, menu);
+    final Menu m = menu;
+    final MenuItem item = menu.findItem(R.id.action_cart);
+    item.getActionView().setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        m.performIdentifierAction(item.getItemId(),1);
+        Log.i("Hoang" , "OKKKKKKKKKKK");
+        Intent intentForCart = new Intent(HomePageActivity.this, ActivityMyCart.class);
+        startActivity(intentForCart);
+      }
+    });
     return true;
   }
 
@@ -78,8 +89,13 @@ public class HomePageActivity extends AppCompatActivity {
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     switch (item.getItemId()){
       case R.id.action_personal:
-        Intent intent = new Intent(this, PersonalActivity.class);
-        startActivity(intent);
+        Intent intentForPersonal = new Intent(this, PersonalActivity.class);
+        startActivity(intentForPersonal);
+        return true;
+      case 1:
+        Log.i("Hoang" , "OKKKKKKKKKKK");
+        Intent intentForCart = new Intent(this, ActivityMyCart.class);
+        startActivity(intentForCart);
         return true;
       default:
         return super.onOptionsItemSelected(item);
