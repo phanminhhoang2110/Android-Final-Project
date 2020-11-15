@@ -19,7 +19,9 @@ import com.example.h3t_project.sessionhelper.SessionManagement;
 
 public class EditPersonalActivity extends AppCompatActivity {
     EditText editUsername, editPassword, editFullname, editEmail, editPhone;
-    TextView textInform;
+    TextView textInform, txtName;
+    SessionManagement sessionManagement;
+    int userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,28 +40,31 @@ public class EditPersonalActivity extends AppCompatActivity {
         editEmail = findViewById(R.id.editEmail);
         editPhone = findViewById(R.id.editPhone);
         textInform = findViewById(R.id.textInformEdit);
+        txtName = findViewById(R.id.textViewName);
 
-        SessionManagement sessionManagement = new SessionManagement(EditPersonalActivity.this);
-        int userId = sessionManagement.getSessionUserId();
-        UserDAO userDAO = new UserDAO();
-        User user = userDAO.getUserById(userId);
-        insertInfo(user);
-
+        sessionManagement = new SessionManagement(EditPersonalActivity.this);
+        userId = sessionManagement.getSessionUserId();
+        getUserById(userId);
     }
 
-    public void insertInfo(User user){
+    public void getUserById(int userId){
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserById(userId);
+        getInfo(user);
+    }
+
+    public void getInfo(User user){
         editUsername.setText(user.getUsername());
         editPassword.setText(user.getPassword());
         editPhone.setText(user.getPhone());
         editEmail.setText(user.getEmail());
         editFullname.setText(user.getFullname());
+        txtName.setText(user.getFullname());
     }
 
     public void changeInfo(View view){
-        SessionManagement sessionManagement = new SessionManagement(EditPersonalActivity.this);
-        int userId = sessionManagement.getSessionUserId();
         UserDAO userDAO = new UserDAO();
-        int editUser = userDAO.update(userId, editUsername.getText().toString(), editPhone.getText().toString(),
+        int editUser = userDAO.update(userId, editFullname.getText().toString(), editPhone.getText().toString(),
                 editEmail.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
         if(editUser != 1){
             textInform.setText("Đổi thông tin thành công");
@@ -69,6 +74,8 @@ public class EditPersonalActivity extends AppCompatActivity {
             textInform.setText("Đổi thông tin thất bại");
             textInform.setTextColor(Color.parseColor("#F52929"));
         }
+        //getUserById(userId);
+        txtName.setText(editFullname.getText().toString());
     }
 
 }
