@@ -121,4 +121,23 @@ public class UserDAO extends DatabaseManager {
     }
     return result;
   }
+
+  public boolean changePassword(String username){
+    int countAffectRow = 0;
+    if(isDuplicate(username)) {
+      try {
+        String sql = "UPDATE [dbo].[tbl_users] SET [password] = '12345' Where username = ?";
+        connection = connect();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,username);
+        countAffectRow = preparedStatement.executeUpdate();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      if(countAffectRow !=0){
+        return true;
+      }
+    }
+    return false;
+  }
 }

@@ -21,11 +21,7 @@
     <activity android:name=".activity.CustomerListOrderActivity" />
     <activity android:name=".activity.CouponActivity" />
     <activity android:name=".activity.HomePageActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
     </activity>
     <activity android:name=".activity.ActivityDetailOrder" />
     <activity android:name=".activity.ActivityListOrder" />
@@ -33,7 +29,13 @@
     <activity android:name=".activity.ChangeAddressActivity" />
     <activity android:name=".activity.ConfirmOrderActivity" />
     <activity android:name=".activity.SentMailActivity" />
-    <activity android:name=".activity.LoginActivity" />
+    <activity android:name=".activity.LoginActivity" >
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
     <activity
       android:name=".activity.ForgotPasswordActivity"
       android:parentActivityName=".activity.LoginActivity" />
