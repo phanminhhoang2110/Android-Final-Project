@@ -10,8 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:paddingBottom="50dp">
+        android:paddingTop="-20dp"
+        android:paddingBottom="60dp">
 
         <TextView
             android:id="@+id/txtAddName"
@@ -50,26 +50,84 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/etxtAddName"
             app:layout_constraintTop_toBottomOf="@+id/etxtAddName"
-            app:layout_constraintVertical_bias="0.060000002" />
+            app:layout_constraintVertical_bias="0.0" />
 
-        <EditText
+
+        <RadioGroup
             android:id="@+id/etxtAddType"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/etxtAddName"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/txtAddType"
             app:layout_constraintTop_toBottomOf="@+id/txtAddType"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0">
+
+            <RadioButton
+                android:id="@+id/rdFood"
+                android:layout_width="165dp"
+                android:layout_height="match_parent"
+                android:buttonTint="#9E9696"
+                android:text="Đồ ăn" />
+
+            <RadioButton
+                android:id="@+id/rdPhone"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#9E9696"
+                android:text="Phone" />
+
+            <RadioButton
+                android:id="@+id/rdShoes"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#9E9696"
+                android:text="Giày" />
+            <RadioButton
+                android:id="@+id/rdBook"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#9E9696"
+                android:text="Sách" />
+            <RadioButton
+                android:id="@+id/rdFerniture"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#9E9696"
+                android:text="Đồ gia dụng" />
+            <RadioButton
+                android:id="@+id/rdBag"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#9E9696"
+                android:text="Túi" />
+            <RadioButton
+                android:id="@+id/rdBeuty"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#9E9696"
+                android:text="Mỹ phẩm" />
+            <RadioButton
+                android:id="@+id/rdLaptop"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#9E9696"
+                android:text="Laptop" />
+            <RadioButton
+                android:id="@+id/rdClothes"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#9E9696"
+                android:text="Quần áo" />
+
+        </RadioGroup>
 
         <TextView
-            android:id="@+id/txtAddDes"
+            android:id="@+id/txtAddOriginPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mô tả"
+            android:text="Giá thị trường"
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -80,66 +138,11 @@
             app:layout_constraintVertical_bias="0.060000002" />
 
         <EditText
-            android:id="@+id/etxtAddDes"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/etxtAddType"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txtAddDes"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddDes"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/txtAddCoupon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mã giảm giá"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/etxtAddDes"
-            app:layout_constraintTop_toBottomOf="@+id/etxtAddDes"
-            app:layout_constraintVertical_bias="0.060000002" />
-
-        <EditText
-            android:id="@+id/etxtAddCoupon"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/etxtAddDes"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txtAddCoupon"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddCoupon"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/txtAddOriginPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Giá gốc"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/etxtAddCoupon"
-            app:layout_constraintTop_toBottomOf="@+id/etxtAddCoupon"
-            app:layout_constraintVertical_bias="0.060000002" />
-
-        <EditText
             android:id="@+id/etxtAddOriginPrice"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/txtAddOriginPrice"
@@ -164,9 +167,9 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/etxtAddCoupon"
+            app:layout_constraintEnd_toEndOf="@+id/etxtAddType"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/etxtAddOriginPrice"

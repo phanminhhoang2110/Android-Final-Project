@@ -80,7 +80,7 @@
         app:titleTextColor="#FAF8F8" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/qualityCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Địa chỉ nhận hàng"
@@ -114,10 +114,10 @@
         android:text="Họ tên - Số điện thoại"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/qualityCart"
         app:layout_constraintHorizontal_bias="0.062"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/qualityCart"
+        app:layout_constraintTop_toTopOf="@+id/qualityCart"
         app:layout_constraintVertical_bias="0.062" />
 
     <TextView
@@ -130,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="@+id/textView9"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/qualityCart"
         app:layout_constraintVertical_bias="0.083" />
 
     <View
@@ -238,10 +238,10 @@
         android:text="Thay đổi"
         android:textColor="#2196F3"
         android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="@+id/qualityCart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.722"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/qualityCart"
         app:layout_constraintTop_toBottomOf="@+id/actionbar3"
         app:layout_constraintVertical_bias="1.0" />
 

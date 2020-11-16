@@ -48,6 +48,19 @@ public class HomePageActivity extends AppCompatActivity {
     viewPager.setAdapter(adapter);
     setupCategory();
     searchBtn = findViewById(R.id.searchBtnHomePage);
+    searchBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        v.startAnimation(AnimationUtils.loadAnimation(HomePageActivity.this, R.anim.image_click_animation));
+        EditText searchHomePage = findViewById(R.id.searchHomePage);
+        String searchKey = searchHomePage.getText().toString();
+        if(searchKey.length()!=0){
+          Intent intent = new Intent(HomePageActivity.this,ActivityCustomerViewProduct.class);
+          intent.putExtra("searchText",searchKey);
+          startActivity(intent);
+        }
+      }
+    });
   }
 
   private void setupCategory() {
@@ -60,13 +73,6 @@ public class HomePageActivity extends AppCompatActivity {
     categoryRecyclerView.setLayoutManager(gridLayoutManager);
   }
 
-  public void searchButtonHomePageClick(View view){
-    view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.image_click_animation));
-    EditText searchHomePage = findViewById(R.id.searchHomePage);
-    String searchKey = searchHomePage.getText().toString();
-    Intent intent = new Intent(this,ActivityCustomerViewProduct.class);
-    startActivity(intent);
-  }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {

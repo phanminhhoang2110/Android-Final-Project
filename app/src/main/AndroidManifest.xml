@@ -9,9 +9,9 @@
     android:roundIcon="@drawable/h3t"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activity.EditDestinationActivity"
-      android:parentActivityName=".activity.DestinationActivity"
-      >
+    <activity
+      android:name=".activity.EditDestinationActivity"
+      android:parentActivityName=".activity.DestinationActivity">
 
     </activity>
     <activity

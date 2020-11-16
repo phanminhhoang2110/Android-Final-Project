@@ -1,16 +1,15 @@
 package com.example.h3t_project.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
@@ -74,28 +73,30 @@ public class CustomerViewProductASCFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
     int categoryId = -1;
+    String searchText = null;
     Bundle bundle = getArguments();
     if (bundle != null) {
       categoryId = this.getArguments().getInt("categoryId");
+      searchText = this.getArguments().getString("searchText");
     }
     recyclerView = view.findViewById(R.id.customer_view_product_asc_recyclerview);
+    List<Product> products = new ArrayList<>();
     CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
-    List<Product> products = customerViewProductDAO.getAllProductViewByCustomer(categoryId, 0, 1);
-    List<Product> list = new ArrayList<>();
-    for (int i = 0; i < products.size(); i += 3) {
-      Product p = new Product();
-      p.setId(products.get(i).getId());
-      p.setOrigin_price(products.get(i).getOrigin_price());
-      p.setSell_price(products.get(i).getSell_price());
-      p.setName(products.get(i).getName());
-      p.setCategory_id(products.get(i).getCategory_id());
-      p.setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
-      list.add(p);
+
+    if (categoryId != -1) {
+      products = customerViewProductDAO.getAllProductViewByCustomer(categoryId, 0, 1);
+    }
+    if (searchText != null) {
+      products = customerViewProductDAO.getAllProductByName(searchText, 0, 1);
+    }
+
+    for (int i = 0; i < products.size(); i ++) {
+      products.get(i).setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
     }
 
     GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
     recyclerView.setLayoutManager(layoutManager);
-    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list,getContext());
+    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(products, getContext());
     recyclerView.setAdapter(adapter);
 
   }
