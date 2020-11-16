@@ -9,9 +9,9 @@
     android:roundIcon="@drawable/h3t"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activity.EditDestinationActivity"
-      android:parentActivityName=".activity.DestinationActivity"
-      >
+    <activity
+      android:name=".activity.EditDestinationActivity"
+      android:parentActivityName=".activity.DestinationActivity">
 
     </activity>
     <activity
@@ -21,7 +21,11 @@
     <activity android:name=".activity.CustomerListOrderActivity" />
     <activity android:name=".activity.CouponActivity" />
     <activity android:name=".activity.HomePageActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
     </activity>
     <activity android:name=".activity.ActivityDetailOrder" />
     <activity android:name=".activity.ActivityListOrder" />
@@ -30,11 +34,7 @@
     <activity android:name=".activity.ConfirmOrderActivity" />
     <activity android:name=".activity.SentMailActivity" />
     <activity android:name=".activity.LoginActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
     </activity>
     <activity
       android:name=".activity.ForgotPasswordActivity"

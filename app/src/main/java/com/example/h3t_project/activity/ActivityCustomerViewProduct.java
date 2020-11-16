@@ -1,29 +1,21 @@
 package com.example.h3t_project.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
-import com.example.h3t_project.DAO.CustomerViewProductDAO;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.h3t_project.R;
 import com.example.h3t_project.fragment.CustomerViewProductASCFragment;
 import com.example.h3t_project.fragment.CustomerViewProductDSCFragment;
 import com.example.h3t_project.fragment.CustomerViewProductFragment;
-import com.example.h3t_project.model.CategoryItem;
 
 public class ActivityCustomerViewProduct extends AppCompatActivity {
   Toolbar toolbar;
@@ -44,20 +36,21 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
 
     Intent intent = getIntent();
     int categoryId = 0;
+    String searchText = null;
 
-    if (intent.getIntExtra("categoryId", 0) != 0){
+    if (intent.getIntExtra("categoryId", 0) != 0) {
       categoryId = intent.getIntExtra("categoryId", 0);
     }
-    if (intent.getIntExtra("categoryBack", 0) != 0){
+    if (intent.getIntExtra("categoryBack", 0) != 0) {
       categoryId = intent.getIntExtra("categoryBack", 0);
     }
-
-    CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
-    CategoryItem categoryItem = customerViewProductDAO.getCategorybById(categoryId);
+    if (intent.getStringExtra("searchText") != null) {
+      searchText = intent.getStringExtra("searchText");
+    }
 
     toolbar = findViewById(R.id.actionbar);
     setSupportActionBar(toolbar);
-    getSupportActionBar().setTitle(categoryItem.getName());
+    getSupportActionBar().setTitle("Sản phẩm");
 
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -68,8 +61,12 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
     manager = getSupportFragmentManager();
 
     bundle = new Bundle();
-
-    bundle.putInt("categoryId", categoryId);
+    if (categoryId != 0) {
+      bundle.putInt("categoryId", categoryId);
+    }
+    if (searchText != null) {
+      bundle.putString("searchText", searchText);
+    }
     transaction = manager.beginTransaction();
     customerViewProductFragment = new CustomerViewProductFragment();
     customerViewProductFragment.setArguments(bundle);
@@ -97,6 +94,7 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
         transaction.commit();
       }
     });
+
   }
 
   public boolean onCreateOptionsMenu(Menu menu) {
