@@ -28,7 +28,9 @@
       </intent-filter>
     </activity>
     <activity android:name=".activity.ActivityDetailOrder" />
-    <activity android:name=".activity.ActivityListOrder" />
+    <activity android:name=".activity.ActivityListOrder" >
+
+    </activity>
     <activity android:name=".activity.ThanksActivity" />
     <activity android:name=".activity.ChangeAddressActivity" />
     <activity android:name=".activity.ConfirmOrderActivity" />
@@ -47,6 +49,7 @@
       android:name=".activity.PersonalActivity"
       android:parentActivityName=".activity.HomePageActivity">
 
+
     </activity>
     <activity android:name=".activity.AddProductActivity" />
     <activity android:name=".activity.DetailSellerProductActivity" />
@@ -57,7 +60,9 @@
     <activity android:name=".activity.ActivityMyCart" />
     <activity
       android:name=".activity.ActivityCustomerViewProduct"
-      android:parentActivityName=".activity.HomePageActivity" />
+        android:parentActivityName=".activity.HomePageActivity">
+
+    </activity>
 
     <meta-data
       android:name="preloaded_fonts"
