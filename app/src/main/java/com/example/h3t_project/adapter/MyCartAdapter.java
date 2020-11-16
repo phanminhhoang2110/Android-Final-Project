@@ -30,6 +30,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   List<Product> products;
   int totalPrice;
   TextView viewTotalMoney;
+  int quality = 1;
 
   public MyCartAdapter(Context context, List<Product> products,TextView viewTotalMoney) {
     this.context = context;
@@ -45,7 +46,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   }
 
   @Override
-  public void onBindViewHolder(@NonNull MyCartAdapter.ViewHolder holder, final int position) {
+  public void onBindViewHolder(@NonNull final MyCartAdapter.ViewHolder holder, final int position) {
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
     SessionManagement sessionManagement = new SessionManagement(context);
     int roleId = sessionManagement.getSessionUserId();
@@ -63,6 +64,21 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         products.remove(position);
         notifyItemRemoved(position);
         setupPrice(viewTotalMoney);
+      }
+    });
+    holder.qualityCart.setText(String.valueOf(quality));
+    holder.addCartBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        quality++;
+        holder.qualityCart.setText(String.valueOf(quality));
+      }
+    });
+    holder.minusCartBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        quality--;
+        holder.qualityCart.setText(String.valueOf(quality));
       }
     });
   }
@@ -111,6 +127,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     TextView viewName;
     TextView viewPrice;
     Button buttonDelete;
+    TextView qualityCart;
+    Button addCartBtn;
+    Button minusCartBtn;
+
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -118,6 +138,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
       viewName = itemView.findViewById(R.id.item_name);
       viewPrice = itemView.findViewById(R.id.item_price);
       buttonDelete = itemView.findViewById(R.id.btn_delete_in_cart);
+      qualityCart = itemView.findViewById(R.id.qualityCart);
+      addCartBtn = itemView.findViewById(R.id.addCartBtn);
+      minusCartBtn = itemView.findViewById(R.id.minusCartbtn);
     }
   }
 }
