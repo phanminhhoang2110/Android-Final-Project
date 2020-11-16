@@ -78,7 +78,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         editor.commit();
         products.remove(position);
         notifyItemChanged(position);
-        viewTotalMoney.setText(String.valueOf(setupPrice()));
+        notifyDataSetChanged();
+        viewTotalMoney.setText(decimalFormat.format(setupPrice())+ " đ");
       }
     });
   }

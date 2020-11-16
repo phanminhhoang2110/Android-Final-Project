@@ -126,6 +126,8 @@ public class ViewProductActivity extends AppCompatActivity {
   }
 
 
+
+
   public void setUpImage(int product_id) {
     CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
     List<Product> products = customerViewProductDAO.getProductById(product_id);
