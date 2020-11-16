@@ -17,24 +17,19 @@ public class CustomerViewProductDAO extends DatabaseManager {
   public List<Product> getAllProductViewByCustomer(int categoryId, int price_DESC, int price_ASC) {
     List<Product> products = null;
     try {
-      String query = "SELECT  [dbo].[tbl_products].[id]\n" +
-        "                    ,[dbo].[tbl_products].[name]\n" +
-        "                    ,[dbo].[tbl_products].[origin_price]\n" +
-        "                    ,[dbo].[tbl_products].[sell_price]\n" +
-        "                    ,[dbo].[tbl_products].[catergory_id]\n" +
-        "                    ,[dbo].[tbl_images].[link]\n" +
-        "                    FROM [dbo].[tbl_products]\n" +
-        "                    inner join [dbo].[tbl_product_image] on [dbo].[tbl_product_image].[product_id] = [dbo].[tbl_products].[id]\n" +
-        "                    inner join [dbo].[tbl_images] on [dbo].[tbl_images].[id] = [dbo].[tbl_product_image].[image_id]\n";
+      String query = "Select * from tbl_products \n" +
+              "\tinner join (select product_id, min(image_id) image_id from tbl_product_image group by product_id) as tbl_one_image_product \n" +
+              "\ton tbl_products.id =  tbl_one_image_product.product_id \n" +
+              "\tinner join tbl_images on tbl_images.id = tbl_one_image_product.image_id\n";
       if (categoryId != -1) {
         query += " WHERE catergory_id = ? ";
       }
       if (price_ASC == 1) {
         price_DESC = 0;
-        query += " ORDER BY [dbo].[tbl_products].[sell_price] ASC";
+        query += " ORDER BY [dbo].[tbl_products].[sell_price] ASC ";
       } else if (price_DESC == 1) {
         price_ASC = 0;
-        query += " ORDER BY [dbo].[tbl_products].[sell_price] DESC";
+        query += " ORDER BY [dbo].[tbl_products].[sell_price] DESC ";
       }
       connection = connect();
       preparedStatement = connection.prepareStatement(query);
@@ -45,7 +40,7 @@ public class CustomerViewProductDAO extends DatabaseManager {
       products = new ArrayList<>();
       while (resultSet.next()) {
         Product product = new Product();
-        product.setId(resultSet.getInt("id"));
+        product.setId(resultSet.getInt("product_id"));
         product.setName(resultSet.getString("name"));
         product.setOrigin_price(resultSet.getInt("origin_price"));
         product.setSell_price(resultSet.getInt("sell_price"));
