@@ -8,6 +8,7 @@ public class Order {
   private int quantity;
   private int customerId;
   private int statusId;
+  private Address address;
 
   public Order() {
   }
@@ -66,5 +67,13 @@ public class Order {
 
   public void setStatusId(int statusId) {
     this.statusId = statusId;
+  }
+
+  public Address getAddress() {
+    return address;
+  }
+
+  public void setAddress(Address address) {
+    this.address = address;
   }
 }
