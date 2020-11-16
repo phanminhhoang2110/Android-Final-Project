@@ -38,8 +38,9 @@ public class ViewProductActivity extends AppCompatActivity {
 
   ViewPager viewPager;
   SlideViewProductAdapter adapter;
-  MenuItem cart;
-  TextView countOfCartTextView;
+  TextView mCountTv;
+  MenuItem mCartIconMenuItem;
+  int mCount = 0;
 
   public static int getResId(String resName, Class<?> c) {
     try {
@@ -78,20 +79,20 @@ public class ViewProductActivity extends AppCompatActivity {
     final String countOfCart = "countOfCart" + roleId;
 
     SharedPreferences preferencesCount = getSharedPreferences(countOfCart, Context.MODE_PRIVATE);
-    int count = preferencesCount.getInt(countOfCart, 2);
-    countOfCartTextView.setText(String.valueOf(count));
+    mCount = preferencesCount.getInt(countOfCart, 0);
 
 
     buttonAddToCart.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         SharedPreferences preferences = getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
+        if (preferences.getInt(String.valueOf(products.get(0).getId()), -1) == -1) {
+          mCount++;
+          mCountTv.setText(String.valueOf(mCount));
+        }
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(String.valueOf(products.get(0).getId()), products.get(0).getId());
         editor.commit();
-//        SharedPreferences.Editor editorCount = preferencesCount.edit();
-//        editorCount.putInt(countOfCart,)
-
       }
     });
 
@@ -100,10 +101,16 @@ public class ViewProductActivity extends AppCompatActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_toolbar_view_product, menu);
-    cart = menu.findItem(R.id.action_cart);
-    View cartView = cart.getActionView();
+    mCartIconMenuItem = menu.findItem(R.id.action_cart);
+    View cartView = mCartIconMenuItem.getActionView();
     if (cartView != null) {
-      countOfCartTextView = cartView.findViewById(R.id.countOfCart);
+      mCountTv = cartView.findViewById(R.id.countOfCart);
+      SessionManagement sessionManagement = new SessionManagement(this);
+      int roleId = sessionManagement.getSessionUserId();
+      final String countOfCart = "countOfCart" + roleId;
+      SharedPreferences preferencesCount = getSharedPreferences(countOfCart, Context.MODE_PRIVATE);
+      mCount = preferencesCount.getInt(countOfCart, 0);
+      mCountTv.setText(String.valueOf(mCount));
     }
     final Menu m = menu;
     final MenuItem item = menu.findItem(R.id.action_cart);

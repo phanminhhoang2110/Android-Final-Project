@@ -78,34 +78,19 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         editor.commit();
         products.remove(position);
         notifyItemChanged(position);
-        //setupPrice(viewTotalMoney);
+        viewTotalMoney.setText(String.valueOf(setupPrice()));
       }
     });
   }
 
-//  public void setupPrice(TextView viewTotalMoney){
-//    CustomerViewProductDAO dao = new CustomerViewProductDAO();
-//    List<Product> temp = new ArrayList<>();
-//    DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-//    SessionManagement sessionManagement = new SessionManagement(context);
-//    int roleId = sessionManagement.getSessionUserId();
-//    String nameForCart = "mycart" + roleId;
-//    SharedPreferences preferences = this.context.getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
-//    Map<String, ?> entries = preferences.getAll();
-//    Set<String> keys = entries.keySet();
-//
-//    for (String key : keys) {
-//      Product product = new Product();
-//      temp = dao.getProductById(Integer.parseInt(key));
-//      product.setId(temp.get(0).getId());
-//      product.setName(temp.get(0).getName());
-//      product.setSell_price(temp.get(0).getSell_price());
-//      product.setImage_id(getResId(temp.get(0).getLink_image(), R.drawable.class));
-//      products.add(product);
-//      totalPrice += temp.get(0).getSell_price();
-//    }
-//    viewTotalMoney.setText(decimalFormat.format(totalPrice) + " đ");
-//  }
+  public int setupPrice(){
+    int totalPrice = 0;
+    for (Product product:products) {
+      totalPrice+= product.getSell_price()*quality;
+    }
+    return totalPrice;
+  }
+
 
   public static int getResId(String resName, Class<?> c) {
     try {
