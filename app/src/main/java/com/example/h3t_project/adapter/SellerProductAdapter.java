@@ -1,5 +1,9 @@
 package com.example.h3t_project.adapter;
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +18,13 @@ import com.example.h3t_project.model.Product;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SellerProductAdapter extends RecyclerView.Adapter<SellerProductAdapter.ViewHolder> {
 
-    ArrayList<Product> products;
+    List<Product> products;
 
-    public SellerProductAdapter(ArrayList<Product> products){
+    public SellerProductAdapter(List<Product> products){
         this.products = products;
     }
 
@@ -33,11 +38,19 @@ public class SellerProductAdapter extends RecyclerView.Adapter<SellerProductAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.txtNameProduct.setText(products.get(position).getProductName());
-//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-//        holder.txtPriceProduct.setText("Giá : "+ decimalFormat.format(products.get(position).getPrice())+ " vnd");
-//        holder.txtQuantity.setText("Số lượng : "+ products.get(position).getQuantity());
-//        holder.imageProduct.setImageResource(products.get(position).getProductImg());
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
+
+        holder.txtNameProduct.setText(products.get(position).getName());
+        holder.imageProduct.setImageResource(products.get(position).getImage_id());
+
+        String string = "Giá gốc : "+ (decimalFormat.format(products.get(position).getOrigin_price())) + " đ";
+        StrikethroughSpan STRIKE_THROUGH_SPAN = new StrikethroughSpan();
+        holder.txtOriginPriceProduct.setText(string, TextView.BufferType.SPANNABLE);
+        Spannable spannable = (Spannable) holder.txtOriginPriceProduct.getText();
+        spannable.setSpan(STRIKE_THROUGH_SPAN, 0, string.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        holder.txtPriceProduct.setText("Giá : "+(decimalFormat.format(products.get(position).getSell_price())) + " đ");
+        holder.txtQuantity.setText("Số lượng : "+products.get(position).getQuantity());
     }
 
     @Override
@@ -47,13 +60,14 @@ public class SellerProductAdapter extends RecyclerView.Adapter<SellerProductAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageProduct;
-        TextView txtNameProduct, txtPriceProduct, txtQuantity;
+        TextView txtNameProduct, txtOriginPriceProduct, txtPriceProduct, txtQuantity;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            txtNameProduct =itemView.findViewById(R.id.txtNameProduct);
-//            txtPriceProduct =itemView.findViewById(R.id.txtPriceProduct);
-//            txtQuantity = itemView.findViewById(R.id.txtQuantity);
-//            imageProduct =itemView.findViewById(R.id.imageProduct);
+            txtNameProduct =itemView.findViewById(R.id.txtNameProduct);
+            txtOriginPriceProduct =itemView.findViewById(R.id.txtOriginPrice);
+            txtPriceProduct =itemView.findViewById(R.id.txtPriceProduct);
+            txtQuantity = itemView.findViewById(R.id.txtQuantity);
+            imageProduct =itemView.findViewById(R.id.imageProduct);
         }
     }
 }
