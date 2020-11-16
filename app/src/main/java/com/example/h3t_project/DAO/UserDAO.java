@@ -17,7 +17,7 @@ public class UserDAO extends DatabaseManager {
       String query = "SELECT [id]" +
         "      ,[username]\n" +
         "      ,[password], [role_id]\n" +
-        "  FROM [H3TSTORE].[dbo].[tbl_users] where username = ? and password = ?";
+        "  FROM [H3TSTORE].[dbo].[tbl_users] where username = ? and password = HASHBYTES('SHA1',?)";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(query);
       ps.setString(1, username);
@@ -59,7 +59,7 @@ public class UserDAO extends DatabaseManager {
     try {
       //insert users table
       String sql = "INSERT INTO tbl_users(username, password, fullname, phone, email, gender, status_id, role_id)" +
-              " values(?,?,?,?,?,?,1,1)";
+              " values(?,HASHBYTES('SHA1',?),?,?,?,?,1,1)";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(sql);
       ps.setString(1, username);
@@ -104,7 +104,7 @@ public class UserDAO extends DatabaseManager {
     int result = 0;
     try {
       //update tbl_users table
-      String sql = "UPDATE tbl_users set fullname = ?, phone=?, email=?,username =?, password = ?" +
+      String sql = "UPDATE tbl_users set fullname = ?, phone=?, email=?,username =?, password = HASHBYTES('SHA1',?)" +
               " where id = ?";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(sql);
@@ -120,5 +120,26 @@ public class UserDAO extends DatabaseManager {
       Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
     }
     return result;
+  }
+
+  public boolean changePassword(String username){
+    String newPass = "12345";
+    int countAffectRow = 0;
+    if(isDuplicate(username)) {
+      try {
+        String sql = "UPDATE [dbo].[tbl_users] SET [password] = HASHBYTES('SHA1',?) Where username = ?";
+        connection = connect();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,newPass);
+        preparedStatement.setString(2,username);
+        countAffectRow = preparedStatement.executeUpdate();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      if(countAffectRow !=0){
+        return true;
+      }
+    }
+    return false;
   }
 }

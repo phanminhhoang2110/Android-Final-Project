@@ -60,6 +60,15 @@ public class Product {
         this.link_image = link_image;
     }
 
+    public Product(int id, String name, String link_image, int origin_price, int sell_price, int quantity) {
+        this.id = id;
+        this.name = name;
+        this.link_image = link_image;
+        this.origin_price = origin_price;
+        this.sell_price = sell_price;
+        this.quantity = quantity;
+    }
+
     public int getId() {
         return id;
     }
