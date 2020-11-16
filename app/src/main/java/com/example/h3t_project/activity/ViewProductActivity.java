@@ -1,15 +1,5 @@
 package com.example.h3t_project.activity;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +7,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
@@ -26,7 +24,6 @@ import com.example.h3t_project.fragment.DescriptionProductFragment;
 import com.example.h3t_project.fragment.ProductPriceFragment;
 import com.example.h3t_project.model.DetailProductItem;
 import com.example.h3t_project.model.Product;
-import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
@@ -38,16 +35,7 @@ public class ViewProductActivity extends AppCompatActivity {
 
   ViewPager viewPager;
   SlideViewProductAdapter adapter;
-
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
-  }
+  Button addToCartBtn;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -59,66 +47,44 @@ public class ViewProductActivity extends AppCompatActivity {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Intent intent = getIntent();
-    final int productId = intent.getIntExtra("productId", 0);
+    int productId = intent.getIntExtra("productId", 0);
 
     setUpImage(productId);
     setupDetailProduct(productId);
     setupDescriptionProduct(productId);
     setupPriceProduct(productId);
 
-    CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
-    final List<Product> products = customerViewProductDAO.getProductById(productId);
-
-    Button buttonAddToCart = findViewById(R.id.btnBuy2);
-    SessionManagement sessionManagement = new SessionManagement(this);
-    int roleId = sessionManagement.getSessionUserId();
-    final String nameForCart = "mycart" + roleId;
-    buttonAddToCart.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        SharedPreferences preferences = getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(String.valueOf(products.get(0).getId()), products.get(0).getId());
-        editor.commit();
-        finish();
-      }
-    });
-
   }
+
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.menu_toolbar_view_product, menu);
-    final Menu m = menu;
-    final MenuItem item = menu.findItem(R.id.action_cart);
-    item.getActionView().setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        m.performIdentifierAction(item.getItemId(), 1);
-        Log.i("Hoang", "OKKKKKKKKKKK");
-        Intent intentForCart = new Intent(ViewProductActivity.this, ActivityMyCart.class);
-        startActivity(intentForCart);
-      }
-    });
+    getMenuInflater().inflate(R.menu.menu_toolbar_view_product ,menu);
     return true;
   }
 
-  public void setIntentBack() {
-    Intent intentBack = new Intent(this, ActivityCustomerViewProduct.class);
-  }
-
-  public void setUpImage(int product_id) {
+  public void setUpImage(int product_id){
     CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
     List<Product> products = customerViewProductDAO.getProductById(product_id);
     for (int i = 0; i < products.size(); i++) {
-      products.get(i).setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
+        products.get(i).setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
     }
     viewPager = findViewById(R.id.viewPage);
     adapter = new SlideViewProductAdapter(this, products);
     viewPager.setAdapter(adapter);
   }
 
-  public void setupPriceProduct(int product_id) {
+  public static int getResId(String resName, Class<?> c) {
+    try {
+      Field idField = c.getDeclaredField(resName);
+      return idField.getInt(idField);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return -1;
+    }
+  }
+
+  public void setupPriceProduct(int product_id){
     CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
     List<Product> products = customerViewProductDAO.getProductById(product_id);
     FragmentManager manager = getSupportFragmentManager();
@@ -127,9 +93,9 @@ public class ViewProductActivity extends AppCompatActivity {
     Bundle bundle = new Bundle();
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
     bundle.putString("productName", products.get(0).getName());
-    bundle.putString("sellPrice", decimalFormat.format(products.get(0).getSell_price()) + " đ");
+    bundle.putString("sellPrice", decimalFormat.format(products.get(0).getSell_price())+ " đ" );
     bundle.putString("originPrice", decimalFormat.format(products.get(0).getOrigin_price()) + " đ");
-    int discount = (products.get(0).getOrigin_price() - products.get(0).getSell_price()) * 100 / products.get(0).getOrigin_price();
+    int discount = (products.get(0).getOrigin_price() - products.get(0).getSell_price())*100/products.get(0).getOrigin_price();
     bundle.putInt("discount", discount);
     ProductPriceFragment fragment = new ProductPriceFragment();
     fragment.setArguments(bundle);
@@ -137,7 +103,7 @@ public class ViewProductActivity extends AppCompatActivity {
     transaction.commit();
   }
 
-  public void setupDetailProduct(int product_id) {
+  public void setupDetailProduct(int product_id){
     RecyclerView recyclerView = findViewById(R.id.detailProductRecyclerView);
     CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
     List<Product> products = customerViewProductDAO.getProductById(product_id);
@@ -152,7 +118,7 @@ public class ViewProductActivity extends AppCompatActivity {
     recyclerView.setLayoutManager(layoutManager);
   }
 
-  public void setupDescriptionProduct(int product_id) {
+  public void setupDescriptionProduct(int product_id){
     CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
     List<Product> products = customerViewProductDAO.getProductById(product_id);
     FragmentManager manager = getSupportFragmentManager();
@@ -171,7 +137,7 @@ public class ViewProductActivity extends AppCompatActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
-        // todo: goto back activity from here
+        // goto back activity from here
         Intent intendCustomerViewProduct = getIntent();
         int categoryId = intendCustomerViewProduct.getIntExtra("categoryId", 0);
         Intent intent = new Intent(this, ActivityCustomerViewProduct.class);
