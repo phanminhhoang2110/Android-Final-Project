@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.fragment.FragmentDetail;
@@ -16,6 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 public class AddProductActivity extends AppCompatActivity {
 
     ViewPager viewPager;
+    Button btnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class AddProductActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbarSellerAddProduct);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle("Thêm sản phẩm mới");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = findViewById(R.id.viewPageAddProduct);
