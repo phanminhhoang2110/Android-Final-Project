@@ -1,22 +1,18 @@
 package com.example.h3t_project.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
@@ -45,10 +41,10 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
     Intent intent = getIntent();
     int categoryId = 0;
 
-    if (intent.getIntExtra("categoryId", 0) != 0){
+    if (intent.getIntExtra("categoryId", 0) != 0) {
       categoryId = intent.getIntExtra("categoryId", 0);
     }
-    if (intent.getIntExtra("categoryBack", 0) != 0){
+    if (intent.getIntExtra("categoryBack", 0) != 0) {
       categoryId = intent.getIntExtra("categoryBack", 0);
     }
 
@@ -102,6 +98,17 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.menu_customer_view_product, menu);
+    final Menu m = menu;
+    final MenuItem item = menu.findItem(R.id.action_cart);
+    item.getActionView().setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        m.performIdentifierAction(item.getItemId(), 1);
+        Log.i("Hoang", "OKKKKKKKKKKK");
+        Intent intentForCart = new Intent(ActivityCustomerViewProduct.this, ActivityMyCart.class);
+        startActivity(intentForCart);
+      }
+    });
 
 
     return true;

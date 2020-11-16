@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.model.Product;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -24,10 +25,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   List<Product> products;
   int totalPrice;
 
-  public MyCartAdapter(Context context, List<Product> products, int totalPrice) {
+  public MyCartAdapter(Context context, List<Product> products) {
     this.context = context;
     this.products = products;
-    this.totalPrice = totalPrice;
   }
 
   @NonNull
@@ -40,15 +40,16 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   @Override
   public void onBindViewHolder(@NonNull MyCartAdapter.ViewHolder holder, final int position) {
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-
+    SessionManagement sessionManagement = new SessionManagement(context);
+    int roleId = sessionManagement.getSessionUserId();
+    final String nameForCart = "mycart" + roleId;
     holder.imageView.setImageResource(products.get(position).getImage_id());
     holder.viewName.setText(products.get(position).getName());
     holder.viewPrice.setText(decimalFormat.format(products.get(position).getSell_price()) + " đ");
-//            holder.viewTotalMoney.setText(""+decimalFormat.format(totalPrice)+" đ");
     holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("mycart", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(String.valueOf(products.get(position).getId()));
         editor.commit();
@@ -68,7 +69,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     TextView viewName;
     TextView viewPrice;
     Button buttonDelete;
-    TextView viewTotalMoney;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -76,7 +76,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
       viewName = itemView.findViewById(R.id.item_name);
       viewPrice = itemView.findViewById(R.id.item_price);
       buttonDelete = itemView.findViewById(R.id.btn_delete_in_cart);
-      viewTotalMoney = itemView.findViewById(R.id.total_money_price);
     }
   }
 }
