@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.h3t_project.R;
+import com.example.h3t_project.constants.VietnameseWord;
 import com.example.h3t_project.fragment.CustomerViewProductASCFragment;
 import com.example.h3t_project.fragment.CustomerViewProductDSCFragment;
 import com.example.h3t_project.fragment.CustomerViewProductFragment;
@@ -57,7 +58,7 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
 
     toolbar = findViewById(R.id.actionbar);
     setSupportActionBar(toolbar);
-    getSupportActionBar().setTitle("Sản phẩm");
+    getSupportActionBar().setTitle(VietnameseWord.VIEW_LIST_PRODUCT);
 
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
