@@ -84,23 +84,15 @@ public class CustomerViewProductFragment extends Fragment {
     } else if (searchText != null) {
       products = customerViewProductDAO.getAllProductByName(searchText,0,0);
     }
-    List<Product> list = new ArrayList<>();
 
-    for (int i = 0; i < products.size(); i += 3) {
-      Product p = new Product();
-      p.setId(products.get(i).getId());
-      p.setOrigin_price(products.get(i).getOrigin_price());
-      p.setSell_price(products.get(i).getSell_price());
-      p.setName(products.get(i).getName());
-      p.setCategory_id(products.get(i).getCategory_id());
-      p.setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
-      list.add(p);
+    for (int i = 0; i < products.size(); i ++) {
+      products.get(i).setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
     }
 
     GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setNestedScrollingEnabled(true);
-    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(list, getContext());
+    CustomerVIewProductAdapter adapter = new CustomerVIewProductAdapter(products, getContext());
     recyclerView.setAdapter(adapter);
   }
 
