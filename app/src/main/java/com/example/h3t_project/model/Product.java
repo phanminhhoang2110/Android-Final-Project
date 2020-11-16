@@ -21,8 +21,18 @@ public class Product {
   private int quantity;
   private String coupon_code;
   private int coupon_value;
+
+  public int getQuantityInCart() {
+    return quantityInCart;
+  }
+
+  public void setQuantityInCart(int quantityInCart) {
+    this.quantityInCart = quantityInCart;
+  }
+
   private int image_id;
   private String link_image;
+  private int quantityInCart;
 
   public Product() {
   }

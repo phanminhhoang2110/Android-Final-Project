@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.h3t_project.DAO.DestinationDAO;
@@ -21,6 +22,7 @@ import java.util.List;
 
 public class ActivityMyCart extends AppCompatActivity {
     Toolbar toolbar;
+    Button orderBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,8 @@ public class ActivityMyCart extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        orderBtn = findViewById(R.id.btnBuyProdct);
 
         DestinationDAO destinationDAO = new DestinationDAO();
         ArrayList<Destination> destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(1);
@@ -56,6 +60,9 @@ public class ActivityMyCart extends AppCompatActivity {
 
             }
         });
+
+
+
 
     }
 

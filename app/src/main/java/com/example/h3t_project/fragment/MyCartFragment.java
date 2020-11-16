@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -106,6 +107,7 @@ public class MyCartFragment extends Fragment {
       product.setName(temp.get(0).getName());
       product.setSell_price(temp.get(0).getSell_price());
       product.setImage_id(getResId(temp.get(0).getLink_image(), R.drawable.class));
+      product.setQuantityInCart(1);
       products.add(product);
       totalPrice += temp.get(0).getSell_price();
     }
@@ -114,7 +116,7 @@ public class MyCartFragment extends Fragment {
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
     RecyclerView recyclerView = view.findViewById(R.id.my_cart_recycler_view);
     recyclerView.setLayoutManager(linearLayoutManager);
-    MyCartAdapter myCartAdapter = new MyCartAdapter(getActivity(), products, viewTotalMoney);
+    final MyCartAdapter myCartAdapter = new MyCartAdapter(getActivity(), products, viewTotalMoney);
     recyclerView.setItemAnimator(null);
     recyclerView.setAdapter(myCartAdapter);
   }

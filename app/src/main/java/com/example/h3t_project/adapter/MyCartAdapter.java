@@ -2,6 +2,7 @@ package com.example.h3t_project.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +29,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
   Context context;
   List<Product> products;
-  int totalPrice;
   TextView viewTotalMoney;
-  int quality = 1;
 
   public MyCartAdapter(Context context, List<Product> products,TextView viewTotalMoney) {
     this.context = context;
@@ -47,26 +46,31 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
   @Override
   public void onBindViewHolder(@NonNull final MyCartAdapter.ViewHolder holder, final int position) {
-    DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
+    final DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
     SessionManagement sessionManagement = new SessionManagement(context);
     int roleId = sessionManagement.getSessionUserId();
     final String nameForCart = "mycart" + roleId;
     holder.imageView.setImageResource(products.get(position).getImage_id());
     holder.viewName.setText(products.get(position).getName());
     holder.viewPrice.setText(decimalFormat.format(products.get(position).getSell_price()) + " đ");
-    holder.qualityCart.setText(String.valueOf(quality));
+    holder.qualityCart.setText(String.valueOf(products.get(position).getQuantityInCart()));
     holder.addCartBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        quality++;
-        holder.qualityCart.setText(String.valueOf(quality));
+        int quantity = products.get(position).getQuantityInCart();
+        quantity++;
+        products.get(position).setQuantityInCart(quantity);
+        holder.qualityCart.setText(String.valueOf(products.get(position).getQuantityInCart()));
+        notifyItemChanged(position);
       }
     });
     holder.minusCartBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        quality--;
-        holder.qualityCart.setText(String.valueOf(quality));
+        int quantity = products.get(position).getQuantityInCart();
+        products.get(position).setQuantityInCart(quantity);
+        holder.qualityCart.setText(String.valueOf(products.get(position).getQuantityInCart()));
+        notifyItemChanged(position);
       }
     });
     holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +91,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   public int setupPrice(){
     int totalPrice = 0;
     for (Product product:products) {
-      totalPrice+= product.getSell_price()*quality;
+      totalPrice+= product.getSell_price()*product.getQuantityInCart();
     }
     return totalPrice;
   }

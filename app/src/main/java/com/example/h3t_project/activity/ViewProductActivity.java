@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -93,6 +94,7 @@ public class ViewProductActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(String.valueOf(products.get(0).getId()), products.get(0).getId());
         editor.commit();
+        Toast.makeText(getApplicationContext(), "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
       }
     });
 
