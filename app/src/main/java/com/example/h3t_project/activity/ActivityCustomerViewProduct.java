@@ -2,10 +2,17 @@ package com.example.h3t_project.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -100,6 +107,16 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.menu_customer_view_product, menu);
+    final Menu m = menu;
+    final MenuItem item = menu.findItem(R.id.action_cart);
+    item.getActionView().setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        m.performIdentifierAction(item.getItemId(), 1);
+        Intent intentForCart = new Intent(ActivityCustomerViewProduct.this, ActivityMyCart.class);
+        startActivity(intentForCart);
+      }
+    });
 
 
     return true;
