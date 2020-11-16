@@ -63,10 +63,6 @@ public class ViewProductActivity extends AppCompatActivity {
     return true;
   }
 
-  public void setIntentBack(){
-    Intent intentBack = new Intent(this, ActivityCustomerViewProduct.class);
-  }
-
   public void setUpImage(int product_id){
     CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
     List<Product> products = customerViewProductDAO.getProductById(product_id);
