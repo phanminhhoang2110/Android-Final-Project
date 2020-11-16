@@ -115,7 +115,7 @@ public class MyCartFragment extends Fragment {
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
     RecyclerView recyclerView = view.findViewById(R.id.my_cart_recycler_view);
     recyclerView.setLayoutManager(linearLayoutManager);
-    MyCartAdapter myCartAdapter = new MyCartAdapter(getContext(), products);
+    MyCartAdapter myCartAdapter = new MyCartAdapter(getContext(), products, viewTotalMoney);
     recyclerView.setAdapter(myCartAdapter);
   }
 
