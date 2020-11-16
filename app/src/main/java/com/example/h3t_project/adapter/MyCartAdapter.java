@@ -54,18 +54,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     holder.imageView.setImageResource(products.get(position).getImage_id());
     holder.viewName.setText(products.get(position).getName());
     holder.viewPrice.setText(decimalFormat.format(products.get(position).getSell_price()) + " đ");
-    holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove(String.valueOf(products.get(position).getId()));
-        editor.commit();
-        products.remove(position);
-        notifyItemRemoved(position);
-        setupPrice(viewTotalMoney);
-      }
-    });
     holder.qualityCart.setText(String.valueOf(quality));
     holder.addCartBtn.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -81,31 +69,43 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         holder.qualityCart.setText(String.valueOf(quality));
       }
     });
+    holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(String.valueOf(products.get(position).getId()));
+        editor.commit();
+        products.remove(position);
+        notifyItemChanged(position);
+        //setupPrice(viewTotalMoney);
+      }
+    });
   }
 
-  public void setupPrice(TextView viewTotalMoney){
-    CustomerViewProductDAO dao = new CustomerViewProductDAO();
-    List<Product> temp = new ArrayList<>();
-    DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-    SessionManagement sessionManagement = new SessionManagement(context);
-    int roleId = sessionManagement.getSessionUserId();
-    String nameForCart = "mycart" + roleId;
-    SharedPreferences preferences = this.context.getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
-    Map<String, ?> entries = preferences.getAll();
-    Set<String> keys = entries.keySet();
-
-    for (String key : keys) {
-      Product product = new Product();
-      temp = dao.getProductById(Integer.parseInt(key));
-      product.setId(temp.get(0).getId());
-      product.setName(temp.get(0).getName());
-      product.setSell_price(temp.get(0).getSell_price());
-      product.setImage_id(getResId(temp.get(0).getLink_image(), R.drawable.class));
-      products.add(product);
-      totalPrice += temp.get(0).getSell_price();
-    }
-    viewTotalMoney.setText(decimalFormat.format(totalPrice) + " đ");
-  }
+//  public void setupPrice(TextView viewTotalMoney){
+//    CustomerViewProductDAO dao = new CustomerViewProductDAO();
+//    List<Product> temp = new ArrayList<>();
+//    DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
+//    SessionManagement sessionManagement = new SessionManagement(context);
+//    int roleId = sessionManagement.getSessionUserId();
+//    String nameForCart = "mycart" + roleId;
+//    SharedPreferences preferences = this.context.getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
+//    Map<String, ?> entries = preferences.getAll();
+//    Set<String> keys = entries.keySet();
+//
+//    for (String key : keys) {
+//      Product product = new Product();
+//      temp = dao.getProductById(Integer.parseInt(key));
+//      product.setId(temp.get(0).getId());
+//      product.setName(temp.get(0).getName());
+//      product.setSell_price(temp.get(0).getSell_price());
+//      product.setImage_id(getResId(temp.get(0).getLink_image(), R.drawable.class));
+//      products.add(product);
+//      totalPrice += temp.get(0).getSell_price();
+//    }
+//    viewTotalMoney.setText(decimalFormat.format(totalPrice) + " đ");
+//  }
 
   public static int getResId(String resName, Class<?> c) {
     try {

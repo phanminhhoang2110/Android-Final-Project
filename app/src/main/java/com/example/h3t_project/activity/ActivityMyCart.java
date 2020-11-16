@@ -63,10 +63,8 @@ public class ActivityMyCart extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // todo: goto back activity from here
                 Intent intent = new Intent(this, HomePageActivity.class);
                 startActivity(intent);
-                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

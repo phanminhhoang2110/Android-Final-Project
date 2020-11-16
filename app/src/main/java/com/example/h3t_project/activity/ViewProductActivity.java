@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -38,6 +38,8 @@ public class ViewProductActivity extends AppCompatActivity {
 
   ViewPager viewPager;
   SlideViewProductAdapter adapter;
+  MenuItem cart;
+  TextView countOfCartTextView;
 
   public static int getResId(String resName, Class<?> c) {
     try {
@@ -73,6 +75,13 @@ public class ViewProductActivity extends AppCompatActivity {
     SessionManagement sessionManagement = new SessionManagement(this);
     int roleId = sessionManagement.getSessionUserId();
     final String nameForCart = "mycart" + roleId;
+    final String countOfCart = "countOfCart" + roleId;
+
+    SharedPreferences preferencesCount = getSharedPreferences(countOfCart, Context.MODE_PRIVATE);
+    int count = preferencesCount.getInt(countOfCart, 2);
+    countOfCartTextView.setText(String.valueOf(count));
+
+
     buttonAddToCart.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -80,7 +89,9 @@ public class ViewProductActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(String.valueOf(products.get(0).getId()), products.get(0).getId());
         editor.commit();
-        finish();
+//        SharedPreferences.Editor editorCount = preferencesCount.edit();
+//        editorCount.putInt(countOfCart,)
+
       }
     });
 
@@ -89,13 +100,17 @@ public class ViewProductActivity extends AppCompatActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_toolbar_view_product, menu);
+    cart = menu.findItem(R.id.action_cart);
+    View cartView = cart.getActionView();
+    if (cartView != null) {
+      countOfCartTextView = cartView.findViewById(R.id.countOfCart);
+    }
     final Menu m = menu;
     final MenuItem item = menu.findItem(R.id.action_cart);
     item.getActionView().setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         m.performIdentifierAction(item.getItemId(), 1);
-        Log.i("Hoang", "OKKKKKKKKKKK");
         Intent intentForCart = new Intent(ViewProductActivity.this, ActivityMyCart.class);
         startActivity(intentForCart);
       }
@@ -103,9 +118,6 @@ public class ViewProductActivity extends AppCompatActivity {
     return true;
   }
 
-  public void setIntentBack() {
-    Intent intentBack = new Intent(this, ActivityCustomerViewProduct.class);
-  }
 
   public void setUpImage(int product_id) {
     CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
@@ -171,7 +183,6 @@ public class ViewProductActivity extends AppCompatActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
-        // todo: goto back activity from here
         Intent intendCustomerViewProduct = getIntent();
         int categoryId = intendCustomerViewProduct.getIntExtra("categoryId", 0);
         Intent intent = new Intent(this, ActivityCustomerViewProduct.class);
