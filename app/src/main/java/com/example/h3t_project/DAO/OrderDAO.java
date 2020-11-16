@@ -49,4 +49,57 @@ public class OrderDAO extends DatabaseManager {
     }
     return orders;
   }
+
+  public ArrayList<Order> getListOrdersForSeller(int customerId, int statusId) {
+    ArrayList<Order> orders = null;
+    String query = "SELECT [order_id]\n" +
+            "       ,tbl_products.id\n" +
+            "       ,tbl_images.id\n" +
+            "       ,tbl_products.[name] \n" +
+            "       ,sell_price \n" +
+            "       ,[tbl_order_product].quantity \n" +
+            "       ,customer_id \n" +
+            "       ,tbl_status.status\n" +
+            "       ,tbl_users.fullname\n" +
+            "       ,tbl_destinations.*\n" +
+            "       ,tbl_images.link\n" +
+            "      FROM [dbo].[tbl_order_product] \n" +
+            "      inner join (select product_id, max(image_id) image_id from tbl_product_image group by product_id) as tbl_one_image_product \n" +
+            "      ON tbl_order_product.product_id = tbl_one_image_product.product_id\n" +
+            "      inner join tbl_images\n" +
+            "      ON tbl_one_image_product.image_id = tbl_images.id \n" +
+            "      inner join dbo.tbl_products \n" +
+            "      ON tbl_order_product.product_id = tbl_products.id \n" +
+            "      inner join dbo.tbl_orders \n" +
+            "      ON order_id = tbl_orders.id \n" +
+            "      inner join dbo.tbl_status\n" +
+            "      ON status_id = tbl_status.id\n" +
+            "      inner join dbo.tbl_users\n" +
+            "      ON customer_id = tbl_users.id\n" +
+            "      inner join dbo.tbl_destinations\n" +
+            "      ON destination_id = tbl_destinations.id" +
+            "  Where customer_id = ? and tbl_status.id = ?";
+    try {
+      connection = connect();
+      preparedStatement = connection.prepareStatement(query);
+      preparedStatement.setInt(1,customerId);
+      preparedStatement.setInt(2,statusId);
+      resultSet = preparedStatement.executeQuery();
+      orders = new ArrayList<>();
+      while (resultSet.next()){
+        Order order = new Order();
+        order.setCustomerId(resultSet.getInt("customer_id"));
+        order.setOrderId(resultSet.getInt("order_id"));
+        order.setProductId(resultSet.getInt("product_id"));
+        order.setProductName(resultSet.getString("name"));
+        order.setQuantity(resultSet.getInt("quantity"));
+        order.setSellPrice(resultSet.getInt("sell_price"));
+        order.setStatusId(resultSet.getInt("status_id"));
+        orders.add(order);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return orders;
+  }
 }
