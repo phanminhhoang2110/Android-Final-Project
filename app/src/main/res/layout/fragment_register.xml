@@ -8,7 +8,19 @@
     android:backgroundTint="#756363"
     tools:context=".fragment.RegisterFragment">
 
-    <EditText
+  <TextView
+    android:id="@+id/textWrongInform"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="#FA0303"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.498"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.022" />
+
+  <EditText
         android:id="@+id/textPasswordRegister"
         android:layout_width="308dp"
         android:layout_height="47dp"
@@ -83,83 +95,47 @@
         app:layout_constraintTop_toBottomOf="@+id/textPhone"
         app:layout_constraintVertical_bias="0.031" />
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="280dp"
-        android:layout_height="58dp"
-        android:backgroundTint="#F52929"
-        android:text="Đăng ký"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
-        app:layout_constraintHorizontal_bias="0.208"
-        app:layout_constraintStart_toStartOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:layout_constraintVertical_bias="0.0" />
+  <Button
+    android:id="@+id/btnRegister"
+    android:layout_width="0dp"
+    android:layout_height="58dp"
+    android:layout_marginStart="40dp"
+    android:layout_marginEnd="40dp"
+    android:backgroundTint="#F52929"
+    android:text="Đăng ký"
+    android:textColor="#FFFFFF"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+    app:layout_constraintVertical_bias="0.0" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="256dp"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textPasswordRegister"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="@+id/textPasswordRegister"
-        app:layout_constraintTop_toBottomOf="@+id/textPasswordRegister"
-        app:layout_constraintVertical_bias="0.0">
+  <RadioGroup
+    android:id="@+id/radioGroup"
+    android:layout_width="wrap_content"
+    android:layout_height="48dp"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="@+id/textPasswordRegister"
+    app:layout_constraintHorizontal_bias="0.52"
+    app:layout_constraintStart_toStartOf="@+id/textPasswordRegister"
+    app:layout_constraintTop_toBottomOf="@+id/textPasswordRegister"
+    app:layout_constraintVertical_bias="0.0">
 
-        <RadioButton
-            android:id="@+id/rdMale"
-            android:layout_width="104dp"
-            android:layout_height="match_parent"
-            android:buttonTint="#9E9696"
-            android:text="Nam" />
+    <RadioButton
+      android:id="@+id/rdMale"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:buttonTint="#9E9696"
+      android:text="Nam" />
 
-        <RadioButton
-            android:id="@+id/rdFemale"
-            android:layout_width="165dp"
-            android:layout_height="wrap_content"
-            android:buttonTint="#9E9696"
-            android:text="Nữ" />
+    <RadioButton
+      android:id="@+id/rdFemale"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:buttonTint="#9E9696"
+      android:text="Nữ" />
 
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/item_price_customer_view_product"
-        android:layout_width="230dp"
-        android:layout_height="24dp"
-        android:text="Khi bạn đăng ký là bạn đã chấp nhận"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
-        app:layout_constraintVertical_bias="0.033" />
-
-    <TextView
-        android:id="@+id/textDieuKhoan"
-        android:layout_width="137dp"
-        android:layout_height="24dp"
-        android:text="điều khoản sử dụng"
-        android:textColor="#2196F3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/item_price_customer_view_product"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
-        app:layout_constraintVertical_bias="0.033" />
-
-    <TextView
-        android:id="@+id/textWrongInform"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FA0303"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+  </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

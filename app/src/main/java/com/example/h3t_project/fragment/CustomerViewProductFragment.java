@@ -1,6 +1,9 @@
 package com.example.h3t_project.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,17 +11,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.CustomerVIewProductAdapter;
 import com.example.h3t_project.model.Product;
 
 import java.lang.reflect.Field;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,11 +72,18 @@ public class CustomerViewProductFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-
-    int categoryId = this.getArguments().getInt("categoryId");
+    int categoryId = -1;
+    String searchText = null;
+    List<Product> products = new ArrayList<>();
+    categoryId = this.getArguments().getInt("categoryId");
+    searchText = this.getArguments().getString("searchText");
     recyclerView = view.findViewById(R.id.customer_view_product_recyclerview);
     CustomerViewProductDAO customerViewProductDAO = new CustomerViewProductDAO();
-    List<Product> products = customerViewProductDAO.getAllProductViewByCustomer(categoryId, 0, 0);
+    if (categoryId != 0) {
+      products = customerViewProductDAO.getAllProductViewByCustomer(categoryId, 0, 0);
+    } else if (searchText != null) {
+      products = customerViewProductDAO.getAllProductByName(searchText,0,0);
+    }
     List<Product> list = new ArrayList<>();
 
     for (int i = 0; i < products.size(); i += 3) {
