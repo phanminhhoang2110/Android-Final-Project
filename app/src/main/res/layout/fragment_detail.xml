@@ -14,60 +14,6 @@
         android:paddingBottom="50dp">
 
         <TextView
-            android:id="@+id/txtAddUnit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đơn vị"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.044"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.022" />
-
-        <EditText
-            android:id="@+id/etxtAddUnit"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txtAddUnit"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddUnit"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/etxtAddQuantity"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.93"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/etxtAddUnit"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/txtAddQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quantity"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/etxtAddQuantity"
-            app:layout_constraintTop_toTopOf="@+id/txtAddUnit"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
             android:id="@+id/txtAddBrand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,10 +22,10 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/etxtAddUnit"
-            app:layout_constraintTop_toBottomOf="@+id/etxtAddUnit"
-            app:layout_constraintVertical_bias="0.08" />
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.022" />
 
         <EditText
             android:id="@+id/etxtAddBrand"
@@ -94,11 +40,65 @@
             app:layout_constraintTop_toBottomOf="@+id/txtAddBrand"
             app:layout_constraintVertical_bias="0.0" />
 
+        <EditText
+            android:id="@+id/etxtAddQuantity"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.93"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etxtAddBrand"
+            app:layout_constraintVertical_bias="0.0" />
+
         <TextView
-            android:id="@+id/txtAddOriginProduct"
+            android:id="@+id/txtAddQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Xuất xứ"
+            android:text="Số lượng"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/etxtAddQuantity"
+            app:layout_constraintTop_toTopOf="@+id/txtAddBrand"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/txtAddGuarantee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bảo hành"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/etxtAddBrand"
+            app:layout_constraintTop_toBottomOf="@+id/etxtAddBrand"
+            app:layout_constraintVertical_bias="0.08" />
+
+        <EditText
+            android:id="@+id/etxtAddGuarantee"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtAddGuarantee"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddGuarantee"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/txtAddColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Màu sắc"
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -109,7 +109,7 @@
             app:layout_constraintVertical_bias="0.08" />
 
         <EditText
-            android:id="@+id/etxtAddOriginProduct"
+            android:id="@+id/etxtAddColor"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -117,8 +117,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txtAddOriginProduct"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddOriginProduct"
+            app:layout_constraintStart_toStartOf="@+id/txtAddColor"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddColor"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -131,8 +131,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/etxtAddBrand"
-            app:layout_constraintTop_toBottomOf="@+id/etxtAddBrand"
+            app:layout_constraintStart_toStartOf="@+id/etxtAddGuarantee"
+            app:layout_constraintTop_toBottomOf="@+id/etxtAddGuarantee"
             app:layout_constraintVertical_bias="0.1" />
 
         <EditText
@@ -140,7 +140,7 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -149,21 +149,21 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/txtAddWidth"
+            android:id="@+id/txtAddMaterial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chiều rộng"
+            android:text="Chất liệu"
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/etxtAddOriginProduct"
-            app:layout_constraintTop_toBottomOf="@+id/etxtAddOriginProduct"
+            app:layout_constraintStart_toStartOf="@+id/etxtAddColor"
+            app:layout_constraintTop_toBottomOf="@+id/etxtAddColor"
             app:layout_constraintVertical_bias="0.1" />
 
         <EditText
-            android:id="@+id/etxtAddWidth"
+            android:id="@+id/etxtAddMaterial"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -171,15 +171,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txtAddWidth"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddWidth"
+            app:layout_constraintStart_toStartOf="@+id/txtAddMaterial"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddMaterial"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/txtAddLeght"
+            android:id="@+id/txtAddDes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chiều dài"
+            android:text="Mô tả"
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -187,46 +187,20 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/etxtAddHeight"
             app:layout_constraintTop_toBottomOf="@+id/etxtAddHeight"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintVertical_bias="0.050000012" />
 
         <EditText
-            android:id="@+id/etxtAddLenght"
-            android:layout_width="180dp"
+            android:id="@+id/etxtAddDes"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txtAddLeght"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddLeght"
+            app:layout_constraintStart_toStartOf="@+id/txtAddDes"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddDes"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/txtAddWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Trọng lượng"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/etxtAddWidth"
-            app:layout_constraintTop_toBottomOf="@+id/etxtAddWidth"
-            app:layout_constraintVertical_bias="0.2" />
-
-        <EditText
-            android:id="@+id/etxtAddWeightP"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txtAddWeight"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddWeight"
-            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
