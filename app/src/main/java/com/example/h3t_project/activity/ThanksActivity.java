@@ -23,13 +23,6 @@ public class ThanksActivity extends AppCompatActivity {
     setContentView(R.layout.activity_thanks);
     buttonHome = findViewById(R.id.btnHome);
 
-    SessionManagement sessionManagement = new SessionManagement(this);
-    int customerId = sessionManagement.getSessionUserId();
-    final String nameForCart = "mycart" + customerId;
-    SharedPreferences preferences = getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.clear().commit();
-
     buttonHome.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
