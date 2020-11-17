@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.h3t_project">
+  package="com.example.h3t_project">
 
   <application
     android:allowBackup="true"
@@ -9,11 +9,12 @@
     android:roundIcon="@drawable/h3t"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activity.SellerHomeActivity" />
-
     <activity
       android:name=".activity.EditDestinationActivity"
-      android:parentActivityName=".activity.DestinationActivity"></activity>
+      android:parentActivityName=".activity.DestinationActivity" />
+    <activity android:name=".activity.BuyedProductActivity"
+      android:parentActivityName=".activity.PersonalActivity"
+      />
     <activity
       android:name=".activity.DestinationActivity"
       android:parentActivityName=".activity.PersonalActivity" />
@@ -44,17 +45,9 @@
     <activity
       android:name=".activity.PersonalActivity"
       android:parentActivityName=".activity.HomePageActivity"></activity>
-    <activity
-      android:name=".activity.AddProductActivity"
-      android:parentActivityName=".activity.SellerProductActivity"/>
-    <activity
-      android:name=".activity.DetailSellerProductActivity"
-      android:parentActivityName=".activity.SellerProductActivity"/>
-    <activity
-      android:name=".activity.SellerProductActivity"
-      android:parentActivityName=".activity.SellerHomeActivity">
-
-    </activity>
+    <activity android:name=".activity.AddProductActivity" />
+    <activity android:name=".activity.DetailSellerProductActivity" />
+    <activity android:name=".activity.SellerProductActivity" />
     <activity
       android:name=".activity.EditPersonalActivity"
       android:parentActivityName=".activity.PersonalActivity" />
@@ -62,5 +55,10 @@
     <activity
       android:name=".activity.ActivityCustomerViewProduct"
       android:parentActivityName=".activity.HomePageActivity" />
+
+    <meta-data
+      android:name="preloaded_fonts"
+      android:resource="@array/preloaded_fonts" />
   </application>
+
 </manifest>

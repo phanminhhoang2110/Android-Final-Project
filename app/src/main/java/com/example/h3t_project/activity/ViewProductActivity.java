@@ -91,7 +91,7 @@ public class ViewProductActivity extends AppCompatActivity {
         SharedPreferences preferencesQuantity = getSharedPreferences(quantityForCart,Context.MODE_PRIVATE);
         if (preferences.getInt(String.valueOf(products.get(0).getId()), -1) == -1) {
           mCount++;
-          mCountTv.setText(String.valueOf(mCount));
+         // mCountTv.setText(String.valueOf(mCount));
         }
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(String.valueOf(products.get(0).getId()), products.get(0).getId());
@@ -110,15 +110,15 @@ public class ViewProductActivity extends AppCompatActivity {
     getMenuInflater().inflate(R.menu.menu_toolbar_view_product, menu);
     mCartIconMenuItem = menu.findItem(R.id.action_cart);
     View cartView = mCartIconMenuItem.getActionView();
-    if (cartView != null) {
-      mCountTv = cartView.findViewById(R.id.countOfCart);
-      SessionManagement sessionManagement = new SessionManagement(this);
-      int roleId = sessionManagement.getSessionUserId();
-      final String countOfCart = "countOfCart" + roleId;
-      SharedPreferences preferencesCount = getSharedPreferences(countOfCart, Context.MODE_PRIVATE);
-      mCount = preferencesCount.getInt(countOfCart, 0);
-      mCountTv.setText(String.valueOf(mCount));
-    }
+//    if (cartView != null) {
+//      //mCountTv = cartView.findViewById(R.id.countOfCart);
+//      SessionManagement sessionManagement = new SessionManagement(this);
+//      int roleId = sessionManagement.getSessionUserId();
+//      final String countOfCart = "countOfCart" + roleId;
+//      SharedPreferences preferencesCount = getSharedPreferences(countOfCart, Context.MODE_PRIVATE);
+//      mCount = preferencesCount.getInt(countOfCart, 0);
+//      //mCountTv.setText(String.valueOf(mCount));
+//    }
     final Menu m = menu;
     final MenuItem item = menu.findItem(R.id.action_cart);
     item.getActionView().setOnClickListener(new View.OnClickListener() {

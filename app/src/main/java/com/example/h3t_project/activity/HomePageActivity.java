@@ -83,7 +83,6 @@ public class HomePageActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         m.performIdentifierAction(item.getItemId(),1);
-        Log.i("Hoang" , "OKKKKKKKKKKK");
         Intent intentForCart = new Intent(HomePageActivity.this, ActivityMyCart.class);
         startActivity(intentForCart);
       }
@@ -99,7 +98,6 @@ public class HomePageActivity extends AppCompatActivity {
         startActivity(intentForPersonal);
         return true;
       case 1:
-        Log.i("Hoang" , "OKKKKKKKKKKK");
         Intent intentForCart = new Intent(this, ActivityMyCart.class);
         startActivity(intentForCart);
         return true;

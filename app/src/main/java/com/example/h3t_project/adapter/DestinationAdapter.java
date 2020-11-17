@@ -48,7 +48,7 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
       @Override
       public void onClick(View v) {
         v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_click_animation));
-        showConfirmDialog(destinations.get(position).getId(),1);
+        showConfirmDialog(destinations.get(position).getId(),1,position);
       }
     });
     holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
     });
   }
 
-  private void showConfirmDialog(final int itemPosition, final int userId) {
+  private void showConfirmDialog(final int itemPosition, final int userId, final int positionInList) {
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle("Xóa địa chỉ");
     builder.setMessage("Bạn có chắc muốn xóa địa chỉ này ?");
@@ -79,6 +79,8 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
         DestinationDAO destinationDAO = new DestinationDAO();
         boolean deleteResult = destinationDAO.deleteDestination(itemPosition, userId);
         if (deleteResult == true){
+          destinations.remove(positionInList);
+          notifyDataSetChanged();
           Toast.makeText(context,"Xóa thành công!", Toast.LENGTH_SHORT).show();
         }else{
           Toast.makeText(context,"Xóa thất bại! Xin vui lòng thử lại!", Toast.LENGTH_SHORT).show();
