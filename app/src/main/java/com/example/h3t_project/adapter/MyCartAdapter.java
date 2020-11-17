@@ -1,8 +1,6 @@
 package com.example.h3t_project.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,28 +11,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
-import com.example.h3t_project.model.Product;
-import com.example.h3t_project.sessionhelper.SessionManagement;
+import com.example.h3t_project.common.ResourceFunction;
+import com.example.h3t_project.model.ItemCartDetail;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder> {
 
   Context context;
-  List<Product> products;
+  ArrayList<ItemCartDetail> products;
   TextView viewTotalMoney;
+  ResetAdapter resetAdapter;
+  int quantity;
 
-  public MyCartAdapter(Context context, List<Product> products,TextView viewTotalMoney) {
+  public MyCartAdapter(Context context, ArrayList<ItemCartDetail> products, TextView viewTotalMoney, ResetAdapter resetAdapter) {
     this.context = context;
     this.products = products;
     this.viewTotalMoney = viewTotalMoney;
+    this.resetAdapter = resetAdapter;
   }
 
   @NonNull
@@ -47,69 +44,59 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   @Override
   public void onBindViewHolder(@NonNull final MyCartAdapter.ViewHolder holder, final int position) {
     final DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-    SessionManagement sessionManagement = new SessionManagement(context);
-    int roleId = sessionManagement.getSessionUserId();
-    final String nameForCart = "mycart" + roleId;
-    holder.imageView.setImageResource(products.get(position).getImage_id());
+    holder.imageView.setImageResource(ResourceFunction.getResId(products.get(position).getImage(), R.drawable.class));
     holder.viewName.setText(products.get(position).getName());
-    holder.viewPrice.setText(decimalFormat.format(products.get(position).getSell_price()) + " đ");
-    holder.qualityCart.setText(String.valueOf(products.get(position).getQuantityInCart()));
+    holder.viewPrice.setText(decimalFormat.format(products.get(position).getSellPrice()) + " đ");
+    holder.qualityCart.setText(String.valueOf(products.get(position).getQuantity()));
+    holder.setResetAdapter(this.resetAdapter);
     holder.addCartBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        int quantity = products.get(position).getQuantityInCart();
+        quantity = products.get(position).getQuantity();
         quantity++;
-        products.get(position).setQuantityInCart(quantity);
-        holder.qualityCart.setText(String.valueOf(products.get(position).getQuantityInCart()));
-        notifyItemChanged(position);
+        products.get(position).setQuantity(quantity);
+        holder.qualityCart.setText(String.valueOf(products.get(position).getQuantity()));
+        holder.resetAdapter.reset(quantity, position);
       }
     });
     holder.minusCartBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        int quantity = products.get(position).getQuantityInCart();
-        products.get(position).setQuantityInCart(quantity);
-        holder.qualityCart.setText(String.valueOf(products.get(position).getQuantityInCart()));
-        notifyItemChanged(position);
+        quantity = products.get(position).getQuantity();
+        if (quantity >= 2) {
+          quantity--;
+        }
+        products.get(position).setQuantity(quantity);
+        holder.qualityCart.setText(String.valueOf(products.get(position).getQuantity()));
+        holder.resetAdapter.reset(quantity, position);
       }
     });
     holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove(String.valueOf(products.get(position).getId()));
-        editor.commit();
         products.remove(position);
         notifyItemChanged(position);
         notifyDataSetChanged();
-        viewTotalMoney.setText(decimalFormat.format(setupPrice())+ " đ");
+        viewTotalMoney.setText(decimalFormat.format(setupPrice()) + " đ");
       }
     });
   }
 
-  public int setupPrice(){
+  public int setupPrice() {
     int totalPrice = 0;
-    for (Product product:products) {
-      totalPrice+= product.getSell_price()*product.getQuantityInCart();
+    for (ItemCartDetail product : products) {
+      totalPrice += product.getSellPrice() * product.getQuantity();
     }
     return totalPrice;
-  }
-
-
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
   }
 
   @Override
   public int getItemCount() {
     return products.size();
+  }
+
+  public interface ResetAdapter {
+    void reset(int quantity, int indexProduct);
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {
@@ -120,7 +107,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     TextView qualityCart;
     Button addCartBtn;
     Button minusCartBtn;
-
+    ResetAdapter resetAdapter;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -132,9 +119,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
       addCartBtn = itemView.findViewById(R.id.addCartBtn);
       minusCartBtn = itemView.findViewById(R.id.minusCartbtn);
     }
-  }
 
-  public interface resetAdapter{
-    public void reset();
+    public void setResetAdapter(ResetAdapter resetAdapter) {
+      this.resetAdapter = resetAdapter;
+    }
   }
 }

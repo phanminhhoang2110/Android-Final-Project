@@ -4,10 +4,8 @@ import com.example.h3t_project.DatabaseM.DatabaseManager;
 import com.example.h3t_project.model.Role;
 import com.example.h3t_project.model.User;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,6 +36,7 @@ public class UserDAO extends DatabaseManager {
     }
     return null;
   }
+
   public boolean isDuplicate(String username) {
     try {
       String sql = "Select username From tbl_users Where username = ? ";
@@ -59,7 +58,7 @@ public class UserDAO extends DatabaseManager {
     try {
       //insert users table
       String sql = "INSERT INTO tbl_users(username, password, fullname, phone, email, gender, status_id, role_id)" +
-              " values(?,HASHBYTES('SHA1',?),?,?,?,?,1,1)";
+        " values(?,HASHBYTES('SHA1',?),?,?,?,?,1,1)";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(sql);
       ps.setString(1, username);
@@ -76,11 +75,11 @@ public class UserDAO extends DatabaseManager {
     return result;
   }
 
-  public User getUserById(int id){
+  public User getUserById(int id) {
     User user = new User();
     try {
       String sql = "select fullname, phone, email, dob, username, password  from tbl_users "
-              + " where id = ? ";
+        + " where id = ? ";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(sql);
       ps.setInt(1, id);
@@ -105,7 +104,7 @@ public class UserDAO extends DatabaseManager {
     try {
       //update tbl_users table
       String sql = "UPDATE tbl_users set fullname = ?, phone=?, email=?,username =?, password = HASHBYTES('SHA1',?)" +
-              " where id = ?";
+        " where id = ?";
       connection = connect();
       PreparedStatement ps = connection.prepareStatement(sql);
       ps.setString(1, name);
@@ -122,23 +121,21 @@ public class UserDAO extends DatabaseManager {
     return result;
   }
 
-  public boolean changePassword(String username){
+  public boolean changePassword(String username) {
     String newPass = "12345";
     int countAffectRow = 0;
-    if(isDuplicate(username)) {
+    if (isDuplicate(username)) {
       try {
         String sql = "UPDATE [dbo].[tbl_users] SET [password] = HASHBYTES('SHA1',?) Where username = ?";
         connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1,newPass);
-        preparedStatement.setString(2,username);
+        preparedStatement.setString(1, newPass);
+        preparedStatement.setString(2, username);
         countAffectRow = preparedStatement.executeUpdate();
       } catch (Exception e) {
         e.printStackTrace();
       }
-      if(countAffectRow !=0){
-        return true;
-      }
+      return countAffectRow != 0;
     }
     return false;
   }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.CustomerVIewProductAdapter;
+import com.example.h3t_project.common.ResourceFunction;
 import com.example.h3t_project.model.Product;
 
 import java.lang.reflect.Field;
@@ -26,13 +27,11 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class CustomerViewProductFragment extends Fragment {
-  public RecyclerView recyclerView;
-
   // TODO: Rename parameter arguments, choose names that match
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
-
+  public RecyclerView recyclerView;
   // TODO: Rename and change types of parameters
   private String mParam1;
   private String mParam2;
@@ -82,11 +81,11 @@ public class CustomerViewProductFragment extends Fragment {
     if (categoryId != 0) {
       products = customerViewProductDAO.getAllProductViewByCustomer(categoryId, 0, 0);
     } else if (searchText != null) {
-      products = customerViewProductDAO.getAllProductByName(searchText,0,0);
+      products = customerViewProductDAO.getAllProductByName(searchText, 0, 0);
     }
 
-    for (int i = 0; i < products.size(); i ++) {
-      products.get(i).setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
+    for (int i = 0; i < products.size(); i++) {
+      products.get(i).setImage_id(ResourceFunction.getResId(products.get(i).getLink_image(), R.drawable.class));
     }
 
     GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
@@ -102,15 +101,5 @@ public class CustomerViewProductFragment extends Fragment {
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_customer_view_product, container, false);
 
-  }
-
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
   }
 }

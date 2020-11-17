@@ -1,21 +1,16 @@
 package com.example.h3t_project.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-
 import com.example.h3t_project.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,7 +74,7 @@ public class ProductPriceFragment extends Fragment {
     String originPrice = "";
     int discount = 0;
     Bundle bundle = getArguments();
-    if (bundle != null){
+    if (bundle != null) {
       productName = this.getArguments().getString("productName");
       sellPrice = this.getArguments().getString("sellPrice");
       originPrice = this.getArguments().getString("originPrice");
@@ -91,15 +86,15 @@ public class ProductPriceFragment extends Fragment {
     TextView dis = view.findViewById(R.id.discountPercent);
     name.setText(productName);
     sell.setText(sellPrice);
-    if (originPrice.equalsIgnoreCase(sellPrice)){
+    if (originPrice.equalsIgnoreCase(sellPrice)) {
       origin.setText("");
-    }else {
-      origin.setText("Giá thị trường \n"+originPrice);
+    } else {
+      origin.setText("Giá thị trường \n" + originPrice);
     }
 
-    if (discount !=0) {
+    if (discount != 0) {
       dis.setText("-" + discount + "%");
-    }else {
+    } else {
       dis.setText("");
     }
 

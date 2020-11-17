@@ -1,8 +1,5 @@
 package com.example.h3t_project.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,15 +9,16 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.h3t_project.DAO.SellerProductDAO;
-import com.example.h3t_project.DAO.UserDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.model.Product;
-import com.example.h3t_project.model.User;
 
 public class SellerEditProductActivity extends AppCompatActivity {
 
-    EditText textName, textOriginPrice, textPrice, textBrand, textQuantity, textGuarantee,
+EditText textName, textOriginPrice, textPrice, textBrand, textQuantity, textGuarantee,
             textColor, textHeight, textMaterial, textDes;
     TextView txtNote;
     RadioButton rdFood, rdPhone, rdShoes, rdBook, rdFerniture, rdBag, rdBeauty, rdLaptop, rdClothes;

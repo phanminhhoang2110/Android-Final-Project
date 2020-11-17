@@ -1,13 +1,12 @@
 package com.example.h3t_project.activity;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,10 +44,10 @@ public class DestinationActivity extends AppCompatActivity {
     SessionManagement sessionManagement = new SessionManagement(this);
     int customerId = sessionManagement.getSessionUserId();
     ArrayList<Destination> destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(customerId);
-    if(destinations == null || destinations.size()==0){
+    if (destinations == null || destinations.size() == 0) {
       alertError();
     }
-    DestinationAdapter adapter = new DestinationAdapter(this,destinations);
+    DestinationAdapter adapter = new DestinationAdapter(this, destinations);
     recyclerView.setAdapter(adapter);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     recyclerView.setLayoutManager(layoutManager);
@@ -61,7 +60,7 @@ public class DestinationActivity extends AppCompatActivity {
     builder.setPositiveButton("Không", new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-          finish();
+        finish();
       }
     });
     builder.setNegativeButton("Có", new DialogInterface.OnClickListener() {

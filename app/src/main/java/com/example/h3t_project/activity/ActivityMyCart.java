@@ -44,8 +44,10 @@ public class ActivityMyCart extends AppCompatActivity {
 
     orderBtn = findViewById(R.id.btnBuyProdct);
 
+    SessionManagement sessionManagement = new SessionManagement(ActivityMyCart.this);
+    int customerId = sessionManagement.getSessionUserId();
     DestinationDAO destinationDAO = new DestinationDAO();
-    final ArrayList<Destination> destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(1);
+    final ArrayList<Destination> destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(customerId);
     List<String> listDestination = new ArrayList<>();
     for (int i = 0; i < destinations.size(); i++) {
       listDestination.add(destinations.get(i).toString());
@@ -79,16 +81,16 @@ public class ActivityMyCart extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
         Map<String, ?> allListInCart = preferences.getAll();
-        for(Map.Entry<String, ?> entry : allListInCart.entrySet()){
+        for (Map.Entry<String, ?> entry : allListInCart.entrySet()) {
           listProductId.add(Integer.parseInt(entry.getValue().toString()));
         }
         OrderDAO orderDAO = new OrderDAO();
-        boolean result = orderDAO.newOrder(customerId, destinationId,listProductId);
-        if(result==true){
-          Intent intent = new Intent(v.getContext(),ThanksActivity.class);
+        boolean result = orderDAO.newOrder(customerId, destinationId, listProductId);
+        if (result == true) {
+          Intent intent = new Intent(v.getContext(), ThanksActivity.class);
           startActivity(intent);
-        }else{
-          Toast.makeText(ActivityMyCart.this,"Có lỗi xảy ra xin vui lòng thử lại!", Toast.LENGTH_SHORT).show();
+        } else {
+          Toast.makeText(ActivityMyCart.this, "Có lỗi xảy ra xin vui lòng thử lại!", Toast.LENGTH_SHORT).show();
         }
       }
     });

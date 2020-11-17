@@ -132,12 +132,16 @@ public class OrderDAO extends DatabaseManager {
       "            inner join dbo.tbl_orders\n" +
       "            ON tbl_order_product.order_id = tbl_orders.id\n" +
       "            inner join dbo.tbl_status\n" +
-      "            ON status_id = tbl_status.id" +
-      "            where status_id = ? ";
+      "            ON status_id = tbl_status.id ";
+    if (statusId != -1) {
+      query += " where status_id = ? ";
+    }
     try {
       connection = connect();
       preparedStatement = connection.prepareStatement(query);
-      preparedStatement.setInt(1, statusId);
+      if (statusId != -1) {
+        preparedStatement.setInt(1, statusId);
+      }
       resultSet = preparedStatement.executeQuery();
       orders = new ArrayList<>();
       while (resultSet.next()) {
@@ -162,13 +166,13 @@ public class OrderDAO extends DatabaseManager {
     String insertOrder = "INSERT INTO [dbo].[tbl_orders] VALUES (? , ? , ?)";
     String insertOrderProduct = "INSERT INTO [dbo].[tbl_order_product] VALUES (? , ? , ?)";
     try {
-      PreparedStatement insertOrderStatement,insertOrderProductStatement;
+      PreparedStatement insertOrderStatement, insertOrderProductStatement;
       connection = connect();
       connection.setAutoCommit(false);
       insertOrderStatement = connection.prepareStatement(insertOrder, Statement.RETURN_GENERATED_KEYS);
       insertOrderStatement.setInt(1, customerId);
-      insertOrderStatement.setInt(2,3);
-      insertOrderStatement.setInt(3,destinationId);
+      insertOrderStatement.setInt(2, 3);
+      insertOrderStatement.setInt(3, destinationId);
       insertOrderStatement.executeUpdate();
       int idLatest = 0;
       try (ResultSet generatedKeys = insertOrderStatement.getGeneratedKeys()) {

@@ -78,10 +78,7 @@ public class DestinationDAO extends DatabaseManager {
         throwables.printStackTrace();
       }
     }
-    if (destination_userDone != 0 && destinationDone != 0) {
-      return true;
-    }
-    return false;
+    return destination_userDone != 0 && destinationDone != 0;
   }
 
   public boolean deleteDestination(int destinationId, int userId) {
@@ -94,10 +91,7 @@ public class DestinationDAO extends DatabaseManager {
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
-    if (deleteCount == 0) {
-      return false;
-    }
-    return true;
+    return deleteCount != 0;
 
   }
 
