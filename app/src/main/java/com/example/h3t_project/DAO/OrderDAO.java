@@ -100,6 +100,9 @@ public class OrderDAO extends DatabaseManager {
         order.setQuantity(resultSet.getInt("quantity"));
         order.setSellPrice(resultSet.getInt("sell_price"));
         order.setStatusId(resultSet.getInt("status_id"));
+        Product product = new Product();
+        product.setLink_image(resultSet.getString("link"));
+        order.setProduct(product);
         orders.add(order);
       }
     } catch (SQLException e) {
@@ -144,6 +147,9 @@ public class OrderDAO extends DatabaseManager {
         order.setProductName(resultSet.getString("name"));
         order.setQuantity(resultSet.getInt("quantity"));
         order.setStatusId(resultSet.getInt("status_id"));
+        Product product = new Product();
+        product.setLink_image(resultSet.getString("link"));
+        order.setProduct(product);
         orders.add(order);
       }
     } catch (SQLException e) {

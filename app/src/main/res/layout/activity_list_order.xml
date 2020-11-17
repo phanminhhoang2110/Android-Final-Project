@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#9C9595"
     android:backgroundTint="#F3F0F0"
+    android:onClick="waitingOrder"
     tools:context=".activity.ActivityListOrder">
 
     <androidx.appcompat.widget.Toolbar
@@ -31,8 +32,8 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="410dp"
-        android:layout_height="622dp"
+        android:layout_width="391dp"
+        android:layout_height="604dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,39 +45,68 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpageOrder"
+            <FrameLayout
+                android:id="@+id/frame_order_list_seller"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabOrder"
-        android:layout_width="410dp"
-        android:layout_height="32dp"
+    <Button
+        android:id="@+id/btnWaiting"
+        android:layout_width="98dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="620dp"
+        android:text="Chờ lấy hàng"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="@+id/btnCanceled"
+        app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionbar"
-        app:layout_constraintVertical_bias="0.0"
-        app:tabTextAppearance="@style/MyCustomTabText">
+        app:layout_constraintVertical_bias="1.0" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Monday" />
+    <Button
+        android:id="@+id/btnShipping"
+        android:layout_width="100dp"
+        android:layout_height="37dp"
+        android:text="Đang giao hàng"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnWaiting"
+        app:layout_constraintEnd_toStartOf="@+id/btnShipped"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnWaiting"
+        app:layout_constraintTop_toBottomOf="@+id/actionbar"
+        app:layout_constraintVertical_bias="1.0" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tuesday" />
+    <Button
+        android:id="@+id/btnShipped"
+        android:layout_width="106dp"
+        android:layout_height="38dp"
+        android:text="Đã giao hàng"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnWaiting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.672"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionbar"
+        app:layout_constraintVertical_bias="1.0" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wednesday" />
-    </com.google.android.material.tabs.TabLayout>
+    <Button
+        android:id="@+id/btnCanceled"
+        android:layout_width="96dp"
+        android:layout_height="38dp"
+        android:text="Đã hủy"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnWaiting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnShipped"
+        app:layout_constraintTop_toBottomOf="@+id/actionbar"
+        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
