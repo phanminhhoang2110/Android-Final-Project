@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.h3t_project.DAO.OrderDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.ListOrderSellerAdapter;
+import com.example.h3t_project.common.ResourceFunction;
 import com.example.h3t_project.model.Order;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +36,7 @@ public class ListOrderSellerFragment extends Fragment {
   // TODO: Rename and change types of parameters
   private String mParam1;
   private String mParam2;
+
   public ListOrderSellerFragment(int status_id) {
     this.status_id = status_id;
   }
@@ -62,16 +63,6 @@ public class ListOrderSellerFragment extends Fragment {
     return fragment;
   }
 
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
-  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -90,7 +81,7 @@ public class ListOrderSellerFragment extends Fragment {
     orders = orderDAO.getListOrdersForSeller(status_id);
 
     for (int i = 0; i < orders.size(); i++) {
-      orders.get(i).getProduct().setImage_id(getResId(orders.get(i).getProduct().getLink_image(), R.drawable.class));
+      orders.get(i).getProduct().setImage_id(ResourceFunction.getResId(orders.get(i).getProduct().getLink_image(), R.drawable.class));
     }
 
     recyclerView = view.findViewById(R.id.recycler_view_seller_list_order);

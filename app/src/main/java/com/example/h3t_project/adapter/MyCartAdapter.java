@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.R;
+import com.example.h3t_project.common.ResourceFunction;
 import com.example.h3t_project.model.ItemCartDetail;
 
 import java.lang.reflect.Field;
@@ -33,16 +34,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     this.resetAdapter = resetAdapter;
   }
 
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
-  }
-
   @NonNull
   @Override
   public MyCartAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,7 +44,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   @Override
   public void onBindViewHolder(@NonNull final MyCartAdapter.ViewHolder holder, final int position) {
     final DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-    holder.imageView.setImageResource(getResId(products.get(position).getImage(), R.drawable.class));
+    holder.imageView.setImageResource(ResourceFunction.getResId(products.get(position).getImage(), R.drawable.class));
     holder.viewName.setText(products.get(position).getName());
     holder.viewPrice.setText(decimalFormat.format(products.get(position).getSellPrice()) + " đ");
     holder.qualityCart.setText(String.valueOf(products.get(position).getQuantity()));

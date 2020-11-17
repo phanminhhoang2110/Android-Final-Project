@@ -15,25 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.MenuPersonalRecyclerAdapter;
+import com.example.h3t_project.common.ResourceFunction;
 import com.example.h3t_project.constants.VietnameseWord;
 import com.example.h3t_project.model.MenuItemPersonal;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class PersonalActivity extends AppCompatActivity {
   Button btnLogout;
 
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
-  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +53,7 @@ public class PersonalActivity extends AppCompatActivity {
     RecyclerView recyclerView = findViewById(R.id.recyclerPersonal);
     ArrayList<MenuItemPersonal> itemMenus = new ArrayList<>();
     for (int i = 1; i <= 3; i++) {
-      itemMenus.add(new MenuItemPersonal(getResId("menu_personal_" + i, R.string.class), getResId("ic_menu_personal_" + i, R.drawable.class)));
+      itemMenus.add(new MenuItemPersonal(ResourceFunction.getResId("menu_personal_" + i, R.string.class), ResourceFunction.getResId("ic_menu_personal_" + i, R.drawable.class)));
     }
     MenuPersonalRecyclerAdapter adapter = new MenuPersonalRecyclerAdapter(itemMenus, this);
     recyclerView.setAdapter(adapter);
