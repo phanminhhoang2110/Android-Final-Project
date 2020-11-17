@@ -8,10 +8,28 @@ public class Order {
   private int quantity;
   private int customerId;
   private int statusId;
+  private int imageId;
+  private String imageLink;
   private Address address;
   private Product product;
 
   public Order() {
+  }
+
+  public int getImageId() {
+    return imageId;
+  }
+
+  public void setImageId(int imageId) {
+    this.imageId = imageId;
+  }
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
   }
 
   public int getOrderId() {
