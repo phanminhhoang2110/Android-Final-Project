@@ -94,7 +94,7 @@ public class CustomerListOrderActivity extends AppCompatActivity {
     public void replaceFragment(int status_id){
         transaction = manager.beginTransaction();
         customerListOrderFragment = new CustomerListOrderFragment(status_id);
-        transaction.replace(R.id.framelayout_seller_list_order, customerListOrderFragment);
+        transaction.replace(R.id.framelayout_customer_list_order, customerListOrderFragment);
         transaction.commit();
     }
 

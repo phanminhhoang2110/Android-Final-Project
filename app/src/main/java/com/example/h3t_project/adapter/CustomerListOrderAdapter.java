@@ -55,9 +55,10 @@ public class CustomerListOrderAdapter extends RecyclerView.Adapter<CustomerListO
         TextView priceCustomerOrder;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewCutomerListOrder = itemView.findViewById(R.id.image_seller_list_order);
-            productNameCustomerListOrder = itemView.findViewById(R.id.product_seller_list_order);
-            productQuantityCustomerListOrder = itemView.findViewById(R.id.quantity_seller_list_order);
+            imageViewCutomerListOrder = itemView.findViewById(R.id.image_cutomer_list_order);
+            productNameCustomerListOrder = itemView.findViewById(R.id.product_name_customer_list_order);
+            productQuantityCustomerListOrder = itemView.findViewById(R.id.quantity_customer_list_order);
+            priceCustomerOrder = itemView.findViewById(R.id.price_customer_list_order);
         }
     }
 }
