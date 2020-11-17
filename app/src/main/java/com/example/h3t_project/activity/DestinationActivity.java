@@ -17,6 +17,7 @@ import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.DestinationAdapter;
 import com.example.h3t_project.constants.VietnameseWord;
 import com.example.h3t_project.model.Destination;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,9 @@ public class DestinationActivity extends AppCompatActivity {
 
   private void setupDestination() {
     DestinationDAO destinationDAO = new DestinationDAO();
-    ArrayList<Destination> destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(1);
+    SessionManagement sessionManagement = new SessionManagement(this);
+    int customerId = sessionManagement.getSessionUserId();
+    ArrayList<Destination> destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(customerId);
     if(destinations == null || destinations.size()==0){
       alertError();
     }

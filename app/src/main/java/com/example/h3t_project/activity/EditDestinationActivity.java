@@ -18,6 +18,7 @@ import com.example.h3t_project.DAO.DestinationDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.constants.VietnameseWord;
 import com.example.h3t_project.model.Destination;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 
 public class EditDestinationActivity extends AppCompatActivity {
 
@@ -53,7 +54,7 @@ public class EditDestinationActivity extends AppCompatActivity {
   }
 
   private void setupEditDestination(Intent intent) {
-    id = intent.getIntExtra("id", 0);
+    id = intent.getIntExtra("id", -1);
     String address = intent.getStringExtra("address");
     String ward = intent.getStringExtra("ward");
     String province = intent.getStringExtra("province");
@@ -98,11 +99,13 @@ public class EditDestinationActivity extends AppCompatActivity {
     String address = addressEditText.getText().toString();
     String ward = wardEditText.getText().toString();
     String district = districtEditText.getText().toString();
+    SessionManagement sessionManagement = new SessionManagement(this);
+    int customerId = sessionManagement.getSessionUserId();
     if (id == -1) {
       if (address.length() != 0 && ward.length() != 0 && district.length() != 0) {
         Destination destination = new Destination(address, spinner.getSelectedItem().toString(), district, ward);
         DestinationDAO destinationDAO = new DestinationDAO();
-        boolean flag = destinationDAO.addNewDestination(1, destination);
+        boolean flag = destinationDAO.addNewDestination(customerId, destination);
         if (flag) {
           showAlertDialog("Đã xong", "Thêm địa chỉ mới thành công!", android.R.drawable.star_on, "Ok", 1);
         }
