@@ -29,7 +29,6 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
   Toolbar toolbar;
   Button btnAsc;
   Button btnDesc;
-  FrameLayout frameLayout;
   FragmentManager manager;
   FragmentTransaction transaction;
   CustomerViewProductASCFragment ascFragment;
@@ -63,7 +62,6 @@ public class ActivityCustomerViewProduct extends AppCompatActivity {
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    frameLayout = findViewById(R.id.framelayout_customer_view_product);
     btnAsc = findViewById(R.id.asc_price_customer_view_product);
     btnDesc = findViewById(R.id.desc_price_customer_view_product);
     manager = getSupportFragmentManager();
