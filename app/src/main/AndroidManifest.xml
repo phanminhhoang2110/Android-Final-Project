@@ -10,6 +10,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity android:name=".activity.SellerEditProductActivity"></activity>
+    <activity android:name=".activity.SellerHomeActivity" />
     <activity
       android:name=".activity.EditDestinationActivity"
       android:parentActivityName=".activity.DestinationActivity" />
@@ -46,9 +47,15 @@
     <activity
       android:name=".activity.PersonalActivity"
       android:parentActivityName=".activity.HomePageActivity"></activity>
-    <activity android:name=".activity.AddProductActivity" />
-    <activity android:name=".activity.DetailSellerProductActivity" />
-    <activity android:name=".activity.SellerProductActivity" />
+    <activity
+        android:name=".activity.AddProductActivity"
+        android:parentActivityName=".activity.SellerProductActivity"/>
+    <activity
+        android:name=".activity.DetailSellerProductActivity"
+        android:parentActivityName=".activity.SellerProductActivity"/>
+    <activity
+        android:name=".activity.SellerProductActivity"
+        android:parentActivityName=".activity.SellerHomeActivity"/>
     <activity
       android:name=".activity.EditPersonalActivity"
       android:parentActivityName=".activity.PersonalActivity" />
