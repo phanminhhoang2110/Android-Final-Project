@@ -123,10 +123,11 @@ public class SellerProductDAO extends DatabaseManager {
         int result = 0;
         try {
             //insert users table
-            String sql = "INSERT INTO tbl_products(name, catergory_id, origin_price, sell_price, brand, quantity, guarantee, color, height, material, description)" +
+            String sql1 = "INSERT INTO tbl_products(name, catergory_id, origin_price, sell_price, brand, quantity, guarantee, color, height, material, description)" +
                     " values(?,?,?,?,?,?,?,?,?,?,?)";
+            String sql2 = "INSERT INTO tbl_product_image(product_id, image_id) values ((SELECT Max(id) as LastID FROM tbl_products), 1),((SELECT Max(id) as LastID FROM tbl_products), 2),((SELECT Max(id) as LastID FROM tbl_products), 3)";
             connection = connect();
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql1+sql2);
             ps.setString(1, name);
             ps.setInt(2, type);
             ps.setInt(3, o_price);
@@ -144,5 +145,18 @@ public class SellerProductDAO extends DatabaseManager {
             Logger.getLogger(SellerProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
+    }
+
+    public int deleteSellerProduct(int pid, int id) {
+        try {
+            String query1 = "DELETE FROM tbl_product_image WHERE product_id = "+pid;
+            String query2 = "DELETE FROM tbl_products WHERE id = "+id;
+            connection = connect();
+            PreparedStatement preparedStatement = connection.prepareStatement(query1+query2);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

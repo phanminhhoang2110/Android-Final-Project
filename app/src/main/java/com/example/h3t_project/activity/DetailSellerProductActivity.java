@@ -1,6 +1,5 @@
 package com.example.h3t_project.activity;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.DAO.SellerProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.MenuDetailProductAdapter;
@@ -33,6 +31,7 @@ public class DetailSellerProductActivity extends AppCompatActivity {
 
     ViewPager viewPager;
     SlideViewProductAdapter adapter;
+    MenuItem delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +44,13 @@ public class DetailSellerProductActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        int productId = intent.getIntExtra("productId", 0);
+        final int productId = intent.getIntExtra("productId", 0);
 
         setUpImage(productId);
         setupDetailProduct(productId);
         setupDescriptionProduct(productId);
         setupPriceProduct(productId);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.mymenu, menu);
-        return true;
     }
 
     public void setIntentBack(){
@@ -143,22 +137,4 @@ public class DetailSellerProductActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            case R.id.menu1:
-                //code xử lý khi bấm menu1
-                break;
-            case R.id.menu2:
-                //code xử lý khi bấm menu2
-                break;
-            default:break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
