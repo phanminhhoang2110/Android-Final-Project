@@ -132,15 +132,10 @@ public class CustomerViewProductDAO extends DatabaseManager {
 
   public List<Product> getAllProductByName(String searchText, int price_DESC, int price_ASC) {
     List<Product> products = null;
-    String sql = "SELECT  [dbo].[tbl_products].[id]\n" +
-      "        ,[dbo].[tbl_products].[name]\n" +
-      "        ,[dbo].[tbl_products].[origin_price]\n" +
-      "        ,[dbo].[tbl_products].[sell_price]\n" +
-      "        ,[dbo].[tbl_products].[catergory_id]\n" +
-      "        ,[dbo].[tbl_images].[link]\n" +
-      "        FROM [dbo].[tbl_products]\n" +
-      "        inner join [dbo].[tbl_product_image] on [dbo].[tbl_product_image].[product_id] = [dbo].[tbl_products].[id]\n" +
-      "        inner join [dbo].[tbl_images] on [dbo].[tbl_images].[id] = [dbo].[tbl_product_image].[image_id]\n" +
+    String sql = "Select * from tbl_products\n" +
+      "        inner join (select product_id, min(image_id) image_id from tbl_product_image group by product_id) as tbl_one_image_product\n" +
+      "        on tbl_products.id =  tbl_one_image_product.product_id\n" +
+      "        inner join tbl_images on tbl_images.id = tbl_one_image_product.image_id" +
       "        where name LIKE ?";
     if (price_ASC == 1) {
       price_DESC = 0;
