@@ -45,7 +45,7 @@ public class BuyedAdapter extends RecyclerView.Adapter<BuyedAdapter.ViewHolder> 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     final DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-    holder.imageProduct.setImageResource(getResId(products.get(position).getLink_image(),R.drawable.class));
+    holder.imageProduct.setImageResource(getResId(products.get(position).getLink_image(), R.drawable.class));
     holder.priceProduct.setText(decimalFormat.format(products.get(position).getSell_price()) + " đ");
     holder.nameProduct.setText(products.get(position).getName());
   }

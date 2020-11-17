@@ -18,47 +18,48 @@ import java.util.List;
 
 public class CustomerListOrderAdapter extends RecyclerView.Adapter<CustomerListOrderAdapter.ViewHolder> {
 
-    List<Order> orders;
-    Context context;
+  List<Order> orders;
+  Context context;
 
-    public CustomerListOrderAdapter(List<Order> orders, Context context) {
-        this.orders = orders;
-        this.context = context;
-    }
+  public CustomerListOrderAdapter(List<Order> orders, Context context) {
+    this.orders = orders;
+    this.context = context;
+  }
 
-    @NonNull
-    @Override
-    public CustomerListOrderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_customer_list_order, parent, false);
-        return new CustomerListOrderAdapter.ViewHolder(view);
-    }
+  @NonNull
+  @Override
+  public CustomerListOrderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_customer_list_order, parent, false);
+    return new CustomerListOrderAdapter.ViewHolder(view);
+  }
 
-    @Override
-    public void onBindViewHolder(@NonNull CustomerListOrderAdapter.ViewHolder holder, int position) {
-        holder.imageViewCutomerListOrder.setImageResource(orders.get(position).getImageId());
-        holder.productNameCustomerListOrder.setText(orders.get(position).getProductName());
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-        holder.productQuantityCustomerListOrder.setText(decimalFormat.format(orders.get(position).getQuantity()));
-        int sumOneProduct = orders.get(position).getSellPrice()*orders.get(position).getQuantity();
-        holder.priceCustomerOrder.setText(decimalFormat.format(sumOneProduct) + "đ");
-    }
+  @Override
+  public void onBindViewHolder(@NonNull CustomerListOrderAdapter.ViewHolder holder, int position) {
+    holder.imageViewCutomerListOrder.setImageResource(orders.get(position).getImageId());
+    holder.productNameCustomerListOrder.setText(orders.get(position).getProductName());
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
+    holder.productQuantityCustomerListOrder.setText(decimalFormat.format(orders.get(position).getQuantity()));
+    int sumOneProduct = orders.get(position).getSellPrice() * orders.get(position).getQuantity();
+    holder.priceCustomerOrder.setText(decimalFormat.format(sumOneProduct) + "đ");
+  }
 
-    @Override
-    public int getItemCount() {
-        return orders.size();
-    }
+  @Override
+  public int getItemCount() {
+    return orders.size();
+  }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageViewCutomerListOrder;
-        TextView productNameCustomerListOrder;
-        TextView productQuantityCustomerListOrder;
-        TextView priceCustomerOrder;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imageViewCutomerListOrder = itemView.findViewById(R.id.image_cutomer_list_order);
-            productNameCustomerListOrder = itemView.findViewById(R.id.product_name_customer_list_order);
-            productQuantityCustomerListOrder = itemView.findViewById(R.id.quantity_customer_list_order);
-            priceCustomerOrder = itemView.findViewById(R.id.price_customer_list_order);
-        }
+  public class ViewHolder extends RecyclerView.ViewHolder {
+    ImageView imageViewCutomerListOrder;
+    TextView productNameCustomerListOrder;
+    TextView productQuantityCustomerListOrder;
+    TextView priceCustomerOrder;
+
+    public ViewHolder(@NonNull View itemView) {
+      super(itemView);
+      imageViewCutomerListOrder = itemView.findViewById(R.id.image_cutomer_list_order);
+      productNameCustomerListOrder = itemView.findViewById(R.id.product_name_customer_list_order);
+      productQuantityCustomerListOrder = itemView.findViewById(R.id.quantity_customer_list_order);
+      priceCustomerOrder = itemView.findViewById(R.id.price_customer_list_order);
     }
+  }
 }

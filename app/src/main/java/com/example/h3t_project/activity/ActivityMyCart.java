@@ -15,12 +15,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.h3t_project.DAO.CartDAO;
 import com.example.h3t_project.DAO.DestinationDAO;
 import com.example.h3t_project.DAO.OrderDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.model.Destination;
-import com.example.h3t_project.model.ItemCart;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.util.ArrayList;
@@ -83,16 +81,16 @@ public class ActivityMyCart extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
         Map<String, ?> allListInCart = preferences.getAll();
-        for(Map.Entry<String, ?> entry : allListInCart.entrySet()){
+        for (Map.Entry<String, ?> entry : allListInCart.entrySet()) {
           listProductId.add(Integer.parseInt(entry.getValue().toString()));
         }
         OrderDAO orderDAO = new OrderDAO();
-        boolean result = orderDAO.newOrder(customerId, destinationId,listProductId);
-        if(result==true){
-          Intent intent = new Intent(v.getContext(),ThanksActivity.class);
+        boolean result = orderDAO.newOrder(customerId, destinationId, listProductId);
+        if (result == true) {
+          Intent intent = new Intent(v.getContext(), ThanksActivity.class);
           startActivity(intent);
-        }else{
-          Toast.makeText(ActivityMyCart.this,"Có lỗi xảy ra xin vui lòng thử lại!", Toast.LENGTH_SHORT).show();
+        } else {
+          Toast.makeText(ActivityMyCart.this, "Có lỗi xảy ra xin vui lòng thử lại!", Toast.LENGTH_SHORT).show();
         }
       }
     });

@@ -1,11 +1,11 @@
 package com.example.h3t_project.activity;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
@@ -20,6 +20,7 @@ public class BuyedProductActivity extends AppCompatActivity {
 
   Toolbar toolbar;
   RecyclerView recyclerView;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -34,7 +35,7 @@ public class BuyedProductActivity extends AppCompatActivity {
     setupBuyedProduct();
   }
 
-  private void setupBuyedProduct(){
+  private void setupBuyedProduct() {
     SessionManagement sessionManagement = new SessionManagement(this);
     int customerId = sessionManagement.getSessionUserId();
     CustomerViewProductDAO viewProductDAO = new CustomerViewProductDAO();

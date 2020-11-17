@@ -1,7 +1,6 @@
 package com.example.h3t_project.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.model.ItemCartDetail;
-import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
@@ -26,6 +24,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   ArrayList<ItemCartDetail> products;
   TextView viewTotalMoney;
   ResetAdapter resetAdapter;
+  int quantity;
 
   public MyCartAdapter(Context context, ArrayList<ItemCartDetail> products, TextView viewTotalMoney, ResetAdapter resetAdapter) {
     this.context = context;
@@ -50,7 +49,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_cart, parent, false);
     return new MyCartAdapter.ViewHolder(view);
   }
-  int quantity;
+
   @Override
   public void onBindViewHolder(@NonNull final MyCartAdapter.ViewHolder holder, final int position) {
     final DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
@@ -66,19 +65,19 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         quantity++;
         products.get(position).setQuantity(quantity);
         holder.qualityCart.setText(String.valueOf(products.get(position).getQuantity()));
-        holder.resetAdapter.reset(quantity,position);
+        holder.resetAdapter.reset(quantity, position);
       }
     });
     holder.minusCartBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         quantity = products.get(position).getQuantity();
-        if(quantity>=2) {
+        if (quantity >= 2) {
           quantity--;
         }
         products.get(position).setQuantity(quantity);
         holder.qualityCart.setText(String.valueOf(products.get(position).getQuantity()));
-        holder.resetAdapter.reset(quantity,position);
+        holder.resetAdapter.reset(quantity, position);
       }
     });
     holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +105,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   }
 
   public interface ResetAdapter {
-    public void reset(int quantity, int indexProduct);
+    void reset(int quantity, int indexProduct);
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {

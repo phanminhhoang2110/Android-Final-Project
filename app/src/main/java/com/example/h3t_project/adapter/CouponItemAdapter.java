@@ -1,6 +1,5 @@
 package com.example.h3t_project.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.DAO.CouponDAO;
 import com.example.h3t_project.R;
-import com.example.h3t_project.activity.CouponActivity;
 import com.example.h3t_project.model.CouponItem;
 
 import java.util.ArrayList;
@@ -40,7 +38,7 @@ public class CouponItemAdapter extends RecyclerView.Adapter<CouponItemAdapter.Vi
       public void onClick(View v) {
         CouponDAO couponDAO = new CouponDAO();
         int rowAffect = couponDAO.deleteCoupon(couponItems.get(position).getCodeCoupon());
-        if(rowAffect != 0) {
+        if (rowAffect != 0) {
           couponItems.remove(position);
           notifyItemRemoved(position);
         }
@@ -57,6 +55,7 @@ public class CouponItemAdapter extends RecyclerView.Adapter<CouponItemAdapter.Vi
     TextView codeCoupon;
     TextView valueCoupon;
     ImageView trashbtn;
+
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
       codeCoupon = itemView.findViewById(R.id.codeCouponTextView);

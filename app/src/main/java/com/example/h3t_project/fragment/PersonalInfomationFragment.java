@@ -2,24 +2,19 @@ package com.example.h3t_project.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.TextView;
-
 import com.example.h3t_project.DAO.UserDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.activity.EditPersonalActivity;
-import com.example.h3t_project.activity.HomePageActivity;
 import com.example.h3t_project.activity.LoginActivity;
-import com.example.h3t_project.activity.PersonalActivity;
 import com.example.h3t_project.model.User;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
@@ -29,12 +24,11 @@ import com.example.h3t_project.sessionhelper.SessionManagement;
  * create an instance of this fragment.
  */
 public class PersonalInfomationFragment extends Fragment {
-  TextView txtLogin;
   // TODO: Rename parameter arguments, choose names that match
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
-
+  TextView txtLogin;
   // TODO: Rename and change types of parameters
   private String mParam1;
   private String mParam2;
@@ -74,11 +68,11 @@ public class PersonalInfomationFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View view =  inflater.inflate(R.layout.fragment_personal_infomation, container, false);
+    View view = inflater.inflate(R.layout.fragment_personal_infomation, container, false);
     txtLogin = view.findViewById(R.id.txtLoginRegister);
     SessionManagement sessionManagement = new SessionManagement(getActivity());
     int userId = sessionManagement.getSessionUserId();
-    if(userId != -1){
+    if (userId != -1) {
       UserDAO userDAO = new UserDAO();
       User user = userDAO.getUserById(userId);
       String fullname = user.getFullname();
@@ -97,17 +91,18 @@ public class PersonalInfomationFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-      view.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          Intent intent = new Intent(getActivity(), EditPersonalActivity.class);
-          startActivity(intent);
-        }
-      });
+    view.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), EditPersonalActivity.class);
+        startActivity(intent);
+      }
+    });
   }
+
   private void userMoveToLoginPage() {
     Intent intent = new Intent(getActivity(), LoginActivity.class);
-    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
   }
 }

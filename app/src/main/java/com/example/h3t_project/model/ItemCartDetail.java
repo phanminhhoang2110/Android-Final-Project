@@ -1,6 +1,10 @@
 package com.example.h3t_project.model;
 
 public class ItemCartDetail extends ItemCart {
+  private String image;
+  private String name;
+  private int sellPrice;
+
   public ItemCartDetail(int customerId, int productId, int quantity, String image, String name, int sellPrice) {
     super(customerId, productId, quantity);
     this.image = image;
@@ -14,7 +18,7 @@ public class ItemCartDetail extends ItemCart {
     this.sellPrice = sellPrice;
   }
 
-  public ItemCartDetail(){
+  public ItemCartDetail() {
 
   }
 
@@ -41,9 +45,5 @@ public class ItemCartDetail extends ItemCart {
   public void setSellPrice(int sellPrice) {
     this.sellPrice = sellPrice;
   }
-
-  private String image;
-  private String name;
-  private int sellPrice;
 
 }

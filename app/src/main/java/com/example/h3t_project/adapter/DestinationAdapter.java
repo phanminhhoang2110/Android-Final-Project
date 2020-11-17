@@ -21,7 +21,6 @@ import com.example.h3t_project.R;
 import com.example.h3t_project.activity.EditDestinationActivity;
 import com.example.h3t_project.model.Destination;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.ViewHolder> {
@@ -48,7 +47,7 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
       @Override
       public void onClick(View v) {
         v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_click_animation));
-        showConfirmDialog(destinations.get(position).getId(),1,position);
+        showConfirmDialog(destinations.get(position).getId(), 1, position);
       }
     });
     holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +56,10 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
         v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_click_animation));
         Intent intent = new Intent(context, EditDestinationActivity.class);
         intent.putExtra("address", destinations.get(position).getAddress());
-        intent.putExtra("ward",destinations.get(position).getWard());
-        intent.putExtra("id",destinations.get(position).getId());
+        intent.putExtra("ward", destinations.get(position).getWard());
+        intent.putExtra("id", destinations.get(position).getId());
         intent.putExtra("province", destinations.get(position).getProvince());
-        intent.putExtra("district",destinations.get(position).getDistrict());
+        intent.putExtra("district", destinations.get(position).getDistrict());
         context.startActivity(intent);
       }
     });
@@ -78,12 +77,12 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
       public void onClick(DialogInterface dialog, int which) {
         DestinationDAO destinationDAO = new DestinationDAO();
         boolean deleteResult = destinationDAO.deleteDestination(itemPosition, userId);
-        if (deleteResult == true){
+        if (deleteResult == true) {
           destinations.remove(positionInList);
           notifyDataSetChanged();
-          Toast.makeText(context,"Xóa thành công!", Toast.LENGTH_SHORT).show();
-        }else{
-          Toast.makeText(context,"Xóa thất bại! Xin vui lòng thử lại!", Toast.LENGTH_SHORT).show();
+          Toast.makeText(context, "Xóa thành công!", Toast.LENGTH_SHORT).show();
+        } else {
+          Toast.makeText(context, "Xóa thất bại! Xin vui lòng thử lại!", Toast.LENGTH_SHORT).show();
         }
       }
     });
@@ -97,7 +96,7 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
 
   @Override
   public int getItemCount() {
-    if(destinations == null){
+    if (destinations == null) {
       return 0;
     }
     return destinations.size();

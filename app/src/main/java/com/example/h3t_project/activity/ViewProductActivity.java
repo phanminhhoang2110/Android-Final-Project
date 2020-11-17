@@ -1,14 +1,11 @@
 package com.example.h3t_project.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,9 +37,7 @@ public class ViewProductActivity extends AppCompatActivity {
 
   ViewPager viewPager;
   SlideViewProductAdapter adapter;
-  TextView mCountTv;
   MenuItem mCartIconMenuItem;
-  int mCount = 0;
 
   public static int getResId(String resName, Class<?> c) {
     try {
@@ -77,34 +72,16 @@ public class ViewProductActivity extends AppCompatActivity {
     Button buttonAddToCart = findViewById(R.id.btnBuy2);
     SessionManagement sessionManagement = new SessionManagement(this);
     final int roleId = sessionManagement.getSessionUserId();
-    final String nameForCart = "mycart" + roleId;
-    final String quantityForCart = "mycartquantity" + roleId;
-    final String countOfCart = "countOfCart" + roleId;
-
-    SharedPreferences preferencesCount = getSharedPreferences(countOfCart, Context.MODE_PRIVATE);
-    mCount = preferencesCount.getInt(countOfCart, 0);
 
 
     buttonAddToCart.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        SharedPreferences preferences = getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
-        SharedPreferences preferencesQuantity = getSharedPreferences(quantityForCart,Context.MODE_PRIVATE);
-        if (preferences.getInt(String.valueOf(products.get(0).getId()), -1) == -1) {
-          mCount++;
-         // mCountTv.setText(String.valueOf(mCount));
-        }
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(String.valueOf(products.get(0).getId()), products.get(0).getId());
-        SharedPreferences.Editor editorQuantity = preferencesQuantity.edit();
-        editorQuantity.putInt(String.valueOf(products.get(0).getId()),1);
-        editorQuantity.commit();
-        editor.commit();
         CartDAO cartDAO = new CartDAO();
-        boolean inCart = cartDAO.insertCart(roleId,productId,1);
-        if(inCart) {
+        boolean inCart = cartDAO.insertCart(roleId, productId, 1);
+        if (inCart) {
           Toast.makeText(getApplicationContext(), "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
           Toast.makeText(getApplicationContext(), "Đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
         }
       }
@@ -117,15 +94,6 @@ public class ViewProductActivity extends AppCompatActivity {
     getMenuInflater().inflate(R.menu.menu_toolbar_view_product, menu);
     mCartIconMenuItem = menu.findItem(R.id.action_cart);
     View cartView = mCartIconMenuItem.getActionView();
-//    if (cartView != null) {
-//      //mCountTv = cartView.findViewById(R.id.countOfCart);
-//      SessionManagement sessionManagement = new SessionManagement(this);
-//      int roleId = sessionManagement.getSessionUserId();
-//      final String countOfCart = "countOfCart" + roleId;
-//      SharedPreferences preferencesCount = getSharedPreferences(countOfCart, Context.MODE_PRIVATE);
-//      mCount = preferencesCount.getInt(countOfCart, 0);
-//      //mCountTv.setText(String.valueOf(mCount));
-//    }
     final Menu m = menu;
     final MenuItem item = menu.findItem(R.id.action_cart);
     item.getActionView().setOnClickListener(new View.OnClickListener() {
@@ -138,8 +106,6 @@ public class ViewProductActivity extends AppCompatActivity {
     });
     return true;
   }
-
-
 
 
   public void setUpImage(int product_id) {
