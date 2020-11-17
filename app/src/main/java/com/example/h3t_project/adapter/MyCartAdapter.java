@@ -133,4 +133,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
       minusCartBtn = itemView.findViewById(R.id.minusCartbtn);
     }
   }
+
+  public interface resetAdapter{
+    public void reset();
+  }
 }
