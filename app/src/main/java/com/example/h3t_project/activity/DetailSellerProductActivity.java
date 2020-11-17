@@ -57,7 +57,7 @@ public class DetailSellerProductActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SellerEditProductActivity.class);
                 intent.putExtra("productId", productId);
-                view.getContext().startActivity(intent);
+                startActivity(intent);
             }
         });
 

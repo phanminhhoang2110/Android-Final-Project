@@ -32,9 +32,6 @@ public class SellerEditProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_edit_product);
 
-        Intent intent = getIntent();
-        int productId = intent.getIntExtra("productId", 0);
-
         Toolbar toolbar = findViewById(R.id.toolbarSellerEditProduct);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Chỉnh sửa sản phẩm");
@@ -62,8 +59,6 @@ public class SellerEditProductActivity extends AppCompatActivity {
         textMaterial = findViewById(R.id.etxtEditMaterial);
         textDes = findViewById(R.id.etxtEditDes);
         txtNote = findViewById(R.id.txtNote);
-
-        btnAdd = findViewById(R.id.btnEdit);
 
         rdFood.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,25 +115,27 @@ public class SellerEditProductActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        final int productId = intent.getIntExtra("productId", 0);
+
         getProductById(productId);
     }
 
     public void getProductById(int productId){
         SellerProductDAO sellerProductDAO = new SellerProductDAO();
-        Product product = (Product) sellerProductDAO.getProductById(productId);
+        Product product = sellerProductDAO.getSellerProductById(productId);
         getDetail(product);
     }
 
     public void getDetail(Product product){
         textName.setText(product.getName());
-
-        textOriginPrice.setText(product.getOrigin_price());
-        textPrice.setText(product.getSell_price());
+        textOriginPrice.setText(((Integer)product.getOrigin_price()).toString());
+        textPrice.setText(((Integer)product.getSell_price()).toString());
         textBrand.setText(product.getBrand());
-        textQuantity.setText(product.getQuantity());
+        textQuantity.setText(((Integer)product.getQuantity()).toString());
         textGuarantee.setText(product.getGuarantee());
         textColor.setText(product.getColor());
-        textHeight.setText(product.getHeight());
+        textHeight.setText(((Integer)product.getHeight()).toString());
         textMaterial.setText(product.getMaterial());
         textDes.setText(product.getDescription());
     }
@@ -152,11 +149,18 @@ public class SellerEditProductActivity extends AppCompatActivity {
         if(editProduct != 1){
             txtNote.setText("Đổi thông tin thành công");
             txtNote.setTextColor(Color.parseColor("#CC189EFF"));
+            sellerMoveToListProduct();
         }
         else {
             txtNote.setText("Đổi thông tin thất bại");
             txtNote.setTextColor(Color.parseColor("#F52929"));
         }
 
+    }
+    private void sellerMoveToListProduct() {
+
+        Intent intent = new Intent(getApplicationContext(), SellerProductActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
