@@ -7,17 +7,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
+
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.constants.VietnameseWord;
 import com.example.h3t_project.fragment.CustomerListOrderFragment;
-import com.example.h3t_project.fragment.CustomerViewProductASCFragment;
 
 public class CustomerListOrderActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -42,7 +40,7 @@ public class CustomerListOrderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         manager = getSupportFragmentManager();
-        frameLayout = findViewById(R.id.framelayout_customer_list_order);
+        frameLayout = findViewById(R.id.framelayout_seller_list_order);
 
         replaceFragment(status_id);
 

@@ -132,12 +132,16 @@ public class OrderDAO extends DatabaseManager {
       "            inner join dbo.tbl_orders\n" +
       "            ON tbl_order_product.order_id = tbl_orders.id\n" +
       "            inner join dbo.tbl_status\n" +
-      "            ON status_id = tbl_status.id" +
-      "            where status_id = ? ";
+      "            ON status_id = tbl_status.id ";
+    if (statusId != -1) {
+      query += " where status_id = ? ";
+    }
     try {
       connection = connect();
       preparedStatement = connection.prepareStatement(query);
-      preparedStatement.setInt(1, statusId);
+      if (statusId != -1){
+        preparedStatement.setInt(1, statusId);
+      }
       resultSet = preparedStatement.executeQuery();
       orders = new ArrayList<>();
       while (resultSet.next()) {
