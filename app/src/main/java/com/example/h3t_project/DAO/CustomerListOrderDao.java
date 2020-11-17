@@ -40,12 +40,17 @@ public class CustomerListOrderDao extends DatabaseManager {
         if (customerId != -1 && statusId != -1){
             query += " WHERE customer_id = ? and status_id = ?";
         }
-
+        if (customerId != -1 && statusId == -1){
+            query+= " WHERE customer_id = ?";
+        }
         try {
             connection = connect();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, customerId);
-            preparedStatement.setInt(2, statusId);
+            if (customerId != -1 && statusId != -1){
+                preparedStatement.setInt(2, statusId);
+            }
+
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Order order = new Order();

@@ -25,11 +25,12 @@ public class CustomerListOrderActivity extends AppCompatActivity {
     FragmentManager manager;
     FragmentTransaction transaction;
     CustomerListOrderFragment customerListOrderFragment;
+    Button btnCustomerAllOrder;
     Button btnCustomerWaiting;
     Button btnCustomerShipping;
     Button btnCustomerReceived;
     Button btnCustomerCancel;
-    int status_id;
+    int status_id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +44,23 @@ public class CustomerListOrderActivity extends AppCompatActivity {
         manager = getSupportFragmentManager();
         frameLayout = findViewById(R.id.framelayout_customer_list_order);
 
+        replaceFragment(status_id);
+
+        btnCustomerAllOrder = findViewById(R.id.btn_customer_all_order);
+        btnCustomerAllOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status_id = -1;
+                replaceFragment(status_id);
+            }
+        });
+
         btnCustomerWaiting = findViewById(R.id.btn_customer_waiting);
         btnCustomerWaiting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 status_id = 3;
-                transaction = manager.beginTransaction();
-                customerListOrderFragment = new CustomerListOrderFragment(status_id);
-                transaction.replace(R.id.framelayout_customer_list_order, customerListOrderFragment);
-                transaction.commit();
+                replaceFragment(status_id);
             }
         });
 
@@ -60,10 +69,7 @@ public class CustomerListOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 status_id = 4;
-                transaction = manager.beginTransaction();
-                customerListOrderFragment = new CustomerListOrderFragment(status_id);
-                transaction.replace(R.id.framelayout_customer_list_order, customerListOrderFragment);
-                transaction.commit();
+                replaceFragment(status_id);
             }
         });
 
@@ -71,11 +77,8 @@ public class CustomerListOrderActivity extends AppCompatActivity {
         btnCustomerReceived.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                status_id = 4;
-                transaction = manager.beginTransaction();
-                customerListOrderFragment = new CustomerListOrderFragment(status_id);
-                transaction.replace(R.id.framelayout_customer_list_order, customerListOrderFragment);
-                transaction.commit();
+                status_id = 5;
+                replaceFragment(status_id);
             }
         });
 
@@ -83,14 +86,18 @@ public class CustomerListOrderActivity extends AppCompatActivity {
         btnCustomerCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                status_id = 4;
-                transaction = manager.beginTransaction();
-                customerListOrderFragment = new CustomerListOrderFragment(status_id);
-                transaction.replace(R.id.framelayout_customer_list_order, customerListOrderFragment);
-                transaction.commit();
+                status_id = 6;
+                replaceFragment(status_id);
             }
         });
 
+    }
+
+    public void replaceFragment(int status_id){
+        transaction = manager.beginTransaction();
+        customerListOrderFragment = new CustomerListOrderFragment(status_id);
+        transaction.replace(R.id.framelayout_customer_list_order, customerListOrderFragment);
+        transaction.commit();
     }
 
     @Override
