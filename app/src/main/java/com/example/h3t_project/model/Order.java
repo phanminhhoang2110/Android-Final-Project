@@ -9,6 +9,7 @@ public class Order {
   private int customerId;
   private int statusId;
   private Address address;
+  private Product product;
 
   public Order() {
   }
@@ -75,5 +76,13 @@ public class Order {
 
   public void setAddress(Address address) {
     this.address = address;
+  }
+
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
   }
 }
