@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.CustomerVIewProductAdapter;
+import com.example.h3t_project.common.ResourceFunction;
 import com.example.h3t_project.model.Product;
 
 import java.lang.reflect.Field;
@@ -57,16 +58,6 @@ public class CustomerViewProductFragment extends Fragment {
     return fragment;
   }
 
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
-  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -94,7 +85,7 @@ public class CustomerViewProductFragment extends Fragment {
     }
 
     for (int i = 0; i < products.size(); i++) {
-      products.get(i).setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
+      products.get(i).setImage_id(ResourceFunction.getResId(products.get(i).getLink_image(), R.drawable.class));
     }
 
     GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);

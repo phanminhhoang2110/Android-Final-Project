@@ -17,12 +17,12 @@ import com.example.h3t_project.DAO.SellerProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.MenuDetailProductAdapter;
 import com.example.h3t_project.adapter.SlideViewProductAdapter;
+import com.example.h3t_project.common.ResourceFunction;
 import com.example.h3t_project.fragment.DescriptionProductFragment;
 import com.example.h3t_project.fragment.ProductPriceFragment;
 import com.example.h3t_project.model.DetailProductItem;
 import com.example.h3t_project.model.Product;
 
-import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +32,6 @@ public class DetailSellerProductActivity extends AppCompatActivity {
   ViewPager viewPager;
   SlideViewProductAdapter adapter;
   Button button;
-
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
-  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +71,7 @@ public class DetailSellerProductActivity extends AppCompatActivity {
     SellerProductDAO sellerProductDAO = new SellerProductDAO();
     List<Product> products = sellerProductDAO.getProductById(product_id);
     for (int i = 0; i < products.size(); i++) {
-      products.get(i).setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
+      products.get(i).setImage_id(ResourceFunction.getResId(products.get(i).getLink_image(), R.drawable.class));
     }
     viewPager = findViewById(R.id.viewPage);
     adapter = new SlideViewProductAdapter(this, products);

@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.h3t_project.DAO.SellerProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.SellerProductAdapter;
+import com.example.h3t_project.common.ResourceFunction;
 import com.example.h3t_project.model.Product;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,16 +26,6 @@ public class SellerProductActivity extends AppCompatActivity {
   SellerProductDAO sellerProductDAO = new SellerProductDAO();
   Button button;
 
-  public static int getResId(String resName, Class<?> c) {
-
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
-  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +44,7 @@ public class SellerProductActivity extends AppCompatActivity {
       Product p = new Product();
       p.setId(products.get(i).getId());
       p.setName(products.get(i).getName());
-      p.setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
+      p.setImage_id(ResourceFunction.getResId(products.get(i).getLink_image(), R.drawable.class));
       p.setOrigin_price(products.get(i).getOrigin_price());
       p.setSell_price(products.get(i).getSell_price());
       p.setQuantity(products.get(i).getQuantity());
