@@ -9,12 +9,10 @@
     android:roundIcon="@drawable/h3t"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activity.TestCartActivity">
-
-    </activity>
+    <activity android:name=".activity.BuyedProductActivity"></activity>
     <activity
       android:name=".activity.EditDestinationActivity"
-      android:parentActivityName=".activity.DestinationActivity"></activity>
+      android:parentActivityName=".activity.DestinationActivity" />
     <activity
       android:name=".activity.DestinationActivity"
       android:parentActivityName=".activity.PersonalActivity" />
@@ -34,7 +32,7 @@
     <activity android:name=".activity.ChangeAddressActivity" />
     <activity android:name=".activity.ConfirmOrderActivity" />
     <activity android:name=".activity.SentMailActivity" />
-    <activity android:name=".activity.LoginActivity"></activity>
+    <activity android:name=".activity.LoginActivity" />
     <activity
       android:name=".activity.ForgotPasswordActivity"
       android:parentActivityName=".activity.LoginActivity" />
@@ -44,7 +42,7 @@
       android:parentActivityName=".activity.PersonalActivity" />
     <activity
       android:name=".activity.PersonalActivity"
-      android:parentActivityName=".activity.HomePageActivity"></activity>
+      android:parentActivityName=".activity.HomePageActivity" />
     <activity android:name=".activity.AddProductActivity" />
     <activity android:name=".activity.DetailSellerProductActivity" />
     <activity android:name=".activity.SellerProductActivity" />

@@ -19,19 +19,19 @@
     app:layout_constraintVertical_bias="0.0"
     app:srcCompat="@drawable/ic_shopping_cart" />
 
-  <TextView
-    android:id="@+id/countOfCart"
-    android:layout_width="20dp"
-    android:layout_height="20dp"
-    android:background="@drawable/rounded_textview"
-    android:gravity="center"
-    android:text="0"
-    android:textColor="#FFFFFF"
-    android:textSize="12sp"
-    app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-    app:layout_constraintEnd_toEndOf="@+id/imageView9"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="@+id/imageView9"
-    app:layout_constraintTop_toTopOf="@+id/imageView9"
-    app:layout_constraintVertical_bias="0.0" />
+<!--  <TextView-->
+<!--    android:id="@+id/countOfCart"-->
+<!--    android:layout_width="20dp"-->
+<!--    android:layout_height="20dp"-->
+<!--    android:background="@drawable/rounded_textview"-->
+<!--    android:gravity="center"-->
+<!--    android:text="0"-->
+<!--    android:textColor="#FFFFFF"-->
+<!--    android:textSize="12sp"-->
+<!--    app:layout_constraintBottom_toBottomOf="@+id/imageView9"-->
+<!--    app:layout_constraintEnd_toEndOf="@+id/imageView9"-->
+<!--    app:layout_constraintHorizontal_bias="1.0"-->
+<!--    app:layout_constraintStart_toStartOf="@+id/imageView9"-->
+<!--    app:layout_constraintTop_toTopOf="@+id/imageView9"-->
+<!--    app:layout_constraintVertical_bias="0.0" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
