@@ -9,6 +9,7 @@
     android:roundIcon="@drawable/h3t"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
+    <activity android:name=".activity.SellerEditProductActivity"></activity>
     <activity
       android:name=".activity.EditDestinationActivity"
       android:parentActivityName=".activity.DestinationActivity" />

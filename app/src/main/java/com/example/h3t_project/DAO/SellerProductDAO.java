@@ -94,6 +94,8 @@ public class SellerProductDAO extends DatabaseManager {
                 product.setQuantity(resultSet.getInt("quantity"));
                 product.setCoupon_value(resultSet.getInt("coupon_value"));
                 product.setLink_image(resultSet.getString("link"));
+                product.setColor(resultSet.getString("color"));
+                product.setCategory_id(resultSet.getInt("catergory_id"));
                 products.add(product);
             }
 
@@ -158,5 +160,33 @@ public class SellerProductDAO extends DatabaseManager {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public int update(int productId, String name, int type, int o_price, int price, String brand, int quantity, String guarantee, String color, int height, String material, String des) {
+        int result = 0;
+        try {
+            //update tbl_users table
+            String sql = "UPDATE tbl_products set name=?, catergory_id=?, origin_price=?,sell_price =?,brand=?, quantity=?, guarantee=?,color =?,height=?, material=?,description=?)" +
+                    " where id = ?";
+            connection = connect();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setInt(2, type);
+            ps.setInt(3, o_price);
+            ps.setInt(4, price);
+            ps.setString(5, brand);
+            ps.setInt(6, quantity);
+            ps.setString(7, guarantee);
+            ps.setString(8, color);
+            ps.setInt(9, height);
+            ps.setString(10, material);
+            ps.setString(11, des);
+            ps.setInt(12, productId);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            result = 1;
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 }
