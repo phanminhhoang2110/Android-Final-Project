@@ -2,6 +2,7 @@ package com.example.h3t_project.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
   Context context;
   List<Product> products;
-  int totalPrice;
   TextView viewTotalMoney;
 
   public MyCartAdapter(Context context, List<Product> products,TextView viewTotalMoney) {
@@ -45,14 +45,34 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
   }
 
   @Override
-  public void onBindViewHolder(@NonNull MyCartAdapter.ViewHolder holder, final int position) {
-    DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
+  public void onBindViewHolder(@NonNull final MyCartAdapter.ViewHolder holder, final int position) {
+    final DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
     SessionManagement sessionManagement = new SessionManagement(context);
     int roleId = sessionManagement.getSessionUserId();
     final String nameForCart = "mycart" + roleId;
     holder.imageView.setImageResource(products.get(position).getImage_id());
     holder.viewName.setText(products.get(position).getName());
     holder.viewPrice.setText(decimalFormat.format(products.get(position).getSell_price()) + " đ");
+    holder.qualityCart.setText(String.valueOf(products.get(position).getQuantityInCart()));
+    holder.addCartBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int quantity = products.get(position).getQuantityInCart();
+        quantity++;
+        products.get(position).setQuantityInCart(quantity);
+        holder.qualityCart.setText(String.valueOf(products.get(position).getQuantityInCart()));
+        notifyItemChanged(position);
+      }
+    });
+    holder.minusCartBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int quantity = products.get(position).getQuantityInCart();
+        products.get(position).setQuantityInCart(quantity);
+        holder.qualityCart.setText(String.valueOf(products.get(position).getQuantityInCart()));
+        notifyItemChanged(position);
+      }
+    });
     holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -61,35 +81,21 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         editor.remove(String.valueOf(products.get(position).getId()));
         editor.commit();
         products.remove(position);
-        notifyItemRemoved(position);
-        setupPrice(viewTotalMoney);
+        notifyItemChanged(position);
+        notifyDataSetChanged();
+        viewTotalMoney.setText(decimalFormat.format(setupPrice())+ " đ");
       }
     });
   }
 
-  public void setupPrice(TextView viewTotalMoney){
-    CustomerViewProductDAO dao = new CustomerViewProductDAO();
-    List<Product> temp = new ArrayList<>();
-    DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-    SessionManagement sessionManagement = new SessionManagement(context);
-    int roleId = sessionManagement.getSessionUserId();
-    String nameForCart = "mycart" + roleId;
-    SharedPreferences preferences = this.context.getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
-    Map<String, ?> entries = preferences.getAll();
-    Set<String> keys = entries.keySet();
-
-    for (String key : keys) {
-      Product product = new Product();
-      temp = dao.getProductById(Integer.parseInt(key));
-      product.setId(temp.get(0).getId());
-      product.setName(temp.get(0).getName());
-      product.setSell_price(temp.get(0).getSell_price());
-      product.setImage_id(getResId(temp.get(0).getLink_image(), R.drawable.class));
-      products.add(product);
-      totalPrice += temp.get(0).getSell_price();
+  public int setupPrice(){
+    int totalPrice = 0;
+    for (Product product:products) {
+      totalPrice+= product.getSell_price()*product.getQuantityInCart();
     }
-    viewTotalMoney.setText(decimalFormat.format(totalPrice) + " đ");
+    return totalPrice;
   }
+
 
   public static int getResId(String resName, Class<?> c) {
     try {
@@ -111,6 +117,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     TextView viewName;
     TextView viewPrice;
     Button buttonDelete;
+    TextView qualityCart;
+    Button addCartBtn;
+    Button minusCartBtn;
+
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -118,6 +128,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
       viewName = itemView.findViewById(R.id.item_name);
       viewPrice = itemView.findViewById(R.id.item_price);
       buttonDelete = itemView.findViewById(R.id.btn_delete_in_cart);
+      qualityCart = itemView.findViewById(R.id.qualityCart);
+      addCartBtn = itemView.findViewById(R.id.addCartBtn);
+      minusCartBtn = itemView.findViewById(R.id.minusCartbtn);
     }
   }
 }

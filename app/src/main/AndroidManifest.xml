@@ -2,72 +2,67 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.h3t_project">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/h3t"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/h3t"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity.SellerHomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+  <application
+    android:allowBackup="true"
+    android:icon="@drawable/h3t"
+    android:label="@string/app_name"
+    android:roundIcon="@drawable/h3t"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+    <activity android:name=".activity.SellerHomeActivity" />
+    <activity android:name=".activity.TestCartActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.EditDestinationActivity"
-            android:parentActivityName=".activity.DestinationActivity"></activity>
-        <activity
-            android:name=".activity.DestinationActivity"
-            android:parentActivityName=".activity.PersonalActivity" />
-        <activity android:name=".activity.CustomerDetailOrderActivity" />
-        <activity android:name=".activity.CustomerListOrderActivity" />
-        <activity android:name=".activity.CouponActivity" />
-        <activity android:name=".activity.HomePageActivity">
+    </activity>
+    <activity
+      android:name=".activity.EditDestinationActivity"
+      android:parentActivityName=".activity.DestinationActivity"></activity>
+    <activity
+      android:name=".activity.DestinationActivity"
+      android:parentActivityName=".activity.PersonalActivity" />
+    <activity android:name=".activity.CustomerDetailOrderActivity" />
+    <activity android:name=".activity.CustomerListOrderActivity" />
+    <activity android:name=".activity.CouponActivity" />
+    <activity android:name=".activity.HomePageActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
-        </activity>
-        <activity android:name=".activity.ActivityDetailOrder" />
-        <activity android:name=".activity.ActivityListOrder" />
-        <activity android:name=".activity.ThanksActivity" />
-        <activity android:name=".activity.ChangeAddressActivity" />
-        <activity android:name=".activity.ConfirmOrderActivity" />
-        <activity android:name=".activity.SentMailActivity" />
-        <activity android:name=".activity.LoginActivity">
-        </activity>
-        <activity
-            android:name=".activity.ForgotPasswordActivity"
-            android:parentActivityName=".activity.LoginActivity" />
-        <activity android:name=".activity.ViewProductActivity" />
-        <activity
-            android:name=".activity.SettingActivity"
-            android:parentActivityName=".activity.PersonalActivity" />
-        <activity
-            android:name=".activity.PersonalActivity"
-            android:parentActivityName=".activity.HomePageActivity"></activity>
-        <activity
-            android:name=".activity.AddProductActivity"
-            android:parentActivityName=".activity.SellerProductActivity"/>
-        <activity
-            android:name=".activity.DetailSellerProductActivity"
-            android:parentActivityName=".activity.SellerProductActivity"/>
-        <activity
-            android:name=".activity.SellerProductActivity"
-            android:parentActivityName=".activity.SellerHomeActivity">
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:name=".activity.ActivityDetailOrder" />
+    <activity android:name=".activity.ActivityListOrder" />
+    <activity android:name=".activity.ThanksActivity" />
+    <activity android:name=".activity.ChangeAddressActivity" />
+    <activity android:name=".activity.ConfirmOrderActivity" />
+    <activity android:name=".activity.SentMailActivity" />
+    <activity android:name=".activity.LoginActivity"></activity>
+    <activity
+      android:name=".activity.ForgotPasswordActivity"
+      android:parentActivityName=".activity.LoginActivity" />
+    <activity android:name=".activity.ViewProductActivity" />
+    <activity
+      android:name=".activity.SettingActivity"
+      android:parentActivityName=".activity.PersonalActivity" />
+    <activity
+      android:name=".activity.PersonalActivity"
+      android:parentActivityName=".activity.HomePageActivity"></activity>
+    <activity
+      android:name=".activity.AddProductActivity"
+      android:parentActivityName=".activity.SellerProductActivity"/>
+    <activity
+      android:name=".activity.DetailSellerProductActivity"
+      android:parentActivityName=".activity.SellerProductActivity"/>
+    <activity
+      android:name=".activity.SellerProductActivity"
+      android:parentActivityName=".activity.SellerHomeActivity">
 
-        </activity>
-        <activity
-            android:name=".activity.EditPersonalActivity"
-            android:parentActivityName=".activity.PersonalActivity" />
-        <activity android:name=".activity.ActivityMyCart" />
-        <activity
-            android:name=".activity.ActivityCustomerViewProduct"
-            android:parentActivityName=".activity.HomePageActivity" />
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-    </application>
+    </activity>
+    <activity
+      android:name=".activity.EditPersonalActivity"
+      android:parentActivityName=".activity.PersonalActivity" />
+    <activity android:name=".activity.ActivityMyCart" />
+    <activity
+      android:name=".activity.ActivityCustomerViewProduct"
+      android:parentActivityName=".activity.HomePageActivity" />
 
 </manifest>
