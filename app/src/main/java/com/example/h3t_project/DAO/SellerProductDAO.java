@@ -2,6 +2,7 @@ package com.example.h3t_project.DAO;
 
 import com.example.h3t_project.DatabaseM.DatabaseManager;
 import com.example.h3t_project.model.Product;
+import com.example.h3t_project.model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -105,20 +106,49 @@ public class SellerProductDAO extends DatabaseManager {
     return products;
   }
 
-  public boolean isDuplicate(String name) {
-    try {
-      String sql = "Select name From tbl_products Where name = ? ";
-      connection = connect();
-      PreparedStatement ps = connection.prepareStatement(sql);
-      ps.setString(1, name);
-      ResultSet rs = ps.executeQuery();
-      if (rs.next()) {
-        return true;
-      }
-    } catch (Exception ex) {
-      Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+public Product getSellerProductById(int id){
+        Product product = new Product();
+        try {
+            String sql = "select name, catergory_id, origin_price, sell_price, brand, quantity, guarantee, color, height, material, description from tbl_products "
+                    + " where id = ? ";
+            connection = connect();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                product.setName(rs.getString("name"));
+                product.setCategory_id(rs.getInt("catergory_id"));
+                product.setOrigin_price(rs.getInt("origin_price"));
+                product.setSell_price(rs.getInt("sell_price"));
+                product.setBrand(rs.getString("brand"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setGuarantee(rs.getString("guarantee"));
+                product.setColor(rs.getString("color"));
+                product.setHeight(rs.getInt("height"));
+                product.setMaterial(rs.getString("material"));
+                product.setDescription(rs.getString("description"));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(SellerProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+
     }
-    return false;
+
+    public boolean isDuplicate(String name) {
+        try {
+            String sql = "Select name From tbl_products Where name = ? ";
+            connection = connect();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
   }
 
   public int insertProduct(String name, int type, int o_price, int price, String brand, int quantity, String guarantee, String color, int height, String material, String des) {
@@ -162,31 +192,31 @@ public class SellerProductDAO extends DatabaseManager {
     return 0;
   }
 
-  public int update(int productId, String name, int type, int o_price, int price, String brand, int quantity, String guarantee, String color, int height, String material, String des) {
-    int result = 0;
-    try {
-      //update tbl_users table
-      String sql = "UPDATE tbl_products set name=?, catergory_id=?, origin_price=?,sell_price =?,brand=?, quantity=?, guarantee=?,color =?,height=?, material=?,description=?)" +
-        " where id = ?";
-      connection = connect();
-      PreparedStatement ps = connection.prepareStatement(sql);
-      ps.setString(1, name);
-      ps.setInt(2, type);
-      ps.setInt(3, o_price);
-      ps.setInt(4, price);
-      ps.setString(5, brand);
-      ps.setInt(6, quantity);
-      ps.setString(7, guarantee);
-      ps.setString(8, color);
-      ps.setInt(9, height);
-      ps.setString(10, material);
-      ps.setString(11, des);
-      ps.setInt(12, productId);
-      ps.executeUpdate();
-    } catch (Exception ex) {
-      result = 1;
-      Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    return result;
+public int update(int productId, String name, int type, int o_price, int price, String brand, int quantity, String guarantee, String color, int height, String material, String des) {
+        int result = 0;
+        try {
+            //update tbl_users table
+            String sql = "UPDATE tbl_products set name=?, catergory_id=?, origin_price=?,sell_price =?,brand=?, quantity=?, guarantee=?,color =?,height=?, material=?,description=?" +
+                    " where id = ?";
+            connection = connect();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setInt(2, type);
+            ps.setInt(3, o_price);
+            ps.setInt(4, price);
+            ps.setString(5, brand);
+            ps.setInt(6, quantity);
+            ps.setString(7, guarantee);
+            ps.setString(8, color);
+            ps.setInt(9, height);
+            ps.setString(10, material);
+            ps.setString(11, des);
+            ps.setInt(12, productId);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            result = 1;
+            Logger.getLogger(SellerProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     return result;
   }
 }

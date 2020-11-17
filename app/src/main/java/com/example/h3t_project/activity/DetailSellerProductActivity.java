@@ -51,15 +51,15 @@ public class DetailSellerProductActivity extends AppCompatActivity {
     setupDescriptionProduct(productId);
     setupPriceProduct(productId);
 
-    button = findViewById(R.id.btnGoToEdit);
-    button.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Intent intent = new Intent(view.getContext(), SellerEditProductActivity.class);
-        intent.putExtra("productId", productId);
-        view.getContext().startActivity(intent);
-      }
-    });
+    button = (Button) findViewById(R.id.btnGoToEdit);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SellerEditProductActivity.class);
+                intent.putExtra("productId", productId);
+                startActivity(intent);
+            }
+        });
 
   }
 
