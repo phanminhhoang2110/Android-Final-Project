@@ -1,10 +1,11 @@
 package com.example.h3t_project.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
@@ -16,9 +17,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.h3t_project.DAO.SellerProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.activity.DetailSellerProductActivity;
-import com.example.h3t_project.activity.ViewProductActivity;
 import com.example.h3t_project.model.Product;
 
 import java.text.DecimalFormat;
@@ -70,6 +71,30 @@ public class SellerProductAdapter extends RecyclerView.Adapter<SellerProductAdap
                 Intent intent = new Intent(context, DetailSellerProductActivity.class);
                 intent.putExtra("productId", products.get(position).getId());
                 context.startActivity(intent);
+            }
+        });
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                AlertDialog.Builder adb = new AlertDialog.Builder(view.getContext());
+                adb.setTitle("Bạn có muốn xóa sản phẩm này không?");
+                adb.setIcon(android.R.drawable.ic_dialog_alert);
+                adb.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        SellerProductDAO sellerProductDAO = new SellerProductDAO();
+                        sellerProductDAO.deleteSellerProduct(products.get(position).getId(), products.get(position).getId());
+                        products.remove(position);
+                        notifyItemRemoved(position);
+                    } });
+
+                adb.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    } });
+                adb.show();
+
+                return true;
             }
         });
     }

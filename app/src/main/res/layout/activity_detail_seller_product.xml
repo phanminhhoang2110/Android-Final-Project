@@ -71,7 +71,20 @@
 
             </FrameLayout>
 
-
+            <Button
+                android:id="@+id/btnGoToEdit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#F52929"
+                android:fontFamily="@font/lato"
+                android:text="Edit Product"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameDescription"
+                app:layout_constraintVertical_bias="1.0" />
 
         </LinearLayout>
 
