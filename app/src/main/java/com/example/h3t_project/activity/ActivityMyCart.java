@@ -44,8 +44,10 @@ public class ActivityMyCart extends AppCompatActivity {
 
     orderBtn = findViewById(R.id.btnBuyProdct);
 
+    SessionManagement sessionManagement = new SessionManagement(ActivityMyCart.this);
+    int customerId = sessionManagement.getSessionUserId();
     DestinationDAO destinationDAO = new DestinationDAO();
-    final ArrayList<Destination> destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(1);
+    final ArrayList<Destination> destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(customerId);
     List<String> listDestination = new ArrayList<>();
     for (int i = 0; i < destinations.size(); i++) {
       listDestination.add(destinations.get(i).toString());
