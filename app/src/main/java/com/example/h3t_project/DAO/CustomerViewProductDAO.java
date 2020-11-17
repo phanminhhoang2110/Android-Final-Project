@@ -18,9 +18,9 @@ public class CustomerViewProductDAO extends DatabaseManager {
     List<Product> products = null;
     try {
       String query = "Select * from tbl_products \n" +
-              "\tinner join (select product_id, min(image_id) image_id from tbl_product_image group by product_id) as tbl_one_image_product \n" +
-              "\ton tbl_products.id =  tbl_one_image_product.product_id \n" +
-              "\tinner join tbl_images on tbl_images.id = tbl_one_image_product.image_id\n";
+        "\tinner join (select product_id, min(image_id) image_id from tbl_product_image group by product_id) as tbl_one_image_product \n" +
+        "\ton tbl_products.id =  tbl_one_image_product.product_id \n" +
+        "\tinner join tbl_images on tbl_images.id = tbl_one_image_product.image_id\n";
       if (categoryId != -1) {
         query += " WHERE catergory_id = ? ";
       }
@@ -154,6 +154,49 @@ public class CustomerViewProductDAO extends DatabaseManager {
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(1, "%" + searchText + "%");
       resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        Product product = new Product();
+        product.setId(resultSet.getInt("id"));
+        product.setName(resultSet.getString("name"));
+        product.setOrigin_price(resultSet.getInt("origin_price"));
+        product.setSell_price(resultSet.getInt("sell_price"));
+        product.setCategory_id(resultSet.getInt("catergory_id"));
+        product.setLink_image(resultSet.getString("link"));
+        products.add(product);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return products;
+  }
+
+  public List<Product> getAllBuyedProduct(int customerId) {
+    List<Product> products = null;
+    String query =
+      "Select tbl_custome_product_image.id\n" +
+        "      ,tbl_custome_product_image.name\n" +
+        "      ,tbl_custome_product_image.origin_price\n" +
+        "      ,tbl_custome_product_image.catergory_id\n" +
+        "      ,tbl_custome_product_image.sell_price\n" +
+        "      ,tbl_images.link\n" +
+        "      from\n" +
+        "      (SELECT distinct [tbl_order_product].product_id as id,[dbo].[tbl_products].[name]\n" +
+        "      ,[dbo].[tbl_products].[origin_price]\n" +
+        "      ,[dbo].[tbl_products].[sell_price]\n" +
+        "      ,[dbo].[tbl_products].[catergory_id]\n" +
+        "      ,tbl_orders.customer_id\n" +
+        "      ,Max([dbo].[tbl_product_image].[image_id]) as image\n" +
+        "      FROM [H3TSTORE].[dbo].[tbl_order_product] inner join tbl_products on tbl_order_product.product_id = tbl_products.id \n" +
+        "      inner join [dbo].[tbl_product_image] on [dbo].[tbl_product_image].[product_id] = [dbo].[tbl_products].[id]\n" +
+        "      inner join tbl_orders on tbl_order_product.order_id = tbl_orders.id\n" +
+        "      Group by [tbl_order_product].product_id, name,[catergory_id], [sell_price], [origin_price],customer_id) as tbl_custome_product_image\n" +
+        "      inner join tbl_images on tbl_custome_product_image.image = tbl_images.id \n" +
+        "      where tbl_custome_product_image.customer_id = ?\n";
+    try (Connection connection = connect()) {
+      preparedStatement = connection.prepareStatement(query);
+      preparedStatement.setInt(1, customerId);
+      ResultSet resultSet = preparedStatement.executeQuery();
+      products = new ArrayList<>();
       while (resultSet.next()) {
         Product product = new Product();
         product.setId(resultSet.getInt("id"));

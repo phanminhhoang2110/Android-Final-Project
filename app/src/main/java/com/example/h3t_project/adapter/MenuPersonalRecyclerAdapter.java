@@ -2,7 +2,6 @@ package com.example.h3t_project.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.R;
+import com.example.h3t_project.activity.BuyedProductActivity;
 import com.example.h3t_project.activity.CustomerListOrderActivity;
 import com.example.h3t_project.activity.DestinationActivity;
 import com.example.h3t_project.model.MenuItemPersonal;
@@ -21,13 +21,15 @@ import java.util.ArrayList;
 
 public class MenuPersonalRecyclerAdapter extends RecyclerView.Adapter<MenuPersonalRecyclerAdapter.ViewHolder> {
 
-  public MenuPersonalRecyclerAdapter(ArrayList<MenuItemPersonal> itemMenus,Context context) {
-    this.itemMenus = itemMenus;
-    this.context = context;
-  }
   Context context;
   ArrayList<MenuItemPersonal> itemMenus;
   View view;
+  Intent intent;
+
+  public MenuPersonalRecyclerAdapter(ArrayList<MenuItemPersonal> itemMenus, Context context) {
+    this.itemMenus = itemMenus;
+    this.context = context;
+  }
 
   @NonNull
   @Override
@@ -37,7 +39,6 @@ public class MenuPersonalRecyclerAdapter extends RecyclerView.Adapter<MenuPerson
     return new ViewHolder(view);
   }
 
-  Intent intent;
   @Override
   public void onBindViewHolder(@NonNull MenuPersonalRecyclerAdapter.ViewHolder holder, final int position) {
     holder.textView.setText(itemMenus.get(position).getItemName());
@@ -45,13 +46,17 @@ public class MenuPersonalRecyclerAdapter extends RecyclerView.Adapter<MenuPerson
     holder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        switch (position){
+        switch (position) {
           case 0:
             intent = new Intent(context, CustomerListOrderActivity.class);
             context.startActivity(intent);
             break;
           case 1:
             intent = new Intent(context, DestinationActivity.class);
+            context.startActivity(intent);
+            break;
+          case 2:
+            intent = new Intent(context, BuyedProductActivity.class);
             context.startActivity(intent);
             break;
         }
