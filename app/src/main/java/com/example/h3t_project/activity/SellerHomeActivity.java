@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.h3t_project.R;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 
 public class SellerHomeActivity extends AppCompatActivity {
 
@@ -33,5 +34,17 @@ public class SellerHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(SellerHomeActivity.this, ActivityListOrder.class));
             }
         });
+    }
+
+    public void logout(View view){
+        SessionManagement sessionManagement = new SessionManagement(SellerHomeActivity.this);
+        sessionManagement.removeSession();
+        userMoveToHomePage();
+    }
+
+    private void userMoveToHomePage() {
+        Intent intent = new Intent(SellerHomeActivity.this, HomePageActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

@@ -10,8 +10,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.h3t_project.DAO.SellerProductDAO;
 import com.example.h3t_project.R;
@@ -31,7 +31,7 @@ public class DetailSellerProductActivity extends AppCompatActivity {
 
     ViewPager viewPager;
     SlideViewProductAdapter adapter;
-    MenuItem delete;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,16 @@ public class DetailSellerProductActivity extends AppCompatActivity {
         setupDetailProduct(productId);
         setupDescriptionProduct(productId);
         setupPriceProduct(productId);
+
+        button = (Button) findViewById(R.id.btnGoToEdit);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SellerEditProductActivity.class);
+                intent.putExtra("productId", productId);
+                view.getContext().startActivity(intent);
+            }
+        });
 
     }
 
