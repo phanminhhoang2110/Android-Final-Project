@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.h3t_project.DAO.CartDAO;
 import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.MenuDetailProductAdapter;
@@ -75,7 +76,7 @@ public class ViewProductActivity extends AppCompatActivity {
 
     Button buttonAddToCart = findViewById(R.id.btnBuy2);
     SessionManagement sessionManagement = new SessionManagement(this);
-    int roleId = sessionManagement.getSessionUserId();
+    final int roleId = sessionManagement.getSessionUserId();
     final String nameForCart = "mycart" + roleId;
     final String quantityForCart = "mycartquantity" + roleId;
     final String countOfCart = "countOfCart" + roleId;
@@ -99,7 +100,13 @@ public class ViewProductActivity extends AppCompatActivity {
         editorQuantity.putInt(String.valueOf(products.get(0).getId()),1);
         editorQuantity.commit();
         editor.commit();
-        Toast.makeText(getApplicationContext(), "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+        CartDAO cartDAO = new CartDAO();
+        boolean inCart = cartDAO.insertCart(roleId,productId,1);
+        if(inCart) {
+          Toast.makeText(getApplicationContext(), "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+        }else{
+          Toast.makeText(getApplicationContext(), "Đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
+        }
       }
     });
 

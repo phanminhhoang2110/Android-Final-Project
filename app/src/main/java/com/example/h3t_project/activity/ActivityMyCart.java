@@ -15,10 +15,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.h3t_project.DAO.CartDAO;
 import com.example.h3t_project.DAO.DestinationDAO;
 import com.example.h3t_project.DAO.OrderDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.model.Destination;
+import com.example.h3t_project.model.ItemCart;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.util.ArrayList;
