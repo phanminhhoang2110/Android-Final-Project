@@ -15,6 +15,7 @@ import com.example.h3t_project.DAO.UserDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.activity.ForgotPasswordActivity;
 import com.example.h3t_project.activity.HomePageActivity;
+import com.example.h3t_project.activity.SellerHomeActivity;
 import com.example.h3t_project.activity.SellerProductActivity;
 import com.example.h3t_project.model.User;
 import com.example.h3t_project.sessionhelper.SessionManagement;
@@ -102,7 +103,7 @@ public class LoginFragment extends Fragment {
 
   private void adminMoveToHomePage() {
 
-    Intent intent = new Intent(getActivity(), SellerProductActivity.class);
+    Intent intent = new Intent(getActivity(), SellerHomeActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
   }
