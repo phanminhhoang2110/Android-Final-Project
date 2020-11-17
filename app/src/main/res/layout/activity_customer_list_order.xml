@@ -18,4 +18,84 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.0" />
+
+  <Button
+      android:id="@+id/btn_customer_waiting"
+      android:layout_width="102dp"
+      android:layout_height="60dp"
+      android:text="Chờ lấy hàng"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="@+id/btn_customer_cancel"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/btn_customer_all_order"
+      app:layout_constraintVertical_bias="0.0" />
+
+  <Button
+      android:id="@+id/btn_customer_shipping"
+      android:layout_width="102dp"
+      android:layout_height="60dp"
+      android:text="Đang giao hàng"
+      app:layout_constraintBottom_toBottomOf="@+id/btn_customer_waiting"
+      app:layout_constraintEnd_toStartOf="@+id/btn_customer_done"
+      app:layout_constraintStart_toEndOf="@+id/btn_customer_waiting"
+      app:layout_constraintTop_toTopOf="@+id/btn_customer_waiting" />
+
+  <Button
+      android:id="@+id/btn_customer_done"
+      android:layout_width="102dp"
+      android:layout_height="60dp"
+      android:text="Đã giao hàng"
+      app:layout_constraintBottom_toBottomOf="@+id/btn_customer_waiting"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.66"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/btn_customer_waiting"
+      app:layout_constraintVertical_bias="0.082" />
+
+  <Button
+      android:id="@+id/btn_customer_cancel"
+      android:layout_width="102dp"
+      android:layout_height="60dp"
+      android:text="Đã hủy"
+      app:layout_constraintBottom_toBottomOf="@+id/btn_customer_waiting"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/btn_customer_waiting"
+      app:layout_constraintVertical_bias="0.081" />
+
+  <ScrollView
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/btn_customer_waiting"
+      app:layout_constraintVertical_bias="0.0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <FrameLayout
+          android:id="@+id/framelayout_customer_list_order"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+      </FrameLayout>
+    </LinearLayout>
+  </ScrollView>
+
+  <Button
+      android:id="@+id/btn_customer_all_order"
+      android:layout_width="410dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="tất cả đơn đặt hàng"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
