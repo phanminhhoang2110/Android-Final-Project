@@ -17,17 +17,25 @@ import com.example.h3t_project.activity.ActivityCustomerViewProduct;
 import com.example.h3t_project.model.CategoryItem;
 
 import java.lang.reflect.Field;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CategoryMenuAdapter extends RecyclerView.Adapter<CategoryMenuAdapter.ViewHolder> {
   ArrayList<CategoryItem> categoryItems = new ArrayList<>();
   Context context;
 
-  public CategoryMenuAdapter(ArrayList<CategoryItem> categoryItems,Context context) {
+  public CategoryMenuAdapter(ArrayList<CategoryItem> categoryItems, Context context) {
     this.categoryItems = categoryItems;
     this.context = context;
+  }
+
+  public static int getResId(String resName, Class<?> c) {
+    try {
+      Field idField = c.getDeclaredField(resName);
+      return idField.getInt(idField);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return -1;
+    }
   }
 
   @NonNull
@@ -39,28 +47,18 @@ public class CategoryMenuAdapter extends RecyclerView.Adapter<CategoryMenuAdapte
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-      holder.textView.setText(categoryItems.get(position).getName());
-      holder.imageView.setImageResource(getResId(categoryItems.get(position).getImage(),R.drawable.class));
-      holder.itemView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_click_animation));
-          Intent intent = new Intent(context, ActivityCustomerViewProduct.class);
-          intent.putExtra("categoryId", categoryItems.get(position).getId());
-          intent.putExtra("categoryName", categoryItems.get(position).getName());
-          context.startActivity(intent);
-        }
-      });
-  }
-
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
+    holder.textView.setText(categoryItems.get(position).getName());
+    holder.imageView.setImageResource(getResId(categoryItems.get(position).getImage(), R.drawable.class));
+    holder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        v.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_click_animation));
+        Intent intent = new Intent(context, ActivityCustomerViewProduct.class);
+        intent.putExtra("categoryId", categoryItems.get(position).getId());
+        intent.putExtra("categoryName", categoryItems.get(position).getName());
+        context.startActivity(intent);
+      }
+    });
   }
 
   @Override

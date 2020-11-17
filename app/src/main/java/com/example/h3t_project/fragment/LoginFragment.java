@@ -16,7 +16,6 @@ import com.example.h3t_project.R;
 import com.example.h3t_project.activity.ForgotPasswordActivity;
 import com.example.h3t_project.activity.HomePageActivity;
 import com.example.h3t_project.activity.SellerHomeActivity;
-import com.example.h3t_project.activity.SellerProductActivity;
 import com.example.h3t_project.model.User;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
@@ -40,7 +39,7 @@ public class LoginFragment extends Fragment {
     textForgotPassword = view.findViewById(R.id.textForgotPassword);
     textInform = view.findViewById(R.id.textInform);
 
-    btnLogin = (Button) view.findViewById(R.id.btnLogin);
+    btnLogin = view.findViewById(R.id.btnLogin);
     btnLogin.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

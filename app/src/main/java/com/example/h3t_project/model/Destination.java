@@ -2,7 +2,10 @@ package com.example.h3t_project.model;
 
 public class Destination {
   private int id;
-
+  private String address;
+  private String province;
+  private String district;
+  private String ward;
   public Destination(int id, String address, String province, String district, String ward) {
     this.id = id;
     this.address = address;
@@ -10,18 +13,12 @@ public class Destination {
     this.district = district;
     this.ward = ward;
   }
-
   public Destination(String address, String province, String district, String ward) {
     this.address = address;
     this.province = province;
     this.district = district;
     this.ward = ward;
   }
-
-  private String address;
-  private String province;
-  private String district;
-  private String ward;
 
   public Destination() {
   }

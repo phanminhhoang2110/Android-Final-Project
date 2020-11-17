@@ -53,7 +53,7 @@ public class CouponDAO extends DatabaseManager {
       String query = "DELETE FROM [dbo].[tbl_coupons] WHERE code = ?";
       connection = connect();
       preparedStatement = connection.prepareStatement(query);
-      preparedStatement.setString(1,code);
+      preparedStatement.setString(1, code);
       int rowAffected = preparedStatement.executeUpdate();
       return rowAffected;
     } catch (Exception e) {

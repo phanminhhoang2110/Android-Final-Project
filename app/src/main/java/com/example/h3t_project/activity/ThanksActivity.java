@@ -16,6 +16,7 @@ public class ThanksActivity extends AppCompatActivity {
 
 
   Button buttonHome;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

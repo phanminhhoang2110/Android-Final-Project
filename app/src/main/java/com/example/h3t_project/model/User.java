@@ -34,10 +34,6 @@ public class User {
     return username;
   }
 
-  public void setUsername(String name) {
-    this.username = name;
-  }
-
   public String getPassword() {
     return password;
   }
@@ -48,6 +44,10 @@ public class User {
 
   public String getUsername() {
     return username;
+  }
+
+  public void setUsername(String name) {
+    this.username = name;
   }
 
   public String getFullname() {

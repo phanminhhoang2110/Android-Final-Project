@@ -139,7 +139,7 @@ public class OrderDAO extends DatabaseManager {
     try {
       connection = connect();
       preparedStatement = connection.prepareStatement(query);
-      if (statusId != -1){
+      if (statusId != -1) {
         preparedStatement.setInt(1, statusId);
       }
       resultSet = preparedStatement.executeQuery();
@@ -166,13 +166,13 @@ public class OrderDAO extends DatabaseManager {
     String insertOrder = "INSERT INTO [dbo].[tbl_orders] VALUES (? , ? , ?)";
     String insertOrderProduct = "INSERT INTO [dbo].[tbl_order_product] VALUES (? , ? , ?)";
     try {
-      PreparedStatement insertOrderStatement,insertOrderProductStatement;
+      PreparedStatement insertOrderStatement, insertOrderProductStatement;
       connection = connect();
       connection.setAutoCommit(false);
       insertOrderStatement = connection.prepareStatement(insertOrder, Statement.RETURN_GENERATED_KEYS);
       insertOrderStatement.setInt(1, customerId);
-      insertOrderStatement.setInt(2,3);
-      insertOrderStatement.setInt(3,destinationId);
+      insertOrderStatement.setInt(2, 3);
+      insertOrderStatement.setInt(3, destinationId);
       insertOrderStatement.executeUpdate();
       int idLatest = 0;
       try (ResultSet generatedKeys = insertOrderStatement.getGeneratedKeys()) {

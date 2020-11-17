@@ -112,7 +112,7 @@ public class EditDestinationActivity extends AppCompatActivity {
       } else {
         showAlertDialog("Có trường bị bỏ trống !", "Không được để trống các trường!", android.R.drawable.ic_dialog_info, "Ok", 0);
       }
-    }else{
+    } else {
       if (address.length() != 0 && ward.length() != 0 && district.length() != 0) {
         Destination destination = new Destination(id, address, spinner.getSelectedItem().toString(), district, ward);
         DestinationDAO destinationDAO = new DestinationDAO();

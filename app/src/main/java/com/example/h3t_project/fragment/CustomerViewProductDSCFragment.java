@@ -26,12 +26,11 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class CustomerViewProductDSCFragment extends Fragment {
-  public RecyclerView recyclerView;
   // TODO: Rename parameter arguments, choose names that match
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
-
+  public RecyclerView recyclerView;
   // TODO: Rename and change types of parameters
   private String mParam1;
   private String mParam2;
@@ -56,6 +55,16 @@ public class CustomerViewProductDSCFragment extends Fragment {
     args.putString(ARG_PARAM2, param2);
     fragment.setArguments(args);
     return fragment;
+  }
+
+  public static int getResId(String resName, Class<?> c) {
+    try {
+      Field idField = c.getDeclaredField(resName);
+      return idField.getInt(idField);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return -1;
+    }
   }
 
   @Override
@@ -88,7 +97,7 @@ public class CustomerViewProductDSCFragment extends Fragment {
       products = customerViewProductDAO.getAllProductByName(searchText, 1, 0);
     }
 
-    for (int i = 0; i < products.size(); i ++) {
+    for (int i = 0; i < products.size(); i++) {
       products.get(i).setImage_id(getResId(products.get(i).getLink_image(), R.drawable.class));
     }
 
@@ -104,15 +113,5 @@ public class CustomerViewProductDSCFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_customer_view_product_d_s_c, container, false);
-  }
-
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
   }
 }

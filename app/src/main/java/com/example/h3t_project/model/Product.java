@@ -21,22 +21,11 @@ public class Product {
   private int quantity;
   private String coupon_code;
   private int coupon_value;
-
-  public int getQuantityInCart() {
-    return quantityInCart;
-  }
-
-  public void setQuantityInCart(int quantityInCart) {
-    this.quantityInCart = quantityInCart;
-  }
-
   private int image_id;
   private String link_image;
   private int quantityInCart;
-
   public Product() {
   }
-
   public Product(int id, String name, int origin_price, int sell_price, int category_id, String category_name, String model, String description, String guarantee, String brand, int weight, int origin, String color, int height, int size_id, String size, String material, int quantity, String coupon_code, int coupon_value, int image_id, String link_image) {
     this.id = id;
     this.name = name;
@@ -77,6 +66,14 @@ public class Product {
     this.origin_price = origin_price;
     this.sell_price = sell_price;
     this.quantity = quantity;
+  }
+
+  public int getQuantityInCart() {
+    return quantityInCart;
+  }
+
+  public void setQuantityInCart(int quantityInCart) {
+    this.quantityInCart = quantityInCart;
   }
 
   public int getId() {

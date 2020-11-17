@@ -10,23 +10,23 @@ import com.example.h3t_project.fragment.RegisterFragment;
 
 public class LoginViewPagerAdapter extends FragmentStateAdapter {
 
-    public LoginViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
-    }
+  public LoginViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    super(fragmentActivity);
+  }
 
-    @NonNull
-    @Override
-    public Fragment createFragment(int position) {
-        switch (position){
-            case 0:
-                return new LoginFragment();
-            default:
-                return new RegisterFragment();
-        }
+  @NonNull
+  @Override
+  public Fragment createFragment(int position) {
+    switch (position) {
+      case 0:
+        return new LoginFragment();
+      default:
+        return new RegisterFragment();
     }
+  }
 
-    @Override
-    public int getItemCount() {
-        return 2;
-    }
+  @Override
+  public int getItemCount() {
+    return 2;
+  }
 }

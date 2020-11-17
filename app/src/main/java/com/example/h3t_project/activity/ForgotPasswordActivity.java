@@ -48,11 +48,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     builder.setMessage("Mật khẩu của bạn đã được tự động đổi thành 12345!\nVui lòng đăng nhập lại!");
     builder.setIcon(android.R.drawable.star_big_on);
 
-    builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        Intent intent = new Intent(context,LoginActivity.class);
+        Intent intent = new Intent(context, LoginActivity.class);
         startActivity(intent);
       }
     });
@@ -66,10 +66,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
   public void onClickForgetPassword(View view) {
     String username = txtForgot.getText().toString();
     UserDAO userDAO = new UserDAO();
-    if(userDAO.changePassword(username)){
-        showAlertDialog(this);
-    }else{
-        txtError.setText("Chúng tôi không tìm thấy bạn trong danh sách khách hàng!\nVui lòng thử lại hoặc đăng kí!");
+    if (userDAO.changePassword(username)) {
+      showAlertDialog(this);
+    } else {
+      txtError.setText("Chúng tôi không tìm thấy bạn trong danh sách khách hàng!\nVui lòng thử lại hoặc đăng kí!");
     }
   }
 

@@ -24,7 +24,7 @@ public class CategoryDAO extends DatabaseManager {
       preparedStatement = connection.prepareStatement(query);
       categoryItems = new ArrayList<>();
       resultSet = preparedStatement.executeQuery();
-      while (resultSet.next()){
+      while (resultSet.next()) {
         CategoryItem categoryItem = new CategoryItem();
         categoryItem.setId(resultSet.getInt("id"));
         categoryItem.setName(resultSet.getString("name"));

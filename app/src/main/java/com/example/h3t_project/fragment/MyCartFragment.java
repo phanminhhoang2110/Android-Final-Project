@@ -1,7 +1,6 @@
 package com.example.h3t_project.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.DAO.CartDAO;
-import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.MyCartAdapter;
 import com.example.h3t_project.model.ItemCartDetail;
-import com.example.h3t_project.model.Product;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +33,10 @@ public class MyCartFragment extends Fragment implements MyCartAdapter.ResetAdapt
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
-
+  RecyclerView recyclerView;
+  ArrayList<ItemCartDetail> itemCarts;
+  int totalPrice = 0;
+  TextView viewTotalMoney;
   // TODO: Rename and change types of parameters
   private String mParam1;
   private String mParam2;
@@ -82,10 +81,7 @@ public class MyCartFragment extends Fragment implements MyCartAdapter.ResetAdapt
       mParam2 = getArguments().getString(ARG_PARAM2);
     }
   }
-  RecyclerView recyclerView;
-  ArrayList<ItemCartDetail> itemCarts;
-  int totalPrice = 0;
-  TextView viewTotalMoney;
+
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
@@ -96,7 +92,7 @@ public class MyCartFragment extends Fragment implements MyCartAdapter.ResetAdapt
     CartDAO cartDAO = new CartDAO();
     itemCarts = cartDAO.getAllCartDetail(roleId);
     for (ItemCartDetail itemCart : itemCarts) {
-        totalPrice += itemCart.getSellPrice() * itemCart.getQuantity();
+      totalPrice += itemCart.getSellPrice() * itemCart.getQuantity();
     }
     viewTotalMoney.setText(decimalFormat.format(totalPrice) + " đ");
 
@@ -117,7 +113,7 @@ public class MyCartFragment extends Fragment implements MyCartAdapter.ResetAdapt
   }
 
   @Override
-  public void reset(int quantity,int indexProduct) {
+  public void reset(int quantity, int indexProduct) {
     totalPrice = 0;
     itemCarts.get(indexProduct).setQuantity(quantity);
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
@@ -125,7 +121,7 @@ public class MyCartFragment extends Fragment implements MyCartAdapter.ResetAdapt
       totalPrice += itemCart.getSellPrice() * itemCart.getQuantity();
     }
     viewTotalMoney.setText(decimalFormat.format(totalPrice) + " đ");
-    MyCartAdapter myCartAdapter = new MyCartAdapter(getActivity(),itemCarts,viewTotalMoney,this);
+    MyCartAdapter myCartAdapter = new MyCartAdapter(getActivity(), itemCarts, viewTotalMoney, this);
     recyclerView.setAdapter(myCartAdapter);
   }
 }

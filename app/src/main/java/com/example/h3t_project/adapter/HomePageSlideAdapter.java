@@ -14,12 +14,13 @@ import com.example.h3t_project.R;
 
 public class HomePageSlideAdapter extends PagerAdapter {
 
-  private Context context;
-  LayoutInflater inflater;
   public int[] images = {
     R.drawable.banner1,
     R.drawable.banner2
   };
+  LayoutInflater inflater;
+  private final Context context;
+
   public HomePageSlideAdapter(Context context) {
     this.context = context;
   }
@@ -31,7 +32,7 @@ public class HomePageSlideAdapter extends PagerAdapter {
 
   @Override
   public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-    return (view == (LinearLayout) object);
+    return (view == object);
   }
 
   @NonNull
@@ -39,7 +40,7 @@ public class HomePageSlideAdapter extends PagerAdapter {
   public Object instantiateItem(@NonNull ViewGroup container, int position) {
     inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     View view = inflater.inflate(R.layout.home_page_slideshow_layout, container, false);
-    ImageView imageView = (ImageView) view.findViewById(R.id.imageViewProduct);
+    ImageView imageView = view.findViewById(R.id.imageViewProduct);
     imageView.setImageResource(images[position]);
     container.addView(view);
     return view;
@@ -47,6 +48,6 @@ public class HomePageSlideAdapter extends PagerAdapter {
 
   @Override
   public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-    container.removeView((LinearLayout)object);
+    container.removeView((LinearLayout) object);
   }
 }

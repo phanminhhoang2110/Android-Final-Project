@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.h3t_project.R;
 import com.example.h3t_project.model.DetailProductItem;
-import com.example.h3t_project.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +31,7 @@ public class MenuDetailProductAdapter extends RecyclerView.Adapter<MenuDetailPro
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    if(position %2 == 1)
-    {
+    if (position % 2 == 1) {
       holder.itemView.setBackgroundColor(Color.parseColor("#F6F6F6"));
     }
     holder.nameTextView.setText(detailProductItems.get(position).getName());

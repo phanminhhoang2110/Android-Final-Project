@@ -8,14 +8,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseManager {
-  public Connection connection;
   private static final String LOG = "DEBUG";
-  private static String ip = "34.92.72.160";   //34.92.72.160
-  private static String port = "1433";
-  private static String Classes = "net.sourceforge.jtds.jdbc.Driver";
-  private static String database = "H3TSTORE";
-  private static String username = "sa";
-  private static String password = "PhatFU@2020";
+  private static final String ip = "34.92.72.160";   //34.92.72.160
+  private static final String port = "1433";
+  private static final String Classes = "net.sourceforge.jtds.jdbc.Driver";
+  private static final String database = "H3TSTORE";
+  private static final String username = "sa";
+  private static final String password = "PhatFU@2020";
+  public Connection connection;
 
   public static Connection connect() {
     Connection conn = null;
