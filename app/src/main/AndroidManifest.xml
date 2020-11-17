@@ -12,6 +12,9 @@
     <activity
       android:name=".activity.EditDestinationActivity"
       android:parentActivityName=".activity.DestinationActivity" />
+    <activity android:name=".activity.BuyedProductActivity"
+      android:parentActivityName=".activity.PersonalActivity"
+      />
     <activity
       android:name=".activity.DestinationActivity"
       android:parentActivityName=".activity.PersonalActivity" />
