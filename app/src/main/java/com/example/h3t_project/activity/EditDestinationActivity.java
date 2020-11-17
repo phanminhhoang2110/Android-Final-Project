@@ -27,6 +27,7 @@ public class EditDestinationActivity extends AppCompatActivity {
   EditText addressEditText;
   EditText wardEditText;
   EditText districtEditText;
+  int id = -1;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,9 @@ public class EditDestinationActivity extends AppCompatActivity {
     Intent intent = getIntent();
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    if(intent==null) {
+    if (intent == null) {
       getSupportActionBar().setTitle(VietnameseWord.EDIT_DESTINATION_ACTIVITY);
-    }else{
+    } else {
       getSupportActionBar().setTitle(VietnameseWord.ADD_NEW_DESTINATION_ACTIVITY);
     }
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,13 +47,13 @@ public class EditDestinationActivity extends AppCompatActivity {
     wardEditText = findViewById(R.id.wardEditText);
     districtEditText = findViewById(R.id.districtEditText);
     set63City();
-    if(intent != null){
+    if (intent != null) {
       setupEditDestination(intent);
     }
   }
 
   private void setupEditDestination(Intent intent) {
-    int id = intent.getIntExtra("id", 0);
+    id = intent.getIntExtra("id", 0);
     String address = intent.getStringExtra("address");
     String ward = intent.getStringExtra("ward");
     String province = intent.getStringExtra("province");
@@ -97,15 +98,28 @@ public class EditDestinationActivity extends AppCompatActivity {
     String address = addressEditText.getText().toString();
     String ward = wardEditText.getText().toString();
     String district = districtEditText.getText().toString();
-    if (address.length() != 0 && ward.length() != 0 && district.length() != 0) {
-      Destination destination = new Destination(address, spinner.getSelectedItem().toString(), district, ward);
-      DestinationDAO destinationDAO = new DestinationDAO();
-      boolean flag = destinationDAO.addNewDestination(1, destination);
-      if (flag) {
-        showAlertDialog("Đã xong", "Thêm địa chỉ mới thành công!", android.R.drawable.star_on, "Ok", 1);
+    if (id == -1) {
+      if (address.length() != 0 && ward.length() != 0 && district.length() != 0) {
+        Destination destination = new Destination(address, spinner.getSelectedItem().toString(), district, ward);
+        DestinationDAO destinationDAO = new DestinationDAO();
+        boolean flag = destinationDAO.addNewDestination(1, destination);
+        if (flag) {
+          showAlertDialog("Đã xong", "Thêm địa chỉ mới thành công!", android.R.drawable.star_on, "Ok", 1);
+        }
+      } else {
+        showAlertDialog("Có trường bị bỏ trống !", "Không được để trống các trường!", android.R.drawable.ic_dialog_info, "Ok", 0);
       }
-    } else {
-      showAlertDialog("Có trường bị bỏ trống !", "Không được để trống các trường!", android.R.drawable.ic_dialog_info, "Ok", 0);
+    }else{
+      if (address.length() != 0 && ward.length() != 0 && district.length() != 0) {
+        Destination destination = new Destination(id, address, spinner.getSelectedItem().toString(), district, ward);
+        DestinationDAO destinationDAO = new DestinationDAO();
+        boolean flag = destinationDAO.updateDestination(destination);
+        if (flag) {
+          showAlertDialog("Đã xong", "Sửa địa chỉ thành công!", android.R.drawable.star_on, "Ok", 1);
+        }
+      } else {
+        showAlertDialog("Có trường bị bỏ trống !", "Không được để trống các trường!", android.R.drawable.ic_dialog_info, "Ok", 0);
+      }
     }
   }
 

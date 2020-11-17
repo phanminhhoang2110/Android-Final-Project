@@ -3,6 +3,14 @@ package com.example.h3t_project.model;
 public class Destination {
   private int id;
 
+  public Destination(int id, String address, String province, String district, String ward) {
+    this.id = id;
+    this.address = address;
+    this.province = province;
+    this.district = district;
+    this.ward = ward;
+  }
+
   public Destination(String address, String province, String district, String ward) {
     this.address = address;
     this.province = province;
