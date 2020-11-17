@@ -77,6 +77,7 @@ public class ViewProductActivity extends AppCompatActivity {
     SessionManagement sessionManagement = new SessionManagement(this);
     int roleId = sessionManagement.getSessionUserId();
     final String nameForCart = "mycart" + roleId;
+    final String quantityForCart = "mycartquantity" + roleId;
     final String countOfCart = "countOfCart" + roleId;
 
     SharedPreferences preferencesCount = getSharedPreferences(countOfCart, Context.MODE_PRIVATE);
@@ -87,12 +88,16 @@ public class ViewProductActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         SharedPreferences preferences = getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
+        SharedPreferences preferencesQuantity = getSharedPreferences(quantityForCart,Context.MODE_PRIVATE);
         if (preferences.getInt(String.valueOf(products.get(0).getId()), -1) == -1) {
           mCount++;
           mCountTv.setText(String.valueOf(mCount));
         }
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(String.valueOf(products.get(0).getId()), products.get(0).getId());
+        SharedPreferences.Editor editorQuantity = preferencesQuantity.edit();
+        editorQuantity.putInt(String.valueOf(products.get(0).getId()),1);
+        editorQuantity.commit();
         editor.commit();
         Toast.makeText(getApplicationContext(), "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
       }
