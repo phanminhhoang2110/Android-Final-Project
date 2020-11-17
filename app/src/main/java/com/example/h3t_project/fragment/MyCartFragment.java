@@ -1,12 +1,10 @@
 package com.example.h3t_project.fragment;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,9 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.h3t_project.DAO.CartDAO;
 import com.example.h3t_project.DAO.CustomerViewProductDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.MyCartAdapter;
+import com.example.h3t_project.model.ItemCartDetail;
 import com.example.h3t_project.model.Product;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
@@ -25,15 +25,13 @@ import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MyCartFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyCartFragment extends Fragment {
+public class MyCartFragment extends Fragment implements MyCartAdapter.ResetAdapter {
 
   // TODO: Rename parameter arguments, choose names that match
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,39 +82,29 @@ public class MyCartFragment extends Fragment {
       mParam2 = getArguments().getString(ARG_PARAM2);
     }
   }
-
+  RecyclerView recyclerView;
+  ArrayList<ItemCartDetail> itemCarts;
+  int totalPrice = 0;
+  TextView viewTotalMoney;
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    List<Product> products = new ArrayList<>();
-    List<Product> temp;
-    TextView viewTotalMoney = view.findViewById(R.id.total_money_price);
+    viewTotalMoney = view.findViewById(R.id.total_money_price);
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-    int totalPrice = 0;
-    CustomerViewProductDAO dao = new CustomerViewProductDAO();
     SessionManagement sessionManagement = new SessionManagement(getActivity());
     int roleId = sessionManagement.getSessionUserId();
-    String nameForCart = "mycart" + roleId;
-    SharedPreferences preferences = this.getActivity().getSharedPreferences(nameForCart, Context.MODE_PRIVATE);
-    Map<String, ?> listCart = preferences.getAll();
-    Set<String> productsId = listCart.keySet();
-    for (String productId : productsId) {
-      Product product = new Product();
-      temp = dao.getProductById(Integer.parseInt(productId));
-      product.setId(temp.get(0).getId());
-      product.setName(temp.get(0).getName());
-      product.setSell_price(temp.get(0).getSell_price());
-      product.setImage_id(getResId(temp.get(0).getLink_image(), R.drawable.class));
-      product.setQuantityInCart(1);
-      products.add(product);
-      totalPrice += temp.get(0).getSell_price();
+    CartDAO cartDAO = new CartDAO();
+    itemCarts = cartDAO.getAllCartDetail(roleId);
+    for (ItemCartDetail itemCart : itemCarts) {
+        totalPrice += itemCart.getSellPrice() * itemCart.getQuantity();
     }
     viewTotalMoney.setText(decimalFormat.format(totalPrice) + " đ");
 
+
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-    RecyclerView recyclerView = view.findViewById(R.id.my_cart_recycler_view);
+    recyclerView = view.findViewById(R.id.my_cart_recycler_view);
     recyclerView.setLayoutManager(linearLayoutManager);
-    final MyCartAdapter myCartAdapter = new MyCartAdapter(getActivity(), products, viewTotalMoney);
+    final MyCartAdapter myCartAdapter = new MyCartAdapter(getActivity(), itemCarts, viewTotalMoney, this);
     recyclerView.setItemAnimator(null);
     recyclerView.setAdapter(myCartAdapter);
   }
@@ -126,5 +114,18 @@ public class MyCartFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_my_cart, container, false);
+  }
+
+  @Override
+  public void reset(int quantity,int indexProduct) {
+    totalPrice = 0;
+    itemCarts.get(indexProduct).setQuantity(quantity);
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
+    for (ItemCartDetail itemCart : itemCarts) {
+      totalPrice += itemCart.getSellPrice() * itemCart.getQuantity();
+    }
+    viewTotalMoney.setText(decimalFormat.format(totalPrice) + " đ");
+    MyCartAdapter myCartAdapter = new MyCartAdapter(getActivity(),itemCarts,viewTotalMoney,this);
+    recyclerView.setAdapter(myCartAdapter);
   }
 }
