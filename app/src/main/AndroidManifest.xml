@@ -10,9 +10,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity android:name=".activity.SellerHomeActivity" />
-    <activity android:name=".activity.TestCartActivity">
 
-    </activity>
     <activity
       android:name=".activity.EditDestinationActivity"
       android:parentActivityName=".activity.DestinationActivity"></activity>
@@ -64,5 +62,5 @@
     <activity
       android:name=".activity.ActivityCustomerViewProduct"
       android:parentActivityName=".activity.HomePageActivity" />
-
+  </application>
 </manifest>

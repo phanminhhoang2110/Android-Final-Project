@@ -2,29 +2,25 @@ package com.example.h3t_project.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ScrollView;
-import android.widget.Toast;
 
 import com.example.h3t_project.R;
-import com.example.h3t_project.fragment.SellerListOrderFragment;
-import com.google.android.material.tabs.TabItem;
 
 public class ActivityListOrder extends AppCompatActivity {
     Toolbar toolbar;
-    ScrollView scrollView;
-    Button btnWaiting, btnShipping, btnShipped, btnCanceled;
-    Bundle bundle;
-    SellerListOrderFragment sellerListOrderFragment;
-    FrameLayout frameLayout;
-    androidx.fragment.app.FragmentManager manager;
+    Button btnWaiting, btnShipping, btnShipped, btnCanceled, btnAll;
+    ListOrderSellerFragment sellerListOrderFragment;
+    FragmentManager manager;
     FragmentTransaction transaction;
-    int status_id;
+    int status_id = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,60 +34,77 @@ public class ActivityListOrder extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         manager = getSupportFragmentManager();
-        frameLayout = findViewById(R.id.frame_order_list_seller);
-        btnWaiting = findViewById(R.id.btnWaiting);
-        btnShipping = findViewById(R.id.btnShipping);
-        btnShipped = findViewById(R.id.btnShipped);
-        btnCanceled = findViewById(R.id.btnCanceled);
-//        btnWaiting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getApplicationContext(), "123", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//
-//        int statusId = 0;
-//        Intent intent = getIntent();
-//        if (intent.getIntExtra("statusId", 0) != 0) {
-//            statusId = intent.getIntExtra("statusId", 0);
-//        }
-//
-//        bundle = new Bundle();
-//        if (statusId != 0) {
-//            bundle.putInt("statusId", statusId);
-//        }
+
+        btnWaiting = findViewById(R.id.btn_seller_waiting);
+        btnShipping = findViewById(R.id.btn_seller_shipping);
+        btnShipped = findViewById(R.id.btn_seller_done);
+        btnCanceled = findViewById(R.id.btn_seller_cancel);
+        btnAll = findViewById(R.id.btn_seller_all_order);
+
+        replaceFragment(status_id);
+
+        btnAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status_id = -1;
+                replaceFragment(status_id);
+            }
+        });
+
+        btnWaiting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status_id = 3;
+                replaceFragment(status_id);
+            }
+        });
+
+        btnShipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status_id = 4;
+                replaceFragment(status_id);
+            }
+        });
+
+        btnShipped.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status_id = 5;
+                replaceFragment(status_id);
+            }
+        });
+
+        btnCanceled.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status_id = 6;
+                replaceFragment(status_id);
+            }
+        });
+
     }
 
-    public void waitingOrder(View view){
-        Toast.makeText(getApplicationContext(), "123", Toast.LENGTH_LONG).show();
-//        status_id = 3;
-//        transaction = manager.beginTransaction();
-//        sellerListOrderFragment = new SellerListOrderFragment(status_id);
-//        transaction.replace(R.id.frame_order_list_seller, sellerListOrderFragment);
-//        transaction.commit();
-
-    }
-
-    public void shippingOrder(View view){
-        status_id = 4;
+    public void replaceFragment(int status_id){
         transaction = manager.beginTransaction();
-        sellerListOrderFragment = new SellerListOrderFragment(status_id);
-        transaction.replace(R.id.frame_order_list_seller, sellerListOrderFragment);
+        sellerListOrderFragment = new ListOrderSellerFragment(status_id);
+        transaction.replace(R.id.framelayout_seller_list_order, sellerListOrderFragment);
         transaction.commit();
     }
-    public void shippedOrder(View view){
-        status_id = 5;
-        transaction = manager.beginTransaction();
-        sellerListOrderFragment = new SellerListOrderFragment(status_id);
-        transaction.replace(R.id.frame_order_list_seller, sellerListOrderFragment);
-        transaction.commit();
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // todo: goto back activity from here
+                Intent intent = new Intent(this, SellerHomeActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
-    public void canceledOrder(View view){
-        status_id = 6;
-        transaction = manager.beginTransaction();
-        sellerListOrderFragment = new SellerListOrderFragment(status_id);
-        transaction.replace(R.id.frame_order_list_seller, sellerListOrderFragment);
-        transaction.commit();
-    }
+
 }
