@@ -30,11 +30,14 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".activity.ActivityDetailOrder" />
+    <activity android:name=".activity.ActivityDetailOrder" /> 
     <activity android:name=".activity.ActivityListOrder" />
     <activity android:name=".activity.ThanksActivity" />
     <activity android:name=".activity.ChangeAddressActivity" />
-    <activity android:name=".activity.ConfirmOrderActivity" />
+    <activity android:name=".activity.ConfirmOrderActivity"
+      android:parentActivityName=".activity.ActivityMyCart">
+
+    </activity>
     <activity android:name=".activity.SentMailActivity" />
     <activity android:name=".activity.LoginActivity"></activity>
     <activity

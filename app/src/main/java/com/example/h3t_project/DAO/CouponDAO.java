@@ -48,6 +48,26 @@ public class CouponDAO extends DatabaseManager {
     return couponItems;
   }
 
+  public CouponItem getCouponByCode(String code) {
+    CouponItem couponItem = null;
+    try {
+      String query = "SELECT [code],[value] FROM [dbo].[tbl_coupons] where code = ?";
+      connection = connect();
+      preparedStatement = connection.prepareStatement(query);
+      preparedStatement.setString(1,code);
+      resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        couponItem = new CouponItem();
+        couponItem.setCodeCoupon(resultSet.getString("code"));
+        int valueCoupon = Integer.parseInt(resultSet.getString("value"));
+        couponItem.setValueCoupon(valueCoupon);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return couponItem;
+  }
+
   public int deleteCoupon(String code) {
     try {
       String query = "DELETE FROM [dbo].[tbl_coupons] WHERE code = ?";

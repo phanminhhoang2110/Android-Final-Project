@@ -15,7 +15,6 @@ import com.example.h3t_project.DAO.UserDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.activity.EditPersonalActivity;
 import com.example.h3t_project.activity.LoginActivity;
-import com.example.h3t_project.constants.IntentCode;
 import com.example.h3t_project.model.User;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
@@ -30,6 +29,7 @@ public class PersonalInfomationFragment extends Fragment {
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
   TextView txtLogin;
+  int userId;
   // TODO: Rename and change types of parameters
   private String mParam1;
   private String mParam2;
@@ -64,7 +64,7 @@ public class PersonalInfomationFragment extends Fragment {
       mParam2 = getArguments().getString(ARG_PARAM2);
     }
   }
-  int userId;
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
@@ -95,12 +95,12 @@ public class PersonalInfomationFragment extends Fragment {
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if(userId!=-1) {
+        if (userId != -1) {
           Intent intent = new Intent(getActivity(), EditPersonalActivity.class);
           startActivity(intent);
-        }else{
-          Intent intent = new Intent(getActivity(),LoginActivity.class);
-          startActivityForResult(intent, IntentCode.PersonalLoginCode);
+        } else {
+          Intent intent = new Intent(getActivity(), LoginActivity.class);
+          startActivity(intent);
         }
       }
     });

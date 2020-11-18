@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.h3t_project.DAO.CartDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.common.ResourceFunction;
 import com.example.h3t_project.model.ItemCartDetail;
@@ -78,6 +79,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         notifyItemChanged(position);
         notifyDataSetChanged();
         viewTotalMoney.setText(decimalFormat.format(setupPrice()) + " đ");
+        CartDAO cartDAO = new CartDAO();
+        cartDAO.deleteProductInCart(products.get(position).getCustomerId(),products.get(position).getProductId());
       }
     });
   }
