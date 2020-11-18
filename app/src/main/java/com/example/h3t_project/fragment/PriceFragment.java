@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.h3t_project.DAO.CartDAO;
+import com.example.h3t_project.DAO.OrderDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.activity.ThanksActivity;
 import com.example.h3t_project.constants.IntentCode;
@@ -91,9 +93,9 @@ public class PriceFragment extends Fragment {
     Button orderBtn = view.findViewById(R.id.orderBtn);
 
     SessionManagement sessionManagement = new SessionManagement(getActivity());
-    int customerId = sessionManagement.getSessionUserId();
+    final int customerId = sessionManagement.getSessionUserId();
     CartDAO cartDAO = new CartDAO();
-    ArrayList<ItemCartWithPrice> products = cartDAO.getAllCartWithPriceByUser(customerId);
+    final ArrayList<ItemCartWithPrice> products = cartDAO.getAllCartWithPriceByUser(customerId);
     for (ItemCartWithPrice itemCartWithPrice : products) {
       totalPrice += itemCartWithPrice.getPrice() * itemCartWithPrice.getQuantity();
     }
@@ -105,14 +107,15 @@ public class PriceFragment extends Fragment {
     orderBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), ThanksActivity.class);
-        intent.putExtra("sellPrice", totalPrice);
         if (!name.isEmpty() && !phone.isEmpty() && destinationId != -1) {
-          intent.putExtra("name", name);
-          intent.putExtra("phone", phone);
-          intent.putExtra("destinationId", destinationId);
+          OrderDAO orderDAO = new OrderDAO();
+          orderDAO.newOrder(customerId,destinationId,products);
+          Intent intent = new Intent(v.getContext(), ThanksActivity.class);
+          intent.putExtra("customerId", customerId);
+          v.getContext().startActivity(intent);
+        }else{
+          Toast.makeText(getActivity(),"Vui lòng điền đầy đủ thông tin rồi quay trở lại đặt hàng!", Toast.LENGTH_SHORT).show();
         }
-        getActivity().startActivity(intent);
       }
     });
   }

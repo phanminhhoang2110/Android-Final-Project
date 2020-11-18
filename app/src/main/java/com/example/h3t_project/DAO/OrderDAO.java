@@ -2,6 +2,7 @@ package com.example.h3t_project.DAO;
 
 import com.example.h3t_project.DatabaseM.DatabaseManager;
 import com.example.h3t_project.model.Address;
+import com.example.h3t_project.model.ItemCartWithPrice;
 import com.example.h3t_project.model.Order;
 import com.example.h3t_project.model.Product;
 
@@ -162,7 +163,7 @@ public class OrderDAO extends DatabaseManager {
     return orders;
   }
 
-  public boolean newOrder(int customerId, int destinationId, List<Integer> products) {
+  public boolean newOrder(int customerId, int destinationId, ArrayList<ItemCartWithPrice> products) {
     String insertOrder = "INSERT INTO [dbo].[tbl_orders] VALUES (? , ? , ?)";
     String insertOrderProduct = "INSERT INTO [dbo].[tbl_order_product] VALUES (? , ? , ?)";
     try {
@@ -183,8 +184,8 @@ public class OrderDAO extends DatabaseManager {
       for (int i = 0; i < products.size(); i++) {
         insertOrderProductStatement = connection.prepareStatement(insertOrderProduct);
         insertOrderProductStatement.setInt(1, idLatest);
-        insertOrderProductStatement.setInt(2, products.get(i));
-        insertOrderProductStatement.setInt(3, 1);
+        insertOrderProductStatement.setInt(2, products.get(i).getProductId());
+        insertOrderProductStatement.setInt(3, products.get(i).getQuantity());
         insertOrderProductStatement.executeUpdate();
       }
 
