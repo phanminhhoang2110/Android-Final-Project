@@ -151,7 +151,7 @@ public Product getSellerProductById(int id){
         return false;
   }
 
-  public int insertProduct(String name, int type, int o_price, int price, String brand, int quantity, String guarantee, String color, int height, String material, String des) {
+  public int insertProduct(String name, int type, float o_price, float price, String brand, int quantity, String guarantee, String color, float height, String material, String des) {
     int result = 0;
     try {
       //insert users table
@@ -162,13 +162,13 @@ public Product getSellerProductById(int id){
       PreparedStatement ps = connection.prepareStatement(sql1 + sql2);
       ps.setString(1, name);
       ps.setInt(2, type);
-      ps.setInt(3, o_price);
-      ps.setInt(4, price);
+      ps.setFloat(3, o_price);
+      ps.setFloat(4, price);
       ps.setString(5, brand);
       ps.setInt(6, quantity);
       ps.setString(7, guarantee);
       ps.setString(8, color);
-      ps.setInt(9, height);
+      ps.setFloat(9, height);
       ps.setString(10, material);
       ps.setString(11, des);
       ps.executeUpdate();
