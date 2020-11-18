@@ -1,7 +1,6 @@
 package com.example.h3t_project.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +33,10 @@ public class PriceFragment extends Fragment {
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
   CouponItem couponItem = null;
+  int totalPrice = 0;
+  int originTotalPrice;
+  TextView priceOrderTv;
+  DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
   // TODO: Rename and change types of parameters
   private String mParam1;
   private String mParam2;
@@ -79,10 +82,8 @@ public class PriceFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    TextView priceOrderTv = view.findViewById(R.id.priceOrderTv);
+    priceOrderTv = view.findViewById(R.id.priceOrderTv);
     Button orderBtn = view.findViewById(R.id.orderBtn);
-    DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-    int totalPrice = 0;
 
     SessionManagement sessionManagement = new SessionManagement(getActivity());
     int customerId = sessionManagement.getSessionUserId();
@@ -92,12 +93,20 @@ public class PriceFragment extends Fragment {
       totalPrice += itemCartWithPrice.getPrice() * itemCartWithPrice.getQuantity();
     }
     totalPrice += IntentCode.FEE_SHIPPING;
+    originTotalPrice = totalPrice;
 
     priceOrderTv.setText(decimalFormat.format(totalPrice) + " đ");
   }
 
   public void receiveCoupon(CouponItem couponItem) {
     this.couponItem = couponItem;
-    Log.i("HOANGGGG", String.valueOf(couponItem.getValueCoupon()));
+    if(totalPrice != originTotalPrice){
+      totalPrice = originTotalPrice;
+    }
+    totalPrice -= couponItem.getValueCoupon();
+    if (totalPrice <= 0) {
+      totalPrice = 31000;
+    }
+    priceOrderTv.setText(decimalFormat.format(totalPrice) + " đ");
   }
 }
