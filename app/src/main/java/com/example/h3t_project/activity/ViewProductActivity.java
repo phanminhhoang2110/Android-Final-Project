@@ -61,18 +61,22 @@ public class ViewProductActivity extends AppCompatActivity {
 
     Button buttonAddToCart = findViewById(R.id.btnBuy2);
     SessionManagement sessionManagement = new SessionManagement(this);
-    final int roleId = sessionManagement.getSessionUserId();
+    final int userId = sessionManagement.getSessionUserId();
 
 
     buttonAddToCart.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         CartDAO cartDAO = new CartDAO();
-        boolean inCart = cartDAO.insertCart(roleId, productId, 1);
+        boolean inCart = cartDAO.insertCart(userId, productId, 1);
         if (inCart) {
           Toast.makeText(getApplicationContext(), "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
         } else {
-          Toast.makeText(getApplicationContext(), "Đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
+          if (userId != -1) {
+            Toast.makeText(getApplicationContext(), "Đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
+          } else {
+            Toast.makeText(getApplicationContext(), "Vui lòng đăng nhập", Toast.LENGTH_SHORT).show();
+          }
         }
       }
     });

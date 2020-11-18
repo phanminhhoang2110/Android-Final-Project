@@ -74,8 +74,6 @@ public class LoginFragment extends Fragment {
   @Override
   public void onStart() {
     super.onStart();
-//        SessionManagement sessionManagement = new SessionManagement(getActivity());
-//        sessionManagement.removeSession();
     checkSession();
   }
 
@@ -94,7 +92,9 @@ public class LoginFragment extends Fragment {
   }
 
   private void userMoveToHomePage() {
-
+//    Intent intent = new Intent();
+//    getActivity().setResult(IntentCode.PersonalLoginResultCode,intent);
+//    getActivity().finish();
     Intent intent = new Intent(getActivity(), HomePageActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);

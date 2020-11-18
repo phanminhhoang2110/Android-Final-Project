@@ -15,6 +15,7 @@ import com.example.h3t_project.DAO.UserDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.activity.EditPersonalActivity;
 import com.example.h3t_project.activity.LoginActivity;
+import com.example.h3t_project.constants.IntentCode;
 import com.example.h3t_project.model.User;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
@@ -63,7 +64,7 @@ public class PersonalInfomationFragment extends Fragment {
       mParam2 = getArguments().getString(ARG_PARAM2);
     }
   }
-
+  int userId;
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class PersonalInfomationFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_personal_infomation, container, false);
     txtLogin = view.findViewById(R.id.txtLoginRegister);
     SessionManagement sessionManagement = new SessionManagement(getActivity());
-    int userId = sessionManagement.getSessionUserId();
+    userId = sessionManagement.getSessionUserId();
     if (userId != -1) {
       UserDAO userDAO = new UserDAO();
       User user = userDAO.getUserById(userId);
@@ -94,8 +95,13 @@ public class PersonalInfomationFragment extends Fragment {
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), EditPersonalActivity.class);
-        startActivity(intent);
+        if(userId!=-1) {
+          Intent intent = new Intent(getActivity(), EditPersonalActivity.class);
+          startActivity(intent);
+        }else{
+          Intent intent = new Intent(getActivity(),LoginActivity.class);
+          startActivityForResult(intent, IntentCode.PersonalLoginCode);
+        }
       }
     });
   }
