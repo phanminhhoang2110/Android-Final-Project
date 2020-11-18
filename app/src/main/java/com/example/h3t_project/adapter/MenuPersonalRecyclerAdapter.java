@@ -15,7 +15,10 @@ import com.example.h3t_project.R;
 import com.example.h3t_project.activity.BuyedProductActivity;
 import com.example.h3t_project.activity.CustomerListOrderActivity;
 import com.example.h3t_project.activity.DestinationActivity;
+import com.example.h3t_project.activity.HomePageActivity;
+import com.example.h3t_project.activity.LoginActivity;
 import com.example.h3t_project.model.MenuItemPersonal;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 
 import java.util.ArrayList;
 
@@ -39,8 +42,11 @@ public class MenuPersonalRecyclerAdapter extends RecyclerView.Adapter<MenuPerson
     return new ViewHolder(view);
   }
 
+
   @Override
   public void onBindViewHolder(@NonNull MenuPersonalRecyclerAdapter.ViewHolder holder, final int position) {
+    SessionManagement sessionManagement = new SessionManagement(context);
+    final int userId = sessionManagement.getSessionUserId();
     holder.textView.setText(itemMenus.get(position).getItemName());
     holder.imageView.setImageResource(itemMenus.get(position).getIconMenu());
     holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -48,20 +54,37 @@ public class MenuPersonalRecyclerAdapter extends RecyclerView.Adapter<MenuPerson
       public void onClick(View v) {
         switch (position) {
           case 0:
-            intent = new Intent(context, CustomerListOrderActivity.class);
-            context.startActivity(intent);
+            if (userId != -1) {
+              intent = new Intent(context, CustomerListOrderActivity.class);
+              context.startActivity(intent);
+            } else {
+              checkoutToLogin();
+            }
             break;
           case 1:
-            intent = new Intent(context, DestinationActivity.class);
-            context.startActivity(intent);
+            if (userId != -1) {
+              intent = new Intent(context, DestinationActivity.class);
+              context.startActivity(intent);
+            } else {
+              checkoutToLogin();
+            }
             break;
           case 2:
-            intent = new Intent(context, BuyedProductActivity.class);
-            context.startActivity(intent);
+            if (userId != -1) {
+              intent = new Intent(context, BuyedProductActivity.class);
+              context.startActivity(intent);
+            } else {
+              checkoutToLogin();
+            }
             break;
         }
       }
     });
+  }
+
+  public void checkoutToLogin() {
+    intent = new Intent(context, LoginActivity.class);
+    context.startActivity(intent);
   }
 
   @Override
