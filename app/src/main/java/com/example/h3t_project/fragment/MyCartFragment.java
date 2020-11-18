@@ -18,7 +18,6 @@ import com.example.h3t_project.adapter.MyCartAdapter;
 import com.example.h3t_project.model.ItemCartDetail;
 import com.example.h3t_project.sessionhelper.SessionManagement;
 
-import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -37,6 +36,7 @@ public class MyCartFragment extends Fragment implements MyCartAdapter.ResetAdapt
   ArrayList<ItemCartDetail> itemCarts;
   int totalPrice = 0;
   TextView viewTotalMoney;
+  CartDAO cartDAO = new CartDAO();
   // TODO: Rename and change types of parameters
   private String mParam1;
   private String mParam2;
@@ -61,16 +61,6 @@ public class MyCartFragment extends Fragment implements MyCartAdapter.ResetAdapt
     args.putString(ARG_PARAM2, param2);
     fragment.setArguments(args);
     return fragment;
-  }
-
-  public static int getResId(String resName, Class<?> c) {
-    try {
-      Field idField = c.getDeclaredField(resName);
-      return idField.getInt(idField);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return -1;
-    }
   }
 
   @Override
@@ -116,6 +106,9 @@ public class MyCartFragment extends Fragment implements MyCartAdapter.ResetAdapt
   public void reset(int quantity, int indexProduct) {
     totalPrice = 0;
     itemCarts.get(indexProduct).setQuantity(quantity);
+    int userId = itemCarts.get(indexProduct).getCustomerId();
+
+    cartDAO.updateQuantityCart(quantity, userId, itemCarts.get(indexProduct).getProductId());
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
     for (ItemCartDetail itemCart : itemCarts) {
       totalPrice += itemCart.getSellPrice() * itemCart.getQuantity();
