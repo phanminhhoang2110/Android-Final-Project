@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -62,25 +63,49 @@ public class AddProductActivity extends AppCompatActivity {
       public void onClick(View v) {
         SellerProductDAO sellerProductDAO = new SellerProductDAO();
         String name = textName.getText().toString();
-        int oPrice = Integer.parseInt(textOriginPrice.getText().toString());
-        int price = Integer.parseInt(textPrice.getText().toString());
+        float oPrice, price;
+        if (textOriginPrice.getText().toString().trim().isEmpty()) {
+          oPrice = 0;
+        } else {
+          oPrice = Float.parseFloat(textOriginPrice.getText().toString());
+        }
+        if (textPrice.getText().toString().trim().isEmpty()) {
+          price = 0;
+        } else {
+          price = Float.parseFloat(textPrice.getText().toString());
+        }
         String brand = textBrand.getText().toString();
-        int quantity = Integer.parseInt(textQuantity.getText().toString());
+        int quantity;
+        if (textQuantity.getText().toString().trim().isEmpty()) {
+          quantity = 0;
+        } else {
+          quantity = Integer.parseInt(textQuantity.getText().toString());
+        }
         String guarantee = textGuarantee.getText().toString();
         String color = textColor.getText().toString();
-        int height = Integer.parseInt(textHeight.getText().toString());
+        float height;
+        if (textHeight.getText().toString().trim().isEmpty()) {
+          height = 0;
+        } else {
+          height = Float.parseFloat(textHeight.getText().toString());
+        }
         String material = textMaterial.getText().toString();
         String des = textDes.getText().toString();
-
-        if (!sellerProductDAO.isDuplicate(name)) {
-          int insertProduct = sellerProductDAO.insertProduct(name, category, oPrice, price, brand, quantity, guarantee, color, height, material, des);
-          if (insertProduct != 1) {
-            sellerMoveToListProduct();
+        if (oPrice == 0 || price == 0 || quantity == 0) {
+          txtNote.setText("Vui lòng không để trống giá, số lượng");
+        }
+        if (oPrice != 0 && price != 0 && quantity != 0){
+          if (!sellerProductDAO.isDuplicate(name)) {
+            int insertProduct = sellerProductDAO.insertProduct(name, category, oPrice, price, brand, quantity, guarantee, color, height, material, des);
+            if (insertProduct != 1) {
+              sellerMoveToListProduct();
+              Toast.makeText(getApplicationContext(), "Thêm sản phẩm thành công", Toast.LENGTH_SHORT).show();
+            } else {
+              txtNote.setText("Vui lòng không để trống giá, số lượng");
+            }
           } else {
-            txtNote.setText("Vui lòng không để trống bất kì thông tin nào!");
+            txtNote.setText("Kiểm tra lại thông tin sản phẩm");
           }
-        } else {
-          txtNote.setText("Username đã tồn tại");
         }
       }
     });
