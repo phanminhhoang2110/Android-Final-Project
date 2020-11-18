@@ -12,7 +12,7 @@ import com.example.h3t_project.DAO.CartDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.adapter.ConfirmProductAdapter;
 import com.example.h3t_project.fragment.PriceFragment;
-import com.example.h3t_project.inteface.OnSendCouponData;
+import com.example.h3t_project.interfaces.OnSendCouponData;
 import com.example.h3t_project.model.CouponItem;
 import com.example.h3t_project.model.ItemCartDetail;
 import com.example.h3t_project.sessionhelper.SessionManagement;
@@ -59,5 +59,11 @@ public class ConfirmOrderActivity extends AppCompatActivity implements OnSendCou
   public void onSendCouponData(CouponItem couponItem) {
     PriceFragment priceFragment = (PriceFragment) getSupportFragmentManager().findFragmentById(R.id.priceFragment);
     priceFragment.receiveCoupon(couponItem);
+  }
+
+  @Override
+  public void onSendDestinationData(String name, String phone, int destinationId) {
+    PriceFragment priceFragment = (PriceFragment) getSupportFragmentManager().findFragmentById(R.id.priceFragment);
+    priceFragment.receiveDestination(name, phone, destinationId);
   }
 }

@@ -1,9 +1,11 @@
 package com.example.h3t_project.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.h3t_project.DAO.DestinationDAO;
 import com.example.h3t_project.DAO.UserDAO;
 import com.example.h3t_project.R;
+import com.example.h3t_project.interfaces.OnSendCouponData;
 import com.example.h3t_project.model.Destination;
 import com.example.h3t_project.model.User;
 import com.example.h3t_project.sessionhelper.SessionManagement;
@@ -33,10 +36,13 @@ public class OrderDestinationFragment extends Fragment {
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
-
+  Spinner spinner;
+  ArrayList<Destination> destinations;
+  User user;
   // TODO: Rename and change types of parameters
   private String mParam1;
   private String mParam2;
+  private OnSendCouponData onSendCouponData;
 
   public OrderDestinationFragment() {
     // Required empty public constructor
@@ -77,12 +83,18 @@ public class OrderDestinationFragment extends Fragment {
   }
 
   @Override
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
+    onSendCouponData = (OnSendCouponData) getActivity();
+  }
+
+  @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     SessionManagement sessionManagement = new SessionManagement(getActivity());
     UserDAO userDAO = new UserDAO();
     int customerId = sessionManagement.getSessionUserId();
-    User user = userDAO.getUserById(customerId);
+    user = userDAO.getUserById(customerId);
     setupOptionDestination(view, customerId);
 
     TextView nameCustomer = view.findViewById(R.id.nameCustomer);
@@ -95,17 +107,35 @@ public class OrderDestinationFragment extends Fragment {
 
   public void setupOptionDestination(View view, int customerId) {
     DestinationDAO destinationDAO = new DestinationDAO();
-    final ArrayList<Destination> destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(customerId);
+    destinations = (ArrayList<Destination>) destinationDAO.getDestinationByUser(customerId);
     List<String> listDestination = new ArrayList<>();
     for (int i = 0; i < destinations.size(); i++) {
       listDestination.add(destinations.get(i).toString());
     }
 
-    final Spinner spinner = view.findViewById(R.id.destination);
+    spinner = view.findViewById(R.id.destination);
 
     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, listDestination);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinner.setAdapter(arrayAdapter);
+
+    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        handleSpinnerChange();
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> parent) {
+
+      }
+    });
+  }
+
+  public void handleSpinnerChange() {
+    int destinationPosition = spinner.getSelectedItemPosition();
+    int destinationId = destinations.get(destinationPosition).getId();
+    onSendCouponData.onSendDestinationData(user.getFullname(), user.getPhone(), destinationId);
   }
 
 }

@@ -1,5 +1,6 @@
 package com.example.h3t_project.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.h3t_project.DAO.CartDAO;
 import com.example.h3t_project.R;
+import com.example.h3t_project.activity.ThanksActivity;
 import com.example.h3t_project.constants.IntentCode;
 import com.example.h3t_project.model.CouponItem;
 import com.example.h3t_project.model.ItemCartWithPrice;
@@ -36,6 +38,9 @@ public class PriceFragment extends Fragment {
   int totalPrice = 0;
   int originTotalPrice;
   TextView priceOrderTv;
+  String name;
+  String phone;
+  int destinationId = -1;
   DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
   // TODO: Rename and change types of parameters
   private String mParam1;
@@ -96,11 +101,25 @@ public class PriceFragment extends Fragment {
     originTotalPrice = totalPrice;
 
     priceOrderTv.setText(decimalFormat.format(totalPrice) + " đ");
+
+    orderBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), ThanksActivity.class);
+        intent.putExtra("sellPrice", totalPrice);
+        if (!name.isEmpty() && !phone.isEmpty() && destinationId != -1) {
+          intent.putExtra("name", name);
+          intent.putExtra("phone", phone);
+          intent.putExtra("destinationId", destinationId);
+        }
+        getActivity().startActivity(intent);
+      }
+    });
   }
 
   public void receiveCoupon(CouponItem couponItem) {
     this.couponItem = couponItem;
-    if(totalPrice != originTotalPrice){
+    if (totalPrice != originTotalPrice) {
       totalPrice = originTotalPrice;
     }
     totalPrice -= couponItem.getValueCoupon();
@@ -108,5 +127,11 @@ public class PriceFragment extends Fragment {
       totalPrice = 31000;
     }
     priceOrderTv.setText(decimalFormat.format(totalPrice) + " đ");
+  }
+
+  public void receiveDestination(String name, String phone, int destinationId) {
+    this.name = name;
+    this.phone = phone;
+    this.destinationId = destinationId;
   }
 }

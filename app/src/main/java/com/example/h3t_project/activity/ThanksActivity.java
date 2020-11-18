@@ -30,6 +30,5 @@ public class ThanksActivity extends AppCompatActivity {
         startActivity(intent);
       }
     });
-
   }
 }

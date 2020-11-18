@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.h3t_project.DAO.CouponDAO;
 import com.example.h3t_project.R;
-import com.example.h3t_project.inteface.OnSendCouponData;
+import com.example.h3t_project.interfaces.OnSendCouponData;
 import com.example.h3t_project.model.CouponItem;
 
 /**
