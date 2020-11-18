@@ -13,6 +13,7 @@ import com.example.h3t_project.DAO.CouponDAO;
 import com.example.h3t_project.R;
 import com.example.h3t_project.model.CouponItem;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CouponItemAdapter extends RecyclerView.Adapter<CouponItemAdapter.ViewHolder> {
@@ -31,8 +32,9 @@ public class CouponItemAdapter extends RecyclerView.Adapter<CouponItemAdapter.Vi
 
   @Override
   public void onBindViewHolder(@NonNull CouponItemAdapter.ViewHolder holder, final int position) {
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
     holder.codeCoupon.setText(couponItems.get(position).getCodeCoupon());
-    holder.valueCoupon.setText(String.valueOf(couponItems.get(position).getValueCoupon()));
+    holder.valueCoupon.setText(decimalFormat.format(couponItems.get(position).getValueCoupon()) + " đ") ;
     holder.trashbtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

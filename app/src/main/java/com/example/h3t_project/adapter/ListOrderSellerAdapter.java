@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,12 +34,19 @@ public class ListOrderSellerAdapter extends RecyclerView.Adapter<ListOrderSeller
   }
 
   @Override
-  public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
     DecimalFormat decimalFormat = new DecimalFormat("###,####,###");
     String aa = orders.get(position).getProductName();
     holder.item_product_name.setText(orders.get(position).getProductName());
     holder.item_quantity_product.setText(decimalFormat.format(orders.get(position).getQuantity()));
     holder.item_image_product.setImageResource(orders.get(position).getProduct().getImage_id());
+    holder.viewDetail.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+          int orderId = orders.get(position).getOrderId();
+
+      }
+    });
   }
 
   @Override
@@ -51,12 +59,13 @@ public class ListOrderSellerAdapter extends RecyclerView.Adapter<ListOrderSeller
     TextView item_product_name;
     TextView item_quantity_product;
     ImageView item_image_product;
-
+    Button viewDetail;
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
       item_product_name = itemView.findViewById(R.id.product_seller_list_order);
       item_quantity_product = itemView.findViewById(R.id.quantity_seller_list_order);
       item_image_product = itemView.findViewById(R.id.image_seller_list_order);
+      viewDetail = itemView.findViewById(R.id.viewDetail);
     }
   }
 }

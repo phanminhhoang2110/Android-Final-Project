@@ -12,7 +12,7 @@ import com.example.h3t_project.sessionhelper.SessionManagement;
 
 public class SellerHomeActivity extends AppCompatActivity {
 
-  Button productButton, orderButton;
+  Button productButton, orderButton, couponButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,14 @@ public class SellerHomeActivity extends AppCompatActivity {
       @Override
       public void onClick(View view) {
         startActivity(new Intent(SellerHomeActivity.this, ActivityListOrder.class));
+      }
+    });
+
+    couponButton = findViewById(R.id.btnCoupon);
+    couponButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(SellerHomeActivity.this, CouponActivity.class));
       }
     });
   }
