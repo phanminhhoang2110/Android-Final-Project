@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.h3t_project.R;
+import com.example.h3t_project.sessionhelper.SessionManagement;
 
 public class ActivityMyCart extends AppCompatActivity {
   Toolbar toolbar;
@@ -28,12 +29,16 @@ public class ActivityMyCart extends AppCompatActivity {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     orderBtn = findViewById(R.id.btnBuyProdct);
+    SessionManagement sessionManagement = new SessionManagement(this);
+    final int userId = sessionManagement.getSessionUserId();
 
     orderBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), ConfirmOrderActivity.class);
-        startActivity(intent);
+        if (userId != -1) {
+          Intent intent = new Intent(getApplicationContext(), ConfirmOrderActivity.class);
+          startActivity(intent);
+        }
       }
     });
 
