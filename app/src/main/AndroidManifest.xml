@@ -9,7 +9,7 @@
     android:roundIcon="@drawable/h3t"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activity.SellerEditProductActivity"></activity>
+    <activity android:name=".activity.SellerEditProductActivity" />
     <activity android:name=".activity.SellerHomeActivity" />
     <activity
       android:name=".activity.EditDestinationActivity"
@@ -30,16 +30,15 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".activity.ActivityDetailOrder" /> 
+    <activity android:name=".activity.ActivityDetailOrder" />
     <activity android:name=".activity.ActivityListOrder" />
     <activity android:name=".activity.ThanksActivity" />
     <activity android:name=".activity.ChangeAddressActivity" />
-    <activity android:name=".activity.ConfirmOrderActivity"
-      android:parentActivityName=".activity.ActivityMyCart">
-
-    </activity>
+    <activity
+      android:name=".activity.ConfirmOrderActivity"
+      android:parentActivityName=".activity.ActivityMyCart"></activity>
     <activity android:name=".activity.SentMailActivity" />
-    <activity android:name=".activity.LoginActivity"></activity>
+    <activity android:name=".activity.LoginActivity" />
     <activity
       android:name=".activity.ForgotPasswordActivity"
       android:parentActivityName=".activity.LoginActivity" />
@@ -49,7 +48,7 @@
       android:parentActivityName=".activity.PersonalActivity" />
     <activity
       android:name=".activity.PersonalActivity"
-      android:parentActivityName=".activity.HomePageActivity"></activity>
+      android:parentActivityName=".activity.HomePageActivity" />
     <activity
       android:name=".activity.AddProductActivity"
       android:parentActivityName=".activity.SellerProductActivity" />

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,7 +25,9 @@ public class SellerProductActivity extends AppCompatActivity {
 
   RecyclerView listSellerProduct;
   SellerProductDAO sellerProductDAO = new SellerProductDAO();
-  Button button;
+  Button button, searchBtn;
+  EditText inputSearch;
+  List<Product> list, products;
 
 
   @Override
@@ -37,9 +40,33 @@ public class SellerProductActivity extends AppCompatActivity {
     getSupportActionBar().setTitle("List các sản phẩm");
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    inputSearch = findViewById(R.id.inputSearch);
     listSellerProduct = findViewById(R.id.recyclerView);
-    List<Product> products = sellerProductDAO.getProducts();
-    List<Product> list = new ArrayList<>();
+    setupProduct("");
+
+    button = findViewById(R.id.btnGoToAdd);
+    button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        startActivity(new Intent(SellerProductActivity.this, AddProductActivity.class));
+      }
+    });
+
+    searchBtn = findViewById(R.id.searchBtn);
+    searchBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        String searchText = inputSearch.getText().toString();
+        if (!searchText.isEmpty()) {
+          setupProduct(searchText);
+        }
+      }
+    });
+  }
+
+  private void setupProduct(String name) {
+    products = sellerProductDAO.getProducts(name);
+    list = new ArrayList<>();
     for (int i = 0; i < products.size(); i += 3) {
       Product p = new Product();
       p.setId(products.get(i).getId());
@@ -56,13 +83,5 @@ public class SellerProductActivity extends AppCompatActivity {
     listSellerProduct.setNestedScrollingEnabled(true);
     SellerProductAdapter adapter = new SellerProductAdapter(list, getApplicationContext());
     listSellerProduct.setAdapter(adapter);
-
-    button = findViewById(R.id.btnGoToAdd);
-    button.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        startActivity(new Intent(SellerProductActivity.this, AddProductActivity.class));
-      }
-    });
   }
 }
