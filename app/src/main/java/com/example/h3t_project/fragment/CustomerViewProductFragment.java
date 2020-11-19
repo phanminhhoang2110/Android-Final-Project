@@ -17,7 +17,6 @@ import com.example.h3t_project.adapter.CustomerVIewProductAdapter;
 import com.example.h3t_project.common.ResourceFunction;
 import com.example.h3t_project.model.Product;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 

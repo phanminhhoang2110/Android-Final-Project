@@ -32,7 +32,7 @@ public class SellerProductDAO extends DatabaseManager {
       connection = connect();
       preparedStatement = connection.prepareStatement(query);
       if (!name.isEmpty()) {
-        preparedStatement.setString(1,"%" + name + "%");
+        preparedStatement.setString(1, "%" + name + "%");
       }
       resultSet = preparedStatement.executeQuery();
       products = new ArrayList<>();
