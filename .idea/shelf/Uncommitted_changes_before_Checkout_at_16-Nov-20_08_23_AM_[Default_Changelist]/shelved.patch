@@ -1,0 +1,29 @@
+Index: app/src/main/res/layout/activity_my_cart.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#FFFFFF\"\r\n    android:backgroundTint=\"#FFFFFF\"\r\n    tools:context=\".activity.ActivityMyCart\">\r\n\r\n    <Button\r\n        android:id=\"@+id/btnBuyProdct\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"25dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"25dp\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:background=\"@drawable/red_radius_button\"\r\n        android:text=\"Đặt hàng\"\r\n        android:textColor=\"#FFFFFF\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/actionbar\"\r\n        app:layout_constraintVertical_bias=\"1.0\" />\r\n\r\n    <androidx.appcompat.widget.Toolbar\r\n        android:id=\"@+id/actionbar\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:background=\"#CC189EFF\"\r\n        android:gravity=\"center\"\r\n\r\n        android:minHeight=\"?attr/actionBarSize\"\r\n        android:theme=\"@style/ThemeOverlay.AppCompat.Dark.ActionBar\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.002\"\r\n        app:subtitleTextColor=\"#F6F4F4\"\r\n        app:title=\"Giỏ hàng của tôi\"\r\n        app:titleMargin=\"4dp\"\r\n        app:titleMarginStart=\"85dp\"\r\n        app:titleTextColor=\"#FAF8F8\" />\r\n\r\n    <Spinner\r\n        android:id=\"@+id/spinner2\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:backgroundTint=\"#000000\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/actionbar\" />\r\n\r\n    <ScrollView\r\n        android:id=\"@+id/scrollView3\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/btnBuyProdct\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/spinner2\"\r\n        app:layout_constraintVertical_bias=\"1.0\">\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"vertical\">\r\n\r\n            <fragment\r\n                android:id=\"@+id/fragment7\"\r\n                android:name=\"com.example.h3t_project.fragment.MyCartFragment\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"8dp\" />\r\n        </LinearLayout>\r\n    </ScrollView>\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_my_cart.xml	(revision 4a44898f0d663fc7c191035edb766b9e132b2b17)
++++ app/src/main/res/layout/activity_my_cart.xml	(date 1605489231017)
+@@ -75,12 +75,11 @@
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
+ 
+-            <fragment
+-                android:id="@+id/fragment7"
+-                android:name="com.example.h3t_project.fragment.MyCartFragment"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:layout_marginTop="8dp" />
++          <fragment
++            android:id="@+id/fragment7"
++            android:name="com.example.h3t_project.fragment.MyCartFragment"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content" />
+         </LinearLayout>
+     </ScrollView>
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
